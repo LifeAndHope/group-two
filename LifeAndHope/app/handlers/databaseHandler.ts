@@ -25,21 +25,20 @@ export class DatabaseHandler {
     private dataConnection: any;
     private fileConnection: any;
 
-
     constructor() {
         this.accountConnection = axios.create({
             baseURL: 'https://api.securedb.co:443/securedbapi/account/P88cSuYR/default',
             headers: {"Authorization": "Basic TzFLT0JPS0pWTDpaT0VJUTdIUTExTjUyNDU="}
         });
 
-        this.dataConnection = axios.create({
-            baseURL: 'https://api.securedb.co:443/securedbapi/data/P88cSuYR/default',
-            headers: {"Authorization": "Basic TzFLT0JPS0pWTDpaT0VJUTdIUTExTjUyNDU="}
-        });
-
         this.fileConnection = axios.create({
             baseURL: 'https://api.securedb.co:443/securedbapi/file/P88cSuYR/default',
             headers: {"Authorization": "Basic TzFLT0JPS0pWTDpaT0VJUTdIUTExTjUyNDU="}
+        });
+
+        this.dataConnection = axios.create({
+            baseURL: 'https://api.securedb.co:443/securedbapi/data/P88cSuYR/default',
+            headers: {"Authorization": "Basic TzFLT0JPS0pWTDpaT0VJUTdIUTExTjUyNDU="} //TODO: change to JWT?
         });
     }
 
@@ -51,6 +50,24 @@ export class DatabaseHandler {
             userName: username,
             password: password
         })
+    }
+
+
+    /* Get data from database */
+
+    getTables(){
+        this.dataConnection.get('/tables').then(function (response) {
+            var data : any = response.data.data;
+            data.forEach(function (item) {
+                console.log('<p>' + item.name + '</p>');
+            })
+        }).catch(function (response) {
+            //TODO: catch exceptions?
+        });
+    }
+
+    getChildren(): PromiseType {
+        return this.dataConnection.get('/child?fields=*')
     }
 
 

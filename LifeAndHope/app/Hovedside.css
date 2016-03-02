@@ -1,0 +1,23 @@
+button {
+    background-color: #ff9f35;
+}
+
+button:hover{
+    background-color: #ffedb3;
+}
+
+.tableDisplayButtons{
+    margin-top: 5%;
+}
+
+.second {
+    margin-top: 4%;
+}
+
+.theTable {
+    margin-top: 2%;
+}
+
+.switchTableDisplays{
+    margin-top: 1%;
+}

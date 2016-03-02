@@ -1,4 +1,5 @@
 import {Component} from 'angular2/core';
+import {Component, Renderer, ElementRef, OnDestroy} from 'angular2/core';
 
 @Component({
     selector: 'login',
@@ -8,4 +9,10 @@ import {Component} from 'angular2/core';
 
 export class LoginComponent {
     // Do fancy stuff
+    loginFunction(){
+        //new DatabaseHandler().login(username,password)
+
+    }
+
+
 }
