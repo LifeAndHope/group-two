@@ -22,7 +22,7 @@ export class App {
     constructor() {
         this.title = 'My super title';
 
-        new DatabaseHandler().login('oyvindkg', 'password').then(function (response) {
+        /*new DatabaseHandler().login('oyvindkg', 'password').then(function (response) {
                 console.log("SUCCESS:");
                 console.log(response);
                 alert(response.headers["authorization"]);
@@ -30,7 +30,17 @@ export class App {
             .catch(function (response) {
                 console.log("ERROR:");
                 console.log(response);
+            })*/
+
+        new DatabaseHandler().getTables();
+
+        new DatabaseHandler().getChildren()
+            .then(function (response){
+                console.log(response);
             })
+            .catch(function (response){
+                console.log(response);
+            });
     }
 
 }

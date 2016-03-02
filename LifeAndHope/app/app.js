@@ -11,13 +11,21 @@ var databaseHandler_1 = require("./handlers/databaseHandler");
 var App = (function () {
     function App() {
         this.title = 'My super title';
-        new databaseHandler_1.DatabaseHandler().login('oyvindkg', 'password').then(function (response) {
-            console.log("SUCCESS:");
+        /*new DatabaseHandler().login('oyvindkg', 'password').then(function (response) {
+                console.log("SUCCESS:");
+                console.log(response);
+                alert(response.headers["authorization"]);
+            })
+            .catch(function (response) {
+                console.log("ERROR:");
+                console.log(response);
+            })*/
+        new databaseHandler_1.DatabaseHandler().getTables();
+        new databaseHandler_1.DatabaseHandler().getChildren()
+            .then(function (response) {
             console.log(response);
-            alert(response.headers["authorization"]);
         })
             .catch(function (response) {
-            console.log("ERROR:");
             console.log(response);
         });
     }
