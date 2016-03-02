@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script src="..\axios\dist\axios.min.js"></script>
+<!--<script>
+    axios.get('https://api.securedb.co:443/securedbapi/data/P88cSuYR/default/tables', {
+        transformRequest: axios.defaults.transformRequest.concat(function (data, headers) {
+            headers['Authorization'] = 'Basic TzFLT0JPS0pWTDpaT0VJUTdIUTExTjUyNDU=';
+        })
+    }).then(function (response) {
+        var data = response.data.data;
+        data.forEach(function(item){
+            document.write('<p>' + item.name + '</p>');
+        })
+
+        return ('<p>' + response + '</p>');
+    }).catch(function (resp){
+        document.write('catch');
+        return ('<p>' + resp + '</p>')
+    });
+
+</script> -->
+<script src="..\DBScript.js"></script>
+
+</body>
+</html>
