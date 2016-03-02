@@ -7,9 +7,27 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var core_1 = require('angular2/core');
 var router_1 = require('angular2/router');
 var login_1 = require('./login');
+var databaseHandler_1 = require("./handlers/databaseHandler");
 var App = (function () {
     function App() {
         this.title = 'My super title';
+        /*new DatabaseHandler().login('oyvindkg', 'password').then(function (response) {
+                console.log("SUCCESS:");
+                console.log(response);
+                alert(response.headers["authorization"]);
+            })
+            .catch(function (response) {
+                console.log("ERROR:");
+                console.log(response);
+            })*/
+        new databaseHandler_1.DatabaseHandler().getTables();
+        new databaseHandler_1.DatabaseHandler().getChildren()
+            .then(function (response) {
+            console.log(response);
+        })
+            .catch(function (response) {
+            console.log(response);
+        });
     }
     App = __decorate([
         router_1.RouteConfig([
