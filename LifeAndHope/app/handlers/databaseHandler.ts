@@ -8,7 +8,7 @@ export class DatabaseHandler {
 
     accountConnection: any;
 
-    
+
     constructor() {
         this.accountConnection = axios.create({
             baseURL: 'https://api.securedb.co:443/securedbapi/account/P88cSuYR/default',
