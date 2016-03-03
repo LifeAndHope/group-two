@@ -1,5 +1,5 @@
-import {Sponsor, Child} from './models'
-import {Axios, UUIDGenerator, PromiseType} from './../interfaces'
+import {Sponsor, Child} from './../datatypes/models'
+import {Axios, UUIDGenerator, PromiseType} from './../datatypes/interfaces'
 
 declare var axios:Axios; // Tell typescript that there is a variable called 'axios' in its scope
 declare var uuid:UUIDGenerator; // Tell typescript that there is a variable called 'uuid' in its scope

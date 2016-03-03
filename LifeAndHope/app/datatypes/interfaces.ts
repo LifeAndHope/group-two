@@ -1,7 +1,9 @@
 // TODO: Create interfaces for various data types :)
 
+
 /** Interface for promises returned by asynchronous calls */
 export interface PromiseType {
+
     /** A successful request will run the callback function defined in this function
      *
      * @param callback A function with the response as the first parameter
@@ -15,8 +17,10 @@ export interface PromiseType {
     catch(callback: Function): PromiseType;
 }
 
-/** Interface for UUID generators */
+
+/** Interface representing the node-uuid library */
 export interface UUIDGenerator {
+
     /** Unique, but not secure */
     v1(): string;
 
@@ -31,6 +35,7 @@ export interface UUIDGenerator {
 }
 
 
+/** Interface representing the axios library */
 export interface Axios {
     post(url: string, data?: Object, configuration?: Object): PromiseType;
     get(url: string, data?: Object, configuration?: Object): PromiseType;
@@ -38,5 +43,10 @@ export interface Axios {
     delete(url: string, data?: Object, configuration?: Object): PromiseType;
 }
 
+
+/** A generic object */
 export interface Object {}
+
+
+/** A generic function */
 export interface Function {}
