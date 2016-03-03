@@ -1,13 +1,13 @@
 import {Component, View} from 'angular2/core';
-import { RouteConfig, ROUTER_DIRECTIVES } from 'angular2/router';
+import { RouteConfig, ROUTER_DIRECTIVES, Router, Route, Redirect } from 'angular2/router';
 import {DatabaseService} from "./../services/databaseService";
 
 import {LoginComponent} from './login';
 
 
 @RouteConfig([
-    {path: '/', component: LoginComponent, name: 'Login'},
-    {path: '/test', component: LoginComponent, name: 'Test'},
+    new Redirect({path: '/', redirectTo: ['/Login'] }),
+    new Route({path: '/login', component: LoginComponent, name: 'Login'})
 ])
 
 @Component({
