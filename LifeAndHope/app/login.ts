@@ -10,7 +10,7 @@ import {Component, Renderer, ElementRef, OnDestroy} from 'angular2/core';
 export class LoginComponent {
     // Do fancy stuff
     loginFunction(){
-        //new DatabaseHandler().login(username,password)
+        //new DatabaseService().login(username,password)
 
     }
 

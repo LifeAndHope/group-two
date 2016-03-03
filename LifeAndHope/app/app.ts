@@ -1,6 +1,6 @@
 import {Component, View} from 'angular2/core';
 import { RouteConfig, ROUTER_DIRECTIVES } from 'angular2/router';
-import {DatabaseHandler} from "./handlers/databaseHandler";
+import {DatabaseService} from "./services/databaseService";
 
 import {LoginComponent} from './login';
 
