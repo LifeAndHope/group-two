@@ -5,7 +5,7 @@ import {
     LocationStrategy,
     HashLocationStrategy
 } from 'angular2/router';
-import {App}   from './controllers/app'
+import {App}   from './components/app'
 
 bootstrap(App, [
     ROUTER_PROVIDERS,

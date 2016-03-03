@@ -1,8 +1,9 @@
-import {Component, Renderer, ElementRef, OnDestroy} from 'angular2/core';
+import {Component} from 'angular2/core';
+import {CanActivate} from 'angular2/router';
 
 @Component({
     selector: 'login',
-    templateUrl: 'app/views/login.html',
+    templateUrl: 'app/components/views/login.html',
     directives: []
 })
 
