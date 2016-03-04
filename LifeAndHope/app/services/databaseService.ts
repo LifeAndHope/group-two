@@ -28,18 +28,16 @@ export class DatabaseService {
     //TODO: Create a separate class for user management?
     /** Authenticate a user
      *
-     * @param username The username
-     * @param password The password
+     * @param {string} username The user's username
+     * @param {string} password The user's password
      * @returns {PromiseType}
      */
     static login(username, password): PromiseType {
-        var baseURL: string = this.baseURLForSecureDBAPI(SecureDBAPI.Account);
         return this.post(SecureDBAPI.Account, "/authenticate", {
             userName: username,
             password: password
-        })
+        });
     }
-
 
     /* Get data from database */
 
@@ -88,7 +86,7 @@ export class DatabaseService {
 
     /* Base request methods */
 
-    /** Send a POST request to a SequreDBAPI
+    /** Send a POST request to a SecureDB API
      *
      * @param api Target API
      * @param subpath Subpath for the requested service
@@ -99,18 +97,17 @@ export class DatabaseService {
         return this.dispatchRequest(axios.post, api, subpath, data);
     }
 
-    /** Send a GET request to a SequreDBAPI
+    /** Send a GET request to a SecureDB API
      *
      * @param api Target API
      * @param subpath Subpath for the requested service
-     * @param {Object} [data] Data to be sent
      * @returns {PromiseType}
      */
-    private static get(api: SecureDBAPI, subpath: string, data?: Object): PromiseType {
-        return this.dispatchRequest(axios.get, api, subpath, data);
+    private static get(api: SecureDBAPI, subpath: string): PromiseType {
+        return this.dispatchRequest(axios.get, api, subpath);
     }
 
-    /** Send a PUT request to a SequreDBAPI
+    /** Send a PUT request to a SecureDBAPI
      *
      * @param api Target API
      * @param subpath Subpath for the requested service
@@ -121,21 +118,36 @@ export class DatabaseService {
         return this.dispatchRequest(axios.put, api, subpath, data);
     }
 
+    /** Send a DELETE request to a SecureDB API
+     *
+     * @param api Target API
+     * @param subpath Subpath for the requested service
+     * @returns {PromiseType}
+     */
+    private static delete(api: SecureDBAPI, subpath: string): PromiseType {
+        return this.dispatchRequest(axios.delete, api, subpath);
+    }
+
     /** The base method responsible for actually dispatching the request
      *
      * @param {(url: string, data?: any, configuration?: any) => PromiseType} requestFunction An Axios method representing the desired HTTP method
-     * @param {SecureDBAPI} API The targeted SecureDB API
+     * @param {SecureDBAPI} api The targeted SecureDB API
      * @param {string} subpath Subpath from the base URL of the specified API
      * @param {Object} [data] The data to be sent
      * @returns {PromiseType}
      */
     private static dispatchRequest(requestFunction: (url: string, data?: Object, configuration?: Object) => PromiseType,
-                                   API: SecureDBAPI,
+                                   api: SecureDBAPI,
                                    subpath: string,
                                    data?: Object): PromiseType {
 
-        var baseURL: string = DatabaseService.baseURLForSecureDBAPI(API);
-        return requestFunction(baseURL + subpath, data, this.configuration);
+        var baseUrl: string = DatabaseService.baseUrlForSecureDbApi(api);
+
+        if (requestFunction == axios.get || requestFunction == axios.delete) {
+            return requestFunction(baseUrl + subpath, this.configuration);
+        }
+
+        return requestFunction(baseUrl + subpath, data, this.configuration);
     }
 
 
@@ -156,7 +168,7 @@ export class DatabaseService {
         }
     }
 
-    private static baseURLForSecureDBAPI(api): string {
+    private static baseUrlForSecureDbApi(api): string {
         var apiName: string;
 
         switch (api) {

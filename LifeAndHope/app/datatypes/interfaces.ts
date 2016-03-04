@@ -38,9 +38,9 @@ export interface UUIDGenerator {
 /** Interface representing the axios library */
 export interface Axios {
     post(url: string, data?: Object, configuration?: Object): PromiseType;
-    get(url: string, data?: Object, configuration?: Object): PromiseType;
+    get(url: string, configuration?: Object): PromiseType;
     put(url: string, data?: Object, configuration?: Object): PromiseType;
-    delete(url: string, data?: Object, configuration?: Object): PromiseType;
+    delete(url: string, configuration?: Object): PromiseType;
 }
 
 
