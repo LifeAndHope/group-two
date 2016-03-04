@@ -1,8 +1,8 @@
 import {Component, View} from 'angular2/core';
 import { RouteConfig, RouterLink, Router, Route, Redirect } from 'angular2/router';
-import {DatabaseService} from "./../services/databaseService";
 
 import {AuthenticatedRouterOutlet} from './authenticatedRouterOutlet';
+
 import {LoginComponent} from './login';
 
 
@@ -24,5 +24,4 @@ export class App {
     constructor() {
         this.title = 'My super title';
     }
-
 }

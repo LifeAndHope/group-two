@@ -11,14 +11,14 @@ export class AuthenticatedRouterOutlet extends RouterOutlet {
     publicRoutes: Object;
     private parentRouter: Router;
 
-    constructor(_elementRef: ElementRef,
-                _loader: DynamicComponentLoader,
-                _parentRouter: Router,
+    constructor(elementRef: ElementRef,
+                loader: DynamicComponentLoader,
+                parentRouter: Router,
                 @Attribute('name') nameAttr: string) {
 
-        super(_elementRef, _loader, _parentRouter, nameAttr);
+        super(elementRef, loader, parentRouter, nameAttr);
 
-        this.parentRouter = _parentRouter;
+        this.parentRouter = parentRouter;
         this.publicRoutes = {
             'login': true,
         };
@@ -31,7 +31,7 @@ export class AuthenticatedRouterOutlet extends RouterOutlet {
             return super.activate(instruction);
         }
 
-        var loginInstruction = this.parentRouter.generate(['/Login']);
+        const loginInstruction = this.parentRouter.generate(['/Login']);
 
         return super.activate(loginInstruction.component);
     }

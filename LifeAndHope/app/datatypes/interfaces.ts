@@ -42,11 +42,3 @@ export interface Axios {
     put(url: string, data?: Object, configuration?: Object): PromiseType;
     delete(url: string, configuration?: Object): PromiseType;
 }
-
-
-/** A generic object */
-export interface Object {}
-
-
-/** A generic function */
-export interface Function {}
