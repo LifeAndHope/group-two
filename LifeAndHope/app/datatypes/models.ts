@@ -1,4 +1,4 @@
-
+import {UUIDGenerator} from "./interfaces";
 
 export class Sponsor {
     id: string;
@@ -20,4 +20,12 @@ export class Child {
     account_number: string;
     school: string;
     description: string;
+}
+
+
+export class Note {
+    table_name: string;
+    instance_id: string;
+    text: string;
+    date: Date;
 }

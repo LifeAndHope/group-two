@@ -7,7 +7,7 @@ export class DatabaseService {
     private static directoryName: string = 'default';
     private static customerId: string = 'P88cSuYR';
 
-    private static configuration: Object = {
+    protected static configuration: Object = {
         headers: {
             "Authorization": "Basic TzFLT0JPS0pWTDpaT0VJUTdIUTExTjUyNDU="
         }
@@ -39,7 +39,7 @@ export class DatabaseService {
     }
 
     /**
-     * Send a PUT request to a SecureDBAPI
+     * Send a PUT request to a SecureDB API
      *
      * @param subpath Subpath for the requested service
      * @param {Object} [data] Data to be sent
