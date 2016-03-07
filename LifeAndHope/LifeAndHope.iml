@@ -12,5 +12,7 @@
     <orderEntry type="library" name="Rx" level="application" />
     <orderEntry type="library" name="axios" level="application" />
     <orderEntry type="library" name="router.dev" level="application" />
+    <orderEntry type="library" name="bootstrap" level="application" />
+    <orderEntry type="library" name="jquery" level="application" />
   </component>
 </module>

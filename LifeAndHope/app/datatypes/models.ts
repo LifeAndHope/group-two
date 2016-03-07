@@ -12,14 +12,17 @@ export class Sponsor {
 
 
 export class Child {
-    id: string;
-    first_name: string;
-    last_name: string;
-    sex: string;
-    date_of_birth: Date;
-    account_number: string;
-    school: string;
-    description: string;
+
+    constructor(public id: string,
+                public first_name: string,
+                public last_name: string,
+                public sex: string,
+                public date_of_birth: Date,
+                public account_number: string,
+                public school_id: string,
+                public description: string) {
+
+    }
 }
 
 

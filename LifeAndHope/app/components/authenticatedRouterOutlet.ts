@@ -21,6 +21,7 @@ export class AuthenticatedRouterOutlet extends RouterOutlet {
         this.parentRouter = parentRouter;
         this.publicRoutes = {
             'login': true,
+            'list': true
         };
 
     }

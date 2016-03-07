@@ -4,11 +4,13 @@ import { RouteConfig, RouterLink, Router, Route, Redirect } from 'angular2/route
 import {AuthenticatedRouterOutlet} from './authenticatedRouterOutlet';
 
 import {LoginComponent} from './login';
+import {ListComponent} from "./list";
 
 
 @RouteConfig([
-    new Redirect({path: '/', redirectTo: ['/Login'], useAsDefault: true }),
+    new Redirect({path: '/', redirectTo: ['/List'], useAsDefault: true }),
     new Route({path: '/login', component: LoginComponent, name: 'Login'}),
+    new Route({path: '/list', component: ListComponent, name: 'List'})
 ])
 
 @Component({

@@ -1,23 +1,27 @@
-button {
-    background-color: #ff9f35;
+/*button {*/
+    /*background-color: #ff9f35;*/
+/*}*/
+
+/*button:hover{*/
+    /*background-color: #ffedb3;*/
+/*}*/
+
+.vertical-space-xs {
+    margin-top: 2rem;
 }
 
-button:hover{
-    background-color: #ffedb3;
+.vertical-space-sm {
+    margin-top: 4rem;
 }
 
-.tableDisplayButtons{
-    margin-top: 5%;
+.vertical-space-md {
+    margin-top: 6rem;
 }
 
-.second {
-    margin-top: 4%;
+.vertical-space-lg {
+    margin-top: 12rem;
 }
 
-.theTable {
-    margin-top: 2%;
-}
-
-.switchTableDisplays{
-    margin-top: 1%;
+.vertical-space-xl {
+    margin-top: 20rem;
 }

@@ -1,72 +1,66 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <link rel="stylesheet" href="Hovedside.css">
-</head>
 
-<body>
     <div class="container">
-        <div class="row tableDisplayButtons">
-            <div class="col-sm-offset-5">
+        <div class="row vertical-space-sm">
+            <div class="col-sm-12  text-center">
                 <div class="btn-group">
-                    <button type="button" class="btn btn-Barn">Barn</button>
-                    <button type="button" class="btn btn-Fadder">Fadder</button>
+                    <button type="button" class="btn btn-default active">Barn</button>
+                    <button type="button" class="btn btn-default">Fadder</button>
                 </div>
             </div>
         </div>
 
-        <div class="row second">
+
+        <div class="row vertical-space-sm">
             <div class="col-sm-4">
-                <button type="button" class="btn btn-AddChild">+Add Child</button>
+                <button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span> Add Child</button>
             </div>
 
-
-            <div class="col-sm-4 col-sm-offset-3">
-                <input type="search" class="form-control" id="sc" placeholder="search here">
+            <div class="col-sm-4 col-sm-offset-4 text-right">
+                <div class="input-group">
+                    <input type="text" class="form-control" [(ngModel)]="filterModel.filter" aria-label="search" placeholder="search">
+                    <div class="input-group-btn">
+                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">{{filterModel.key}} <span class="caret"></span></button>
+                        <ul class="dropdown-menu dropdown-menu-right">
+                            <li><a (click)="filterModel.key = 'All'">All</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a (click)="filterModel.key = 'Fornavn'">Fornavn</a></li>
+                            <li><a (click)="filterModel.key = 'Etternavn'">Etternavn</a></li>
+                            <li><a (click)="filterModel.key = 'Kjønn'">Kjønn</a></li>
+                            <li><a (click)="filterModel.key = 'Fødselsår'">Fødselsår</a></li>
+                            <li><a (click)="filterModel.key = 'Kontonummer'">Kontonummer</a></li>
+                            <li><a (click)="filterModel.key = 'Fadder'">Fadder</a></li>
+                        </ul>
+                    </div>
+                </div>
             </div>
         </div>
 
-        <div class="row theTable">
+
+        <div class="row vertical-space-xs">
             <div class="col-sm-12">
                 <table class="table table-striped">
                     <thead>
                         <tr>
-                            <th>Navn</th>
+                            <th>Fornavn</th>
+                            <th>Etternavn</th>
                             <th>Kjønn</th>
-                            <th>Alder</th>
+                            <th>Fødselsår</th>
                             <th>Kontonummer</th>
                             <th>Fadder</th>
-                            <th>?</th>
-                            <th>?</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <th>Gaddafi</th>
-                            <th>M</th>
-                            <th>100</th>
-                            <th>123456789</th>
-                            <th>Ola</th>
-                            <th>?</th>
-                            <th>?</th>
+                        <tr *ngFor=" #person of people | filterBy: filterModel.filter ">
+                            <td>{{ person.first_name }}</td>
+                            <td>{{ person.last_name }}</td>
+                            <td>{{ person.sex }}</td>
+                            <td>{{ person.date_of_birth | date:'yyyy' }}</td>
+                            <td>{{ person.account_number }}</td>
+                            <td>'Sponsor'</td>
                         </tr>
                     </tbody>
                 </table>
             </div>
         </div>
-
-        <div class="row switchTableDisplays">
-            <div class="col-sm-2">
-                <ul class="pager">
-                    <li><a href="#">Previous</a></li>
-                    <li><a href="#">Next</a></li>
-                </ul>
-            </div>
-        </div>
     </div>
-</body>
-
-</html>
