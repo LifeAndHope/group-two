@@ -35,6 +35,7 @@ export class UserService extends DatabaseService {
     }
 
     public static logOut(): PromiseType {
-        return super.post('/logout');
+        //FIXME: Fix this
+        return super.post('/logout', {});
     }
 }
