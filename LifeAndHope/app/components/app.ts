@@ -12,9 +12,9 @@ import {AccountService} from "../services/account.service";
 
 
 @RouteConfig([
-    //new Redirect({path: '/', redirectTo: ['/Login'], useAsDefault: true }),
+    new Redirect({path: '/', redirectTo: ['Home'], useAsDefault: true }),
     new Route({path: '/login', component: LoginComponent, name: 'Login'}),
-    new Route({path: '/', component: HovedsideComponent, name: 'Home'}),
+    new Route({path: '/home', component: HovedsideComponent, name: 'Home'}),
 ])
 
 @Component({

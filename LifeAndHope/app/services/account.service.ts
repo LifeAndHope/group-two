@@ -17,8 +17,8 @@ export class AccountService extends DatabaseService {
         return this.authenticatedAccount != undefined;
     }
 
-    public static login(username: string, password: string): PromiseType {
-        const promise: PromiseType = new Promise((resolve, reject) => {
+    public static login(username: string, password: string): PromiseType<Account> {
+        const promise: PromiseType<Account> = new Promise((resolve, reject) => {
 
             const loginPromise = super.post('/authenticate', {
                 userName: username,
@@ -64,7 +64,7 @@ export class AccountService extends DatabaseService {
         this.configuration = {};
     }
 
-    public static signOut(): PromiseType {
+    public static signOut(): PromiseType<any> {
         return new Promise((resolve, reject) => {
             const signOutPromise = super.post('/logout', {});
 
@@ -80,7 +80,7 @@ export class AccountService extends DatabaseService {
 
     }
 
-    public static getAccount(uuid: string): PromiseType {
+    public static getAccount(uuid: string): PromiseType<Account> {
         return new Promise((resolve, reject) => {
             const userPromise = super.get('/uuid/' + uuid);
 

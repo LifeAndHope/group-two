@@ -24,7 +24,7 @@ export class DatabaseService {
      * @param {Object} data Data to be sent
      * @returns {PromiseType}
      */
-    protected static post(subpath: string, data: Object): PromiseType {
+    protected static post(subpath: string, data: Object): PromiseType<any> {
         return axios.post(this.baseUrl() + subpath, data, this.configuration);
     }
 
@@ -34,7 +34,7 @@ export class DatabaseService {
      * @param subpath Subpath for the requested service
      * @returns {PromiseType}
      */
-    protected static get(subpath: string): PromiseType {
+    protected static get(subpath: string): PromiseType<any> {
         return axios.get(this.baseUrl() + subpath, this.configuration);
     }
 
@@ -45,7 +45,7 @@ export class DatabaseService {
      * @param {Object} [data] Data to be sent
      * @returns {PromiseType}
      */
-    protected static put(subpath: string, data?: Object): PromiseType {
+    protected static put(subpath: string, data?: Object): PromiseType<any> {
         return axios.put(this.baseUrl() + subpath, data, this.configuration);
     }
 
@@ -55,7 +55,7 @@ export class DatabaseService {
      * @param subpath Subpath for the requested service
      * @returns {PromiseType}
      */
-    protected static delete(subpath: string): PromiseType {
+    protected static delete(subpath: string): PromiseType<any> {
         return axios.delete(this.baseUrl() + subpath, this.configuration);
     }
 

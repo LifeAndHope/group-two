@@ -2,19 +2,19 @@
 
 
 /** Interface for promises returned by asynchronous calls */
-export interface PromiseType {
+export interface PromiseType<T> {
 
     /** A successful request will run the callback function defined in this function
      *
      * @param callback A function with the response as the first parameter
      */
-    then(callback: Function): PromiseType;
+    then(callback: (T) => void): PromiseType<T>;
 
     /** An unsuccessful request will run the callback function defined in this function
      *
      * @param callback A function with the response as the first parameter
      */
-    catch(callback: Function): PromiseType;
+    catch(callback: (T) => void): PromiseType<T>;
 }
 
 
@@ -37,10 +37,10 @@ export interface UUIDGenerator {
 
 /** Interface representing the axios library */
 export interface Axios {
-    post(url: string, data?: Object, configuration?: Object): PromiseType;
-    get(url: string, configuration?: Object): PromiseType;
-    put(url: string, data?: Object, configuration?: Object): PromiseType;
-    delete(url: string, configuration?: Object): PromiseType;
+    post(url: string, data?: Object, configuration?: Object): PromiseType<any>;
+    get(url: string, configuration?: Object): PromiseType<any>;
+    put(url: string, data?: Object, configuration?: Object): PromiseType<any>;
+    delete(url: string, configuration?: Object): PromiseType<any>;
 }
 
 
