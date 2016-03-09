@@ -42,4 +42,8 @@ export class DatabaseHandler {
     getChildren() : any{
         return this.dataConnection.get('/child?fields=*')
     }
+
+    getSponsor() : any{
+        return this.dataConnection.get('/sponsor?fields=*')
+    }
 }

@@ -41,6 +41,14 @@ export class App {
             .catch(function (response){
                 console.log(response);
             });
+
+        new DatabaseHandler().getSponsor()
+            .then(function(response){
+                console.log(response)
+            })
+            .catch(function(response){
+                console.log(response)
+            })
     }
 
 }

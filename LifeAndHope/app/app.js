@@ -28,6 +28,13 @@ var App = (function () {
             .catch(function (response) {
             console.log(response);
         });
+        new databaseHandler_1.DatabaseHandler().getSponsor()
+            .then(function (response) {
+            console.log(response);
+        })
+            .catch(function (response) {
+            console.log(response);
+        });
     }
     App = __decorate([
         router_1.RouteConfig([

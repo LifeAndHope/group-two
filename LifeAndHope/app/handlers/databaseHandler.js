@@ -27,6 +27,9 @@ var DatabaseHandler = (function () {
     DatabaseHandler.prototype.getChildren = function () {
         return this.dataConnection.get('/child?fields=*');
     };
+    DatabaseHandler.prototype.getSponsor = function () {
+        return this.dataConnection.get('/sponsor?fields=*');
+    };
     return DatabaseHandler;
 })();
 exports.DatabaseHandler = DatabaseHandler;
