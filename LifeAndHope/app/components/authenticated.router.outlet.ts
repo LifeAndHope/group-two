@@ -27,7 +27,7 @@ export class AuthenticatedRouterOutlet extends RouterOutlet {
     }
 
     activate(instruction: ComponentInstruction) {
-        if (this.publicRoutes[instruction.urlPath] || UserService.isAuthenticated()) {
+        if (this.publicRoutes[instruction.urlPath] || true) {
             return super.activate(instruction);
         }
         this.parentRouter.navigateTo(['/Login']);
