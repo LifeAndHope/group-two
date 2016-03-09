@@ -2,3 +2,20 @@
 body {
     font-family: 'Raleway', sans-serif;
 }
+
+
+.vertical-space-xs {
+    margin-top: 2rem;
+}
+
+.vertical-space-sm {
+    margin-top: 4rem;
+}
+
+.vertical-space-md {
+    margin-top: 7rem;
+}
+
+.vertical-space-lg {
+    margin-top: 10rem;
+}

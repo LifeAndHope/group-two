@@ -11,9 +11,9 @@ import {HovedsideComponent} from "./Hovedside";
 
 
 @RouteConfig([
-    new Redirect({path: '/', redirectTo: ['/Login'], useAsDefault: true }),
+    //new Redirect({path: '/', redirectTo: ['/Login'], useAsDefault: true }),
     new Route({path: '/login', component: LoginComponent, name: 'Login'}),
-    new Route({path: '/hovedside', component: HovedsideComponent, name: 'Hovedside'}),
+    new Route({path: '/', component: HovedsideComponent, name: 'Home'}),
 ])
 
 @Component({

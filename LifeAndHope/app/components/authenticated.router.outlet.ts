@@ -1,6 +1,6 @@
 import {Directive, Attribute, ElementRef, DynamicComponentLoader} from 'angular2/core';
 import {Router, RouterOutlet, ComponentInstruction} from 'angular2/router';
-import {UserService} from "../services/userService";
+import {AccountService} from "../services/accountService";
 
 @Directive({
     selector: 'router-outlet'
@@ -27,9 +27,12 @@ export class AuthenticatedRouterOutlet extends RouterOutlet {
     }
 
     activate(instruction: ComponentInstruction) {
-        if (this.publicRoutes[instruction.urlPath] || true) {
+        if (this.publicRoutes[instruction.urlPath] || AccountService.isAuthenticated()) {
             return super.activate(instruction);
         }
-        this.parentRouter.navigateTo(['/Login']);
+
+        this.parentRouter.navigate(['Login']);
+
+        return super.activate(instruction);
     }
 }

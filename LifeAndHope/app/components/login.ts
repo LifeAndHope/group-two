@@ -1,7 +1,8 @@
 import {Component} from 'angular2/core';
-import {CanActivate} from 'angular2/router';
-import {FormBuilder, Validators} from 'angular2/common';
-import {UserService} from "../services/userService";
+import {Router} from 'angular2/router';
+import {FormBuilder, Validators, ControlGroup} from 'angular2/common';
+import {AccountService} from "../services/accountService";
+import {Account} from "../datatypes/interfaces";
 
 @Component({
     selector: 'login',
@@ -10,27 +11,31 @@ import {UserService} from "../services/userService";
 })
 
 export class LoginComponent {
-    userForm: any;
 
-    constructor(private _formBuilder: FormBuilder) {
-        this.userForm = this._formBuilder.group({
-            'username': ['', Validators.required],
+    userForm: ControlGroup;
+    failedAuthentication = false;
+
+
+    constructor(private formBuilder: FormBuilder, private router: Router) {
+        this.userForm = this.formBuilder.group({
+            'email': ['', Validators.required],
             'password': ['', Validators.required]
         });
     }
 
     loginUser() {
         if (this.userForm.dirty && this.userForm.valid) {
-            alert(`username: ${this.userForm.value.username} password: ${this.userForm.value.password}`);
-            UserService.login(this.userForm.value.username, this.userForm.value.password)
-                .then(response => {
-                    console.log(response);
+            AccountService.login(this.userForm.value.email, this.userForm.value.password)
+                .then((account: Account) => {
+                    console.log("Authenticated account:", account);
+                    this.router.navigate(["Home"]);
                 })
-                .catch(response => {
-                    console.log(response);
+                .catch(error => {
+                    console.log("Failed to authenticate account:", error);
+                    this.failedAuthentication = true;
                 })
         }
     }
 }
 
-LoginComponent.parameters = [FormBuilder];
+LoginComponent.parameters = [FormBuilder, Router];

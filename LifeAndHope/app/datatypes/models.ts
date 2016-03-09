@@ -1,6 +1,7 @@
 import {UUIDGenerator} from "./interfaces";
 
-export class Sponsor {
+
+export interface Sponsor {
     id: string;
     first_name: string;
     last_name: string;
@@ -11,7 +12,7 @@ export class Sponsor {
 }
 
 
-export class Child {
+export interface Child {
     id: string;
     first_name: string;
     last_name: string;
@@ -23,7 +24,7 @@ export class Child {
 }
 
 
-export class Note {
+export interface Note {
     table_name: string;
     instance_id: string;
     text: string;

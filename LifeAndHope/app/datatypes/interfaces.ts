@@ -42,3 +42,36 @@ export interface Axios {
     put(url: string, data?: Object, configuration?: Object): PromiseType;
     delete(url: string, configuration?: Object): PromiseType;
 }
+
+
+export interface AccountBasic {
+    ab_id: string;
+    address?: string;
+    city?: string;
+    email: string;
+    firstName?: string;
+    lastName?: string;
+    phonenum?: string;
+    state?: string;
+    zip?: string;
+}
+
+export interface AccountCredentials {
+    a_tfa_type: number;
+    a_uuid: string;
+    attemptsRemaining: number;
+    isLocked: boolean;
+    password: string;
+    userName: string;
+}
+
+export interface AccountRole {
+    ar_uuid: string;
+    roleName: string;
+}
+
+export interface Account {
+    accountBasic: AccountBasic;
+    accountCredentials: AccountCredentials;
+    accountRole: AccountRole;
+}
