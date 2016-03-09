@@ -4,11 +4,15 @@ import { RouteConfig, RouterLink, Router, Route, Redirect } from 'angular2/route
 import {AuthenticatedRouterOutlet} from './authenticatedRouterOutlet';
 
 import {LoginComponent} from './login';
+import {HovedsideComponent} from "./Hovedside";
+
+
 
 
 @RouteConfig([
     new Redirect({path: '/', redirectTo: ['/Login'], useAsDefault: true }),
     new Route({path: '/login', component: LoginComponent, name: 'Login'}),
+    new Route({path: '/hovedside', component: HovedsideComponent, name: 'Hovedside'}),
 ])
 
 @Component({
