@@ -11,20 +11,22 @@ export class DataService extends DatabaseService {
     // Override the apiName used to create the base URL
     protected static apiName: string = 'data';
 
-
-    public static getTables(){
-        this.get('/tables').then(function (response) {
-            var data : any = response.data.data;
-            data.forEach(function (item) {
-                console.log('<p>' + item.name + '</p>');
-            })
-        }).catch(function (response) {
-            //TODO: catch exceptions?
-        });
-    }
-
     public static getChildren(): PromiseType {
         return super.get('/child?fields=*');
+    }
+
+    public static getSponsor() : PromiseType{
+        return super.get('/sponsor?fields=*')
+    }
+
+    public static getNote(tableName : string, instanceId : string) : PromiseType{
+        let requestUrl = '/note?fields=*&filters=table_name%3D\''+ tableName +'\'%20AND%20instance_id%3D\''+ instanceId +'\'&&&'
+
+        return super.get(requestUrl)
+    }
+
+    public static getNotesFromChild(childId : string): PromiseType {
+        return this.getNote('child', childId);
     }
 
 

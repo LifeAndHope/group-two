@@ -8,15 +8,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cfc9edee-b02a-4aea-b59c-1237f2e6e214" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/dictionaries/Andreas.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/components/Hovedside.ts" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/Hovedside.css" afterPath="$PROJECT_DIR$/app/components/views/Hovedside.css" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/Hovedside.html" afterPath="$PROJECT_DIR$/app/components/views/Hovedside.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/services/userService.ts" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/services/fileService.ts" afterPath="" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/components/authenticatedRouterOutlet.ts" afterPath="$PROJECT_DIR$/app/components/authenticated.router.outlet.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" afterPath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/LifeAndHope.iml" afterPath="$PROJECT_DIR$/LifeAndHope.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/components/app.ts" afterPath="$PROJECT_DIR$/app/components/app.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config.js" afterPath="$PROJECT_DIR$/config.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/services/dataService.ts" afterPath="$PROJECT_DIR$/app/services/dataService.ts" />
     </list>
     <ignored path="LifeAndHope.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -49,21 +48,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Hovedside.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Hovedside.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/components/views/Hovedside.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.3453125">
+            <state vertical-scroll-proportion="-8.5">
               <caret line="19" column="0" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="app.ts" pinned="false" current-in-tab="false">
+      <file leaf-file-name="app.ts" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/components/app.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="14" column="64" selection-start-line="14" selection-start-column="64" selection-end-line="14" selection-end-column="64" />
+            <state vertical-scroll-proportion="0.25525525">
+              <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -187,11 +186,11 @@
         <option value="$PROJECT_DIR$/.idea/workspace.xml" />
         <option value="$PROJECT_DIR$/app/Hovedside.css" />
         <option value="$PROJECT_DIR$/app/Hovedside.html" />
-        <option value="$PROJECT_DIR$/app/components/app.ts" />
         <option value="$PROJECT_DIR$/config.js" />
         <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/app/components/Hovedside.ts" />
         <option value="$PROJECT_DIR$/app/components/views/Hovedside.html" />
+        <option value="$PROJECT_DIR$/app/components/app.ts" />
       </list>
     </option>
   </component>
@@ -862,12 +861,12 @@
       <updated>1456913257830</updated>
       <workItem from="1456913259247" duration="299000" />
       <workItem from="1457516949823" duration="480000" />
-      <workItem from="1457518939146" duration="6839000" />
+      <workItem from="1457518939146" duration="7218000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="7618000" />
+    <option name="totallyTimeSpent" value="7997000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1198,13 +1197,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/services/fileService.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.21565495">
-          <caret line="9" column="4" selection-start-line="9" selection-start-column="4" selection-end-line="9" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/services/databaseService.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.4313099">
@@ -1280,26 +1272,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/components/authenticatedRouterOutlet.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.484985">
-          <caret line="19" column="0" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/components/login.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="44" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/components/app.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="14" column="64" selection-start-line="14" selection-start-column="64" selection-end-line="14" selection-end-column="64" />
           <folding />
         </state>
       </provider>
@@ -1330,8 +1306,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/components/views/Hovedside.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3453125">
+        <state vertical-scroll-proportion="-8.5">
           <caret line="19" column="0" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/components/app.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.25525525">
+          <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
           <folding />
         </state>
       </provider>
