@@ -24,25 +24,5 @@ export class App {
 
     constructor() {
         this.title = 'My super title';
-
-        new DatabaseHandler().getTables();
-
-        new DatabaseHandler().getChildren()
-            .then(function (response){
-                console.log(response);
-            })
-            .catch(function (response){
-                console.log(response);
-            });
-
-        new DatabaseHandler().getSponsor()
-            .then(function(response){
-                console.log(response)
-            })
-            .catch(function(response){
-                console.log(response)
-            })
-
-        new DatabaseHandler().getNotesFromChild("53301ea9-d9bb-4271-9342-c9377c2f267c")
     }
 }
