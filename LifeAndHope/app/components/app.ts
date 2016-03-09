@@ -13,7 +13,7 @@ import {AccountService} from "../services/account.service";
 
 @RouteConfig([
     new Redirect({path: '/', redirectTo: ['Home'], useAsDefault: true }),
-    new Route({path: '/login', component: LoginComponent, name: 'Login'}),
+    new Route({path: '/signin', component: LoginComponent, name: 'SignIn'}),
     new Route({path: '/home', component: HovedsideComponent, name: 'Home'}),
 ])
 
@@ -33,7 +33,7 @@ export class App {
 
     signOut() {
         AccountService.signOut()
-            .then(response => this.router.navigate(['Login']))
+            .then(response => this.router.navigate(['SignIn']))
             .catch(response => alert("Failed to sign out"));
     }
 
