@@ -25,13 +25,17 @@ body {
 }
 
 
+.btn {
+    transition: 300ms background-color ease-in-out;
+}
+
+
+
+
 /*********************
 *** Navigation Bar ***
 *********************/
 
-.btn {
-    transition: 300ms all ease-in-out;
-}
 
 .navbar-default {
     background-color: orange;
@@ -44,13 +48,20 @@ body {
 .navbar-nav>.btn-default,
 .navbar-nav>.btn-default:active,
 .navbar-nav>.btn-default:focus {
-    margin-top: 9px;
+    margin-right: 15px;
+    margin-top: 1px;
     padding: 5px;
     color: darkorange;
     border: none;
 }
 
-.navbar-nav>li>a.btn-default:hover {
-    background-color: #eee;
-    color: darkorange;
+@media (min-width: 768px) {
+    .navbar-nav > .btn-default,
+    .navbar-nav > .btn-default:active,
+    .navbar-nav > .btn-default:focus {
+        margin-top: 9px;
+        padding: 5px;
+        color: darkorange;
+        border: none;
+    }
 }

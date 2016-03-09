@@ -1,9 +1,9 @@
 <div class="navbar navbar-default navbar-fixed-top" role="navigation" style="background-color: orange;">
     <div class="container">
-        <div class="navbar-header">
+        <div class="navbar-header" style="float: left">
             <a class="navbar-brand" [routerLink]="['Home']">Life and hope</a>
         </div>
-        <div class="nav navbar-nav navbar-right" [hidden]="!isAuthenticated()">
+        <div class="nav navbar-nav navbar-right" [hidden]="!isAuthenticated()" style="float: right">
             <div (click)="signOut()" class="btn btn-default"><span class="glyphicon glyphicon-log-out"></span> Sign out</div>
         </div>
     </div>
