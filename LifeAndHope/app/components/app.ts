@@ -6,6 +6,7 @@ import {AuthenticatedRouterOutlet} from './authenticated.router.outlet';
 import {LoginComponent} from './login';
 
 import {HovedsideComponent} from "./Hovedside";
+import {AccountService} from "../services/account.service";
 
 
 
@@ -26,7 +27,19 @@ export class App {
 
     title: string;
 
-    constructor() {
+    constructor(private router: Router) {
         this.title = 'My super title';
     }
+
+    signOut() {
+        AccountService.signOut()
+            .then(response => this.router.navigate(['Login']))
+            .catch(response => alert("Failed to sign out"));
+    }
+
+    isAuthenticated(): boolean {
+        return AccountService.isAuthenticated();
+    }
 }
+
+App.parameters = [Router];

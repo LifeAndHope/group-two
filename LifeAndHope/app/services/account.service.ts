@@ -44,13 +44,14 @@ export class AccountService extends DatabaseService {
                 });
 
                 userPromise.catch(error => {
+                    this.deauthorizeAccount();
                     reject(error);
                 });
             });
 
             /* Failed to authenticate */
             loginPromise.catch(response => {
-                this.authenticatedAccount = undefined;
+                this.deauthorizeAccount()
                 reject(response)
             });
         });
@@ -58,9 +59,25 @@ export class AccountService extends DatabaseService {
         return promise;
     }
 
-    public static logOut(): PromiseType {
-        //FIXME: Fix this
-        return super.post('/logout', {});
+    private static deauthorizeAccount() {
+        this.authenticatedAccount = undefined;
+        this.configuration = {};
+    }
+
+    public static signOut(): PromiseType {
+        return new Promise((resolve, reject) => {
+            const signOutPromise = super.post('/logout', {});
+
+            signOutPromise.then(response => {
+                this.deauthorizeAccount()
+                resolve(response);
+            })
+
+            signOutPromise.catch(response => {
+                reject(response);
+            })
+        })
+
     }
 
     public static getAccount(uuid: string): PromiseType {

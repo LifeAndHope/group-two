@@ -24,10 +24,33 @@ body {
     margin-top: 15rem;
 }
 
+
+/*********************
+*** Navigation Bar ***
+*********************/
+
+.btn {
+    transition: 300ms all ease-in-out;
+}
+
 .navbar-default {
     background-color: orange;
 }
 
 .navbar-default .navbar-brand {
     color: white;
+}
+
+.navbar-nav>.btn-default,
+.navbar-nav>.btn-default:active,
+.navbar-nav>.btn-default:focus {
+    margin-top: 9px;
+    padding: 5px;
+    color: darkorange;
+    border: none;
+}
+
+.navbar-nav>li>a.btn-default:hover {
+    background-color: #eee;
+    color: darkorange;
 }
