@@ -1,7 +1,7 @@
 import {Component} from 'angular2/core';
 import {Router} from 'angular2/router';
 import {FormBuilder, Validators, ControlGroup} from 'angular2/common';
-import {AccountService} from "../services/accountService";
+import {AccountService} from "../services/account.service";
 import {Account} from "../datatypes/interfaces";
 
 @Component({

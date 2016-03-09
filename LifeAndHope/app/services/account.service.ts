@@ -1,4 +1,4 @@
-import {DatabaseService} from "./databaseService";
+import {DatabaseService} from "./database.service";
 import {PromiseType} from "../datatypes/interfaces";
 import {Account} from "../datatypes/interfaces";
 

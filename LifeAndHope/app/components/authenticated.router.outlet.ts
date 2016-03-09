@@ -1,6 +1,6 @@
 import {Directive, Attribute, ElementRef, DynamicComponentLoader} from 'angular2/core';
 import {Router, RouterOutlet, ComponentInstruction} from 'angular2/router';
-import {AccountService} from "../services/accountService";
+import {AccountService} from "../services/account.service";
 
 @Directive({
     selector: 'router-outlet'
