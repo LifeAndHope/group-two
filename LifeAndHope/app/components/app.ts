@@ -1,7 +1,7 @@
 import {Component, View} from 'angular2/core';
 import { RouteConfig, RouterLink, Router, Route, Redirect } from 'angular2/router';
 
-import {AuthenticatedRouterOutlet} from './authenticatedRouterOutlet';
+import {AuthenticatedRouterOutlet} from './authenticated.router.outlet';
 
 import {LoginComponent} from './login';
 import {DatabaseHandler} from "../handlers/databaseHandler";
