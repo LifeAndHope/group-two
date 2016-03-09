@@ -1,16 +1,16 @@
 import {Component} from 'angular2/core';
-import {Component, Renderer, ElementRef, OnDestroy} from 'angular2/core';
+import {CanActivate} from 'angular2/router';
 
 @Component({
     selector: 'login',
-    templateUrl: 'app/login.html',
+    templateUrl: 'app/components/views/login.html',
     directives: []
 })
 
 export class LoginComponent {
     // Do fancy stuff
     loginFunction(){
-        //new DatabaseHandler().login(username,password)
+        //new DatabaseService().login(username,password)
 
     }
 

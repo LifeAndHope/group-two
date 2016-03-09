@@ -5,8 +5,8 @@ System.config({
     //packages: {'app': {defaultExtension: 'ts'}}
 
     /* Let Intellij transpile TypeScript */
-    packages: {'app': {defaultExtension: 'js'}},
-})
+    packages: {'app': {defaultExtension: 'js'}}
+});
 
 System.import('app/main')
-    .then(null, console.error.bind(console))
+    .then(null, console.error.bind(console));
