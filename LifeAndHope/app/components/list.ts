@@ -2,16 +2,17 @@ import {Component, View} from 'angular2/core';
 import {OrderBy} from '../pipes/orderBy';
 import {FilterBy} from "../pipes/filterBy";
 import {Child} from "../datatypes/models";
+import {Humanize} from "../pipes/humanize";
 
 @Component({
     selector: 'listComponent',
     templateUrl: 'app/Hovedside.html',
-    pipes: [OrderBy, FilterBy]
+    pipes: [OrderBy, FilterBy, Humanize]
 })
 
 export class ListComponent {
 
-    filterModel = {filter: '', key: 'Alle'};
+    filterModel = {filter: '', key: 'Alle', keys: []};
 
     people: Array<Child> = [
         new Child('id', 'Ola', 'Nordmann', 'Male', new Date(), '12390329012', 'school_id', 'Ola het han, og gråt da han ble født.'),
@@ -46,4 +47,8 @@ export class ListComponent {
         new Child('id', 'Tanker', 'Banker', 'Male', new Date(), '14794957349', 'school_id', ''),
     ];
 
+    constructor() {
+        console.log(this.filterModel);
+        this.filterModel.keys = Object.keys(this.people[0]).filter(key => this.people[0].hasOwnProperty(key));
+    }
 }

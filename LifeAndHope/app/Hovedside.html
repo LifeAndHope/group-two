@@ -20,16 +20,19 @@
                 <div class="input-group">
                     <input type="text" class="form-control" [(ngModel)]="filterModel.filter" aria-label="search" placeholder="search">
                     <div class="input-group-btn">
-                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">{{filterModel.key}} <span class="caret"></span></button>
+                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">{{filterModel.key | humanize:'capitalize'}} <span class="caret"></span></button>
                         <ul class="dropdown-menu dropdown-menu-right">
-                            <li><a (click)="filterModel.key = 'All'">All</a></li>
-                            <li role="separator" class="divider"></li>
-                            <li><a (click)="filterModel.key = 'Fornavn'">Fornavn</a></li>
-                            <li><a (click)="filterModel.key = 'Etternavn'">Etternavn</a></li>
-                            <li><a (click)="filterModel.key = 'Kjønn'">Kjønn</a></li>
-                            <li><a (click)="filterModel.key = 'Fødselsår'">Fødselsår</a></li>
-                            <li><a (click)="filterModel.key = 'Kontonummer'">Kontonummer</a></li>
-                            <li><a (click)="filterModel.key = 'Fadder'">Fadder</a></li>
+                            <li *ngFor="#key of filterModel.keys">
+                                <a (click)="filterModel.key = key">{{key | humanize:'capitalize'}}</a>
+                            </li>
+                            <!--<li><a (click)="filterModel.key = 'All'">All</a></li>-->
+                            <!--<li role="separator" class="divider"></li>-->
+                            <!--<li><a (click)="filterModel.key = 'first_name'">{{ filterModel.key | humanize }}</a></li>-->
+                            <!--<li><a (click)="filterModel.key = 'Etternavn'">Etternavn</a></li>-->
+                            <!--<li><a (click)="filterModel.key = 'Kjønn'">Kjønn</a></li>-->
+                            <!--<li><a (click)="filterModel.key = 'Fødselsår'">Fødselsår</a></li>-->
+                            <!--<li><a (click)="filterModel.key = 'Kontonummer'">Kontonummer</a></li>-->
+                            <!--<li><a (click)="filterModel.key = 'Fadder'">Fadder</a></li>-->
                         </ul>
                     </div>
                 </div>
@@ -51,7 +54,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr *ngFor=" #person of people | filterBy: filterModel.filter ">
+                        <tr *ngFor=" #person of people | filterBy: filterModel.filter: filterModel.key ">
                             <td>{{ person.first_name }}</td>
                             <td>{{ person.last_name }}</td>
                             <td>{{ person.sex }}</td>
