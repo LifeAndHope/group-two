@@ -17,7 +17,6 @@ export class UserService extends DatabaseService {
 
     public static login(username: string, password: string): PromiseType {
         const promise: PromiseType = new Promise((resolve, reject) => {
-
             super.post('/authenticate', {
                 userName: username,
                 password: password
