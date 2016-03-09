@@ -1,11 +1,11 @@
 System.config({
     /* Transpile TypeScript to JavaScript at runtime */
-    //transpiler: 'typescript',
-    //typescriptOptions: { emitDecoratorMetadata: true },
-    //packages: {'app': {defaultExtension: 'ts'}}
+    transpiler: 'typescript',
+    typescriptOptions: { emitDecoratorMetadata: true },
+    packages: {'app': {defaultExtension: 'ts'}}
 
     /* Let Intellij transpile TypeScript */
-    packages: {'app': {defaultExtension: 'js'}}
+    //packages: {'app': {defaultExtension: 'js'}}
 });
 
 System.import('app/main')
