@@ -19,3 +19,15 @@ body {
 .vertical-space-lg {
     margin-top: 10rem;
 }
+
+.vertical-space-xl {
+    margin-top: 15rem;
+}
+
+.navbar-default {
+    background-color: orange;
+}
+
+.navbar-default .navbar-brand {
+    color: white;
+}
