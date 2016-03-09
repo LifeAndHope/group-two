@@ -4,6 +4,7 @@ import { RouteConfig, RouterLink, Router, Route, Redirect } from 'angular2/route
 import {AuthenticatedRouterOutlet} from './authenticated.router.outlet';
 
 import {LoginComponent} from './login';
+import {DatabaseHandler} from "../handlers/databaseHandler";
 
 
 @RouteConfig([
@@ -23,5 +24,25 @@ export class App {
 
     constructor() {
         this.title = 'My super title';
+
+        new DatabaseHandler().getTables();
+
+        new DatabaseHandler().getChildren()
+            .then(function (response){
+                console.log(response);
+            })
+            .catch(function (response){
+                console.log(response);
+            });
+
+        new DatabaseHandler().getSponsor()
+            .then(function(response){
+                console.log(response)
+            })
+            .catch(function(response){
+                console.log(response)
+            })
+
+        new DatabaseHandler().getNotesFromChild("53301ea9-d9bb-4271-9342-c9377c2f267c")
     }
 }
