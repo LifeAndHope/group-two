@@ -7,6 +7,9 @@ import {LoginComponent} from './login';
 
 import {HovedsideComponent} from "./Hovedside";
 import {AccountService} from "../services/account.service";
+import {ObjectDataComponent} from "./object.data";
+import {DataService} from "../services/data.service";
+import {Row} from "./object.data";
 
 
 
@@ -20,7 +23,7 @@ import {AccountService} from "../services/account.service";
 @Component({
     selector: 'app',
     templateUrl: 'app/components/views/app.html',
-    directives: [RouterLink, AuthenticatedRouterOutlet]
+    directives: [RouterLink, AuthenticatedRouterOutlet, ObjectDataComponent]
 })
 
 export class App {
