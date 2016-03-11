@@ -4,59 +4,63 @@
 
 
 <div class="container">
-    <div class="row tableDisplayButtons">
-        <div class="col-sm-offset-5">
-            <div class="btn-group">
-                <button type="button" class="btn btn-warning BarnVisning" id="BarnVisning" onclick="HovedsideComponent.barn()">Barn</button>
-                <button type="button" class="btn btn-warning FadderVisning" id="FadderVisning" onclick="HovedsideComponent.Fadder()">Fadder</button>
+
+    <div class="row second vertical-space-sm">
+        <div class="col-sm-4">
+            <button type="button" class="btn btn-primary" id="addChild" (click)="addChild()">
+                <span class="glyphicon glyphicon-plus"></span> Add Child
+            </button>
+        </div>
+
+
+        <div class="col-sm-4 col-sm-offset-4">
+            <div class="input-group">
+                <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-search"></span>
+                </span>
+                <input type="search" class="form-control" placeholder="search..">
+                <div class="input-group-btn">
+                    <button class="btn btn-default">
+                        <span class="glyphicon glyphicon-filter"></span> Filter
+                    </button>
+                </div>
             </div>
         </div>
     </div>
 
-    <div class="row second">
-        <div class="col-sm-4">
-            <button type="button" class="btn btn-warning" id="addChild" onclick="HovedsideComponent.addChild()">+Add Child</button>
-        </div>
-
-
-        <div class="col-sm-4 col-sm-offset-3">
-            <input type="search" class="form-control" id="sc" placeholder="search here">
-        </div>
-    </div>
-
-    <div class="row theTable">
+    <div class="row vertical-space-xs">
         <div class="col-sm-12">
-            <table class="table table-striped table-hover">
+            <table class="table table-default table-hover">
                 <thead>
                     <tr>
-                        <th>Navn</th>
-                        <th>Kjønn</th>
-                        <th>Alder</th>
-                        <th>Kontonummer</th>
-                        <th>Fadder</th>
-                        <th></th>
+                        <th>First name</th>
+                        <th>Last name</th>
+                        <th>Gender</th>
+                        <th>Year of birth</th>
+                        <th>Account number</th>
+                        <th>Sponsor</th>
+                        <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <th>Gaddafi</th>
-                        <th>M</th>
-                        <th>100</th>
-                        <th>123456789</th>
-                        <th>Ola</th>
-                        <th><button type="button" class="confirm-delete btn mini red-stripe">Delete</button></th>
+                    <tr *ngFor="#child of children">
+                        <td>{{child.first_name}}</td>
+                        <td>{{child.last_name}}</td>
+                        <td>{{child.sex}}</td>
+                        <td>{{child.date_of_birth }}</td>
+                        <td>{{child.account_number}}</td>
+                        <td>Sponsor</td>
+                        <td class="text-right">
+                            <button type="button" class="btn btn-default btn-info" [routerLink]="['Child', {id: child.id}]">
+                                <span class="glyphicon glyphicon-pencil"></span> Edit
+                            </button>
+                            <button type="button" class="btn btn-default btn-danger">
+                                <span class="glyphicon glyphicon-trash"></span> Remove
+                            </button>
+                        </td>
                     </tr>
                 </tbody>
             </table>
-        </div>
-    </div>
-
-    <div class="row switchTableDisplays">
-        <div class="col-sm-2">
-            <ul class="pager">
-                <li><a href="#">Previous</a></li>
-                <li><a href="#">Next</a></li>
-            </ul>
         </div>
     </div>
 </div>

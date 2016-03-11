@@ -31,10 +31,25 @@ body {
 
 
 .btn {
-    transition: 300ms background-color ease-in-out;
+    transition: 200ms background-color ease-in-out;
 }
 
+tr {
+    transition: 200ms background-color ease-in-out;
+}
 
+table .btn,
+.table .btn{
+    padding: 1px 8px;
+}
+
+.input-group-addon {
+    background-color: #fafafa;
+}
+
+.navbar-nav>li>a {
+    transition: 200ms color ease-in-out;
+}
 
 
 /*********************
@@ -42,31 +57,31 @@ body {
 *********************/
 
 
-.navbar-default {
-    background-color: orange;
-}
+/*.navbar-default {*/
+    /*background-color: orange;*/
+/*}*/
 
-.navbar-default .navbar-brand {
-    color: white;
-}
+/*.navbar-default .navbar-brand {*/
+    /*color: white;*/
+/*}*/
 
-.navbar-nav>.btn-default,
-.navbar-nav>.btn-default:active,
-.navbar-nav>.btn-default:focus {
-    margin-right: 15px;
-    margin-top: 1px;
-    padding: 5px;
-    color: darkorange;
-    border: none;
-}
+/*.navbar-nav>.btn-default,*/
+/*.navbar-nav>.btn-default:active,*/
+/*.navbar-nav>.btn-default:focus {*/
+    /*margin-right: 15px;*/
+    /*margin-top: 1px;*/
+    /*padding: 5px;*/
+    /*color: darkorange;*/
+    /*border: none;*/
+/*}*/
 
-@media (min-width: 768px) {
-    .navbar-nav > .btn-default,
-    .navbar-nav > .btn-default:active,
-    .navbar-nav > .btn-default:focus {
-        margin-top: 9px;
-        padding: 5px;
-        color: darkorange;
-        border: none;
-    }
-}
+/*@media (min-width: 768px) {*/
+    /*.navbar-nav > .btn-default,*/
+    /*.navbar-nav > .btn-default:active,*/
+    /*.navbar-nav > .btn-default:focus {*/
+        /*margin-top: 9px;*/
+        /*padding: 5px;*/
+        /*color: darkorange;*/
+        /*border: none;*/
+    /*}*/
+/*}*/
