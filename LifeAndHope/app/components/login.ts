@@ -24,7 +24,7 @@ export class LoginComponent {
     }
 
     loginUser() {
-        if (this.userForm.dirty && this.userForm.valid) {
+        if (this.userForm.valid) {
             AccountService.login(this.userForm.value.email, this.userForm.value.password)
                 .then((account: Account) => {
                     console.log("Authenticated account:", account);
