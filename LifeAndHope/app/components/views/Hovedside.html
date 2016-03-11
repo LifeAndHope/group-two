@@ -39,10 +39,15 @@
                         <th>Year of birth</th>
                         <th>Account number</th>
                         <th>Sponsor</th>
-                        <th>Actions</th>
+                        <th class="text-right">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
+                    <tr *ngIf="!children.length">
+                        <td colspan="7" class="text-center">
+                            <span class="spinner glyphicon glyphicon-refresh"></span> Loading
+                        </td>
+                    </tr>
                     <tr *ngFor="#child of children">
                         <td>{{child.first_name}}</td>
                         <td>{{child.last_name}}</td>

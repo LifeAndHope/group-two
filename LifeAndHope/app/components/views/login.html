@@ -20,7 +20,10 @@
 
 
                 <div class="text-center vertical-space-sm">
-                    <button type="submit" class="btn btn-primary col-xs-12">Sign in</button>
+                    <button type="submit" class="btn btn-primary col-xs-12" [disabled]="signingIn">
+                        <span [hidden]="signingIn">Sign in</span>
+                        <span [hidden]="!signingIn"><span class="spinner glyphicon glyphicon-refresh"></span> Signing in</span>
+                    </button>
                 </div>
             </form>
         </div>

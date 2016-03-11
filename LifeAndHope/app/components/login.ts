@@ -14,7 +14,7 @@ export class LoginComponent {
 
     userForm: ControlGroup;
     failedAuthentication = false;
-
+    signingIn = false;
 
     constructor(private formBuilder: FormBuilder, private router: Router) {
         this.userForm = this.formBuilder.group({
@@ -25,14 +25,17 @@ export class LoginComponent {
 
     loginUser() {
         if (this.userForm.valid) {
+            this.signingIn = true;
             AccountService.login(this.userForm.value.email, this.userForm.value.password)
                 .then((account: Account) => {
                     console.log("Authenticated account:", account);
                     this.router.navigate(["Children"]);
+                    this.signingIn = false;
                 })
                 .catch(error => {
                     console.log("Failed to authenticate account:", error);
                     this.failedAuthentication = true;
+                    this.signingIn = false;
                 })
         }
     }

@@ -29,6 +29,7 @@ body {
     margin-top: 15rem;
 }
 
+/*** Fade colors ***/
 
 .btn {
     transition: 200ms background-color ease-in-out;
@@ -37,6 +38,30 @@ body {
 tr {
     transition: 200ms background-color ease-in-out;
 }
+
+.navbar-nav>li>a {
+    transition: 200ms color ease-in-out;
+}
+
+/*** Spinner ***/
+
+.spinner {
+    animation: spin 1s infinite linear;
+    -webkit-animation: spin2 1s infinite linear;
+}
+
+@keyframes spin {
+    from { transform: scale(1) rotate(0deg); }
+    to { transform: scale(1) rotate(360deg); }
+}
+
+@-webkit-keyframes spin2 {
+    from { -webkit-transform: rotate(0deg); }
+    to { -webkit-transform: rotate(360deg); }
+}
+
+
+
 
 table .btn,
 .table .btn{
@@ -47,41 +72,3 @@ table .btn,
     background-color: #fafafa;
 }
 
-.navbar-nav>li>a {
-    transition: 200ms color ease-in-out;
-}
-
-
-/*********************
-*** Navigation Bar ***
-*********************/
-
-
-/*.navbar-default {*/
-    /*background-color: orange;*/
-/*}*/
-
-/*.navbar-default .navbar-brand {*/
-    /*color: white;*/
-/*}*/
-
-/*.navbar-nav>.btn-default,*/
-/*.navbar-nav>.btn-default:active,*/
-/*.navbar-nav>.btn-default:focus {*/
-    /*margin-right: 15px;*/
-    /*margin-top: 1px;*/
-    /*padding: 5px;*/
-    /*color: darkorange;*/
-    /*border: none;*/
-/*}*/
-
-/*@media (min-width: 768px) {*/
-    /*.navbar-nav > .btn-default,*/
-    /*.navbar-nav > .btn-default:active,*/
-    /*.navbar-nav > .btn-default:focus {*/
-        /*margin-top: 9px;*/
-        /*padding: 5px;*/
-        /*color: darkorange;*/
-        /*border: none;*/
-    /*}*/
-/*}*/
