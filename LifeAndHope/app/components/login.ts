@@ -1,5 +1,8 @@
 import {Component} from 'angular2/core';
-import {CanActivate} from 'angular2/router';
+import {Router} from 'angular2/router';
+import {FormBuilder, Validators, ControlGroup} from 'angular2/common';
+import {AccountService} from "../services/account.service";
+import {Account} from "../datatypes/interfaces";
 
 @Component({
     selector: 'login',
@@ -8,11 +11,31 @@ import {CanActivate} from 'angular2/router';
 })
 
 export class LoginComponent {
-    // Do fancy stuff
-    loginFunction(){
-        //new DatabaseService().login(username,password)
 
+    userForm: ControlGroup;
+    failedAuthentication = false;
+
+
+    constructor(private formBuilder: FormBuilder, private router: Router) {
+        this.userForm = this.formBuilder.group({
+            'email': ['', Validators.required],
+            'password': ['', Validators.required]
+        });
     }
 
-
+    loginUser() {
+        if (this.userForm.dirty && this.userForm.valid) {
+            AccountService.login(this.userForm.value.email, this.userForm.value.password)
+                .then((account: Account) => {
+                    console.log("Authenticated account:", account);
+                    this.router.navigate(["Home"]);
+                })
+                .catch(error => {
+                    console.log("Failed to authenticate account:", error);
+                    this.failedAuthentication = true;
+                })
+        }
+    }
 }
+
+LoginComponent.parameters = [FormBuilder, Router];

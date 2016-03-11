@@ -1,6 +1,6 @@
-import {Sponsor, Child, Note, FileReference} from './../datatypes/models'
+import {Sponsor, Child, Note} from './../datatypes/models'
 import {UUIDGenerator, PromiseType} from './../datatypes/interfaces'
-import {DatabaseService} from './databaseService'
+import {DatabaseService} from './database.service'
 
 declare var uuid:UUIDGenerator; // Tell typescript that there is a variable called 'uuid' in its scope
 
@@ -11,20 +11,22 @@ export class DataService extends DatabaseService {
     // Override the apiName used to create the base URL
     protected static apiName: string = 'data';
 
-
-    public static getTables(){
-        this.get('/tables').then(function (response) {
-            var data : any = response.data.data;
-            data.forEach(function (item) {
-                console.log('<p>' + item.name + '</p>');
-            })
-        }).catch(function (response) {
-            //TODO: catch exceptions?
-        });
+    public static getChildren(): PromiseType<any> {
+        return super.get('/child?fields=*');
     }
 
-    public static getChildren(): PromiseType {
-        return super.get('/child?fields=*');
+    public static getSponsor() : PromiseType<any> {
+        return super.get('/sponsor?fields=*')
+    }
+
+    public static getNote(tableName : string, instanceId : string) : PromiseType<any> {
+        let requestUrl = '/note?fields=*&filters=table_name%3D\''+ tableName +'\'%20AND%20instance_id%3D\''+ instanceId +'\'&&&'
+
+        return super.get(requestUrl)
+    }
+
+    public static getNotesFromChild(childId : string): PromiseType<any> {
+        return this.getNote('child', childId);
     }
 
 
@@ -34,7 +36,7 @@ export class DataService extends DatabaseService {
      * @param {Child} child Child to be added to the database
      * @returns {PromiseType}
      */
-    public static addChild(child: Child): PromiseType {
+    public static addChild(child: Child): PromiseType<any> {
         child.id = uuid.v4();
         return super.post('/child', [child]);
     }
@@ -45,7 +47,7 @@ export class DataService extends DatabaseService {
      * @param {Sponsor} sponsor Sponsor to be added to the database
      * @returns {PromiseType}
      */
-    public static addSponsor(sponsor: Sponsor): PromiseType {
+    public static addSponsor(sponsor: Sponsor): PromiseType<any> {
         sponsor.id = uuid.v4();
         return super.post('/sponsor', [sponsor]);
     }
@@ -56,17 +58,7 @@ export class DataService extends DatabaseService {
      * @param {Note} note Note to be added to the database
      * @returns {PromiseType}
      */
-    public static addNote(note: Note): PromiseType {
+    public static addNote(note: Note): PromiseType<any> {
         return super.post('/note', [note]);
-    }
-
-    /**
-     * Add a new file reference to the database
-     *
-     * @param {FileReference} fileReference File reference to be added to the database
-     * @returns {PromiseType}
-     */
-    public static addFileReference(fileReference: FileReference): PromiseType {
-        return super.post('/file', [fileReference]);
     }
 }

@@ -1,0 +1,8 @@
+<table class="table">
+    <tbody>
+        <tr *ngFor="#rowDefinition of rowDefinitions">
+            <td class="bold">{{ rowDefinition.name }}</td>
+            <td *ngIf="object">{{ object[rowDefinition.key] }}</td>
+        </tr>
+    </tbody>
+</table>

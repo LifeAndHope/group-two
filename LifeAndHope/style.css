@@ -2,3 +2,71 @@
 body {
     font-family: 'Raleway', sans-serif;
 }
+
+
+.bold {
+    font-weight: bold;
+}
+
+
+.vertical-space-xs {
+    margin-top: 2rem;
+}
+
+.vertical-space-sm {
+    margin-top: 4rem;
+}
+
+.vertical-space-md {
+    margin-top: 7rem;
+}
+
+.vertical-space-lg {
+    margin-top: 10rem;
+}
+
+.vertical-space-xl {
+    margin-top: 15rem;
+}
+
+
+.btn {
+    transition: 300ms background-color ease-in-out;
+}
+
+
+
+
+/*********************
+*** Navigation Bar ***
+*********************/
+
+
+.navbar-default {
+    background-color: orange;
+}
+
+.navbar-default .navbar-brand {
+    color: white;
+}
+
+.navbar-nav>.btn-default,
+.navbar-nav>.btn-default:active,
+.navbar-nav>.btn-default:focus {
+    margin-right: 15px;
+    margin-top: 1px;
+    padding: 5px;
+    color: darkorange;
+    border: none;
+}
+
+@media (min-width: 768px) {
+    .navbar-nav > .btn-default,
+    .navbar-nav > .btn-default:active,
+    .navbar-nav > .btn-default:focus {
+        margin-top: 9px;
+        padding: 5px;
+        color: darkorange;
+        border: none;
+    }
+}
