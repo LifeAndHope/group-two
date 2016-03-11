@@ -1,0 +1,24 @@
+<table class="table table-default table-hover">
+    <thead>
+        <tr>
+            <th *ngFor="#column of columns">{{ column.name }}</th>
+            <th *ngIf="editable || removable" class="text-right">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="#row of rows">
+            <td *ngFor="#column of columns">{{row[column.key]}}</td>
+
+            <td *ngIf="editable|| removable" class="text-right">
+                <!-- Edit button if editable -->
+                <button *ngIf="editable" type="button" class="btn btn-default btn-info" (click)="editRow(row)">
+                    <span class="glyphicon glyphicon-pencil"></span> Edit
+                </button>
+                <!-- Remove button if removable -->
+                <button *ngIf="removable" type="button" class="btn btn-default btn-danger" (click)="removeRow(row)">
+                    <span class="glyphicon glyphicon-trash"></span> Remove
+                </button>
+            </td>
+        </tr>
+    </tbody>
+</table>

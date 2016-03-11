@@ -30,6 +30,15 @@ export class DataService extends DatabaseService {
     }
 
 
+    public static removeChild(child: Child): PromiseType {
+        return super.delete('/child', {
+            "filter": {
+                "id": child.id
+            }
+        })
+    }
+
+
     /**
      * Add a new child to the database. A UUID will be generated and assigned before the request is sent.
      *

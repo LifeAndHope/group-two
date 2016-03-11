@@ -30,42 +30,12 @@
 
     <div class="row vertical-space-xs">
         <div class="col-sm-12">
-            <table class="table table-default table-hover">
-                <thead>
-                    <tr>
-                        <th>First name</th>
-                        <th>Last name</th>
-                        <th>Gender</th>
-                        <th>Year of birth</th>
-                        <th>Account number</th>
-                        <th>Sponsor</th>
-                        <th class="text-right">Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr *ngIf="!children.length">
-                        <td colspan="7" class="text-center">
-                            <span class="spinner glyphicon glyphicon-refresh"></span> Loading
-                        </td>
-                    </tr>
-                    <tr *ngFor="#child of children">
-                        <td>{{child.first_name}}</td>
-                        <td>{{child.last_name}}</td>
-                        <td>{{child.sex}}</td>
-                        <td>{{child.date_of_birth }}</td>
-                        <td>{{child.account_number}}</td>
-                        <td>Sponsor</td>
-                        <td class="text-right">
-                            <button type="button" class="btn btn-default btn-info" [routerLink]="['Child', {id: child.id}]">
-                                <span class="glyphicon glyphicon-pencil"></span> Edit
-                            </button>
-                            <button type="button" class="btn btn-default btn-danger">
-                                <span class="glyphicon glyphicon-trash"></span> Remove
-                            </button>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+            <editable-table (edit)="editChild($event)"
+                            (remove)="removeChild($event)"
+                            [editable]="true"
+                            [removable]="true"
+                            [rows]="children"
+                            [columns]="columns"></editable-table>
         </div>
     </div>
 </div>

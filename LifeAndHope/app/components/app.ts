@@ -11,6 +11,7 @@ import {AccountService} from "../services/account.service";
 import {ObjectDataComponent} from "./object.data";
 import {DataService} from "../services/data.service";
 import {Row} from "./object.data";
+import {EditableTable} from "./editable.table";
 
 
 
@@ -25,7 +26,7 @@ import {Row} from "./object.data";
 @Component({
     selector: 'app',
     templateUrl: 'app/components/views/app.html',
-    directives: [RouterLink, AuthenticatedRouterOutlet, ObjectDataComponent]
+    directives: [RouterLink, AuthenticatedRouterOutlet, ObjectDataComponent, EditableTable]
 })
 
 export class App {
@@ -56,6 +57,14 @@ export class App {
 
     isAuthenticated(): boolean {
         return AccountService.isAuthenticated();
+    }
+
+    edit(event): void {
+        console.log("Edit:",event);
+    }
+
+    remove(event): void {
+        console.log("Remove:",event);
     }
 }
 

@@ -8,14 +8,12 @@ export class AccountService extends DatabaseService {
     protected static apiName: string = 'account';
     protected static configuration: Object = {};
 
-
     public static authenticatedAccount: Account;
-
-
 
     public static isAuthenticated(): boolean {
         return this.authenticatedAccount != undefined;
     }
+
 
     public static login(username: string, password: string): PromiseType<Account> {
         const promise: PromiseType<Account> = new Promise((resolve, reject) => {
@@ -36,14 +34,12 @@ export class AccountService extends DatabaseService {
                 };
 
                 /* Retrieve the authenticated user */
-                const userPromise = this.getAccount(response.data.data);
-
-                userPromise.then((account: Account) => {
+                const userPromise = this.getAccount(response.data.data)
+                .then((account: Account) => {
                     this.authenticatedAccount = account;
                     resolve(account);
-                });
-
-                userPromise.catch(error => {
+                })
+                .catch(error => {
                     this.deauthorizeAccount();
                     reject(error);
                 });
@@ -51,7 +47,7 @@ export class AccountService extends DatabaseService {
 
             /* Failed to authenticate */
             loginPromise.catch(response => {
-                this.deauthorizeAccount()
+                this.deauthorizeAccount();
                 reject(response)
             });
         });

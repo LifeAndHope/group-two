@@ -55,8 +55,15 @@ export class DatabaseService {
      * @param subpath Subpath for the requested service
      * @returns {PromiseType}
      */
-    protected static delete(subpath: string): PromiseType<any> {
-        return axios.delete(this.baseUrl() + subpath, this.configuration);
+    protected static delete(subpath: string, data: Object): PromiseType<any> {
+        const deleteConfiguration = {
+            headers: this.configuration.headers,
+            data: data,
+            method: 'DELETE',
+            url: this.baseUrl() + subpath
+        };
+
+        return axios(deleteConfiguration);
     }
 
     /** Constructs the base URL for the specified API */
