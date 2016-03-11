@@ -30,6 +30,7 @@ import {Row} from "./object.data";
 
 export class App {
 
+    signingOut = false;
     title: string;
 
     constructor(private router: Router) {
@@ -37,9 +38,20 @@ export class App {
     }
 
     signOut() {
+        if (this.signingOut) {
+            return;
+        }
+
+        this.signingOut = true;
         AccountService.signOut()
-            .then(response => this.router.navigate(['SignIn']))
-            .catch(response => alert("Failed to sign out"));
+            .then(response => {
+                this.router.navigate(['SignIn']);
+                this.signingOut = false;
+            })
+            .catch(response => {
+                alert("Failed to sign out");
+                this.signingOut = false;
+            });
     }
 
     isAuthenticated(): boolean {

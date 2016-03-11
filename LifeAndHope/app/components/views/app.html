@@ -19,7 +19,10 @@
             </ul>
 
             <ul class="nav navbar-nav navbar-right" *ngIf="isAuthenticated()">
-                <li  (click)="signOut()"><a href="#"><span class="glyphicon glyphicon-log-out"></span> Sign out</a></li>
+                <li  (click)="signOut()">
+                    <a href="#" *ngIf="!signingOut"><span class="glyphicon glyphicon-log-out"></span> Sign out</a>
+                    <a href="#" *ngIf="signingOut"><span class="glyphicon glyphicon-refresh spinner"></span> Signing out</a>
+                </li>
             </ul>
         </div>
     </div>

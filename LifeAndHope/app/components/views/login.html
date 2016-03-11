@@ -4,21 +4,21 @@
     <div class="row vertical-space-xl">
         <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
             <form [ngFormModel]="userForm" (ngSubmit)="loginUser()">
+                <!-- Email input -->
                 <div class="form-group">
                     <div class="input-group">
                         <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
                         <input type="email" class="form-control" id="inputEmail" placeholder="email" ngControl="email" required>
                     </div>
                 </div>
-
+                <!-- Password input -->
                 <div class="form-group">
                     <div class="input-group">
                         <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
                         <input type="password" class="form-control" id="inputPassword" placeholder="password" ngControl="password" required>
                     </div>
                 </div>
-
-
+                <!-- Submit button -->
                 <div class="text-center vertical-space-sm">
                     <button type="submit" class="btn btn-primary col-xs-12" [disabled]="signingIn">
                         <span [hidden]="signingIn">Sign in</span>
