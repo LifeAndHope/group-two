@@ -6,10 +6,15 @@
         </tr>
     </thead>
     <tbody>
+        <tr *ngIf="!rows">
+            <td [attr.colspan]="editable || removable ? columns.length+1 : columns.length" class="text-center">
+                <span class="spinner glyphicon glyphicon-refresh"></span> Loading data..
+            </td>
+        </tr>
         <tr *ngFor="#row of rows">
             <td *ngFor="#column of columns">{{row[column.key]}}</td>
 
-            <td *ngIf="editable|| removable" class="text-right">
+            <td *ngIf="editable || removable" class="text-right">
                 <!-- Edit button if editable -->
                 <button *ngIf="editable" type="button" class="btn btn-default btn-info" (click)="editRow(row)">
                     <span class="glyphicon glyphicon-pencil"></span> Edit

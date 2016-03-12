@@ -18,7 +18,8 @@
         </div>
     </div>
 
-    <div class="row vertical-space-xs">
+    <!-- Create if initialized due to a bug in angular when using pipes. Otherwise it fails when redirected to sign in -->
+    <div class="row vertical-space-xs" *ngIf="initialized">
         <div class="col-sm-12">
             <editable-table (edit)="editChild($event)"
                             (remove)="removeChild($event)"

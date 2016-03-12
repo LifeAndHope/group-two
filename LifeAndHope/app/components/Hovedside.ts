@@ -19,7 +19,7 @@ export class HovedsideComponent {
     // Do fancy stuff
 
     filter = {};
-    children: Array<Child> = [];
+    children: Array<Child>;
     columns: Array<Column> = [
         {name: "First name", key: "first_name"},
         {name: "Last name", key: "last_name"},
@@ -32,12 +32,12 @@ export class HovedsideComponent {
         DataService.getChildren()
             .then(response => {
                 this.children = response.data.data;
-                this.filteredChildren = this.children;
             })
     }
 
+    ngOnInit(){ this.initialized=true; }
+
     editChild(child): void {
-        console.log("Edit:", child);
         this.router.navigate(['Child', {id: child.id}]);
     }
 
