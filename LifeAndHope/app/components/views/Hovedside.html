@@ -14,7 +14,7 @@
 
 
         <div class="col-xs-8 col-md-5 col-md-offset-3">
-            <text-filter [data]="children" [properties]="columns" (filtered)="filteredChildren = $event"></text-filter>
+            <text-filter [properties]="columns" (filter)="filter = $event"></text-filter>
         </div>
     </div>
 
@@ -24,7 +24,7 @@
                             (remove)="removeChild($event)"
                             [editable]="true"
                             [removable]="true"
-                            [rows]="filteredChildren"
+                            [rows]="children | filterBy:filter.text:filter.keys"
                             [columns]="columns"></editable-table>
         </div>
     </div>

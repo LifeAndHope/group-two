@@ -6,17 +6,19 @@ import { RouterLink, Router } from 'angular2/router';
 import {Column} from "./editable.table";
 import {EditableTable} from "./editable.table";
 import {TextFilter} from "./text.filter";
+import {FilterBy} from "../pipes/filterBy";
 
 @Component({
     selector: 'Hovedside',
     templateUrl: 'app/components/views/Hovedside.html',
-    directives: [RouterLink, EditableTable, TextFilter]
+    directives: [RouterLink, EditableTable, TextFilter],
+    pipes: [FilterBy]
 })
 
 export class HovedsideComponent {
     // Do fancy stuff
 
-    filteredChildren: Array<Child> = [];
+    filter = {};
     children: Array<Child> = [];
     columns: Array<Column> = [
         {name: "First name", key: "first_name"},

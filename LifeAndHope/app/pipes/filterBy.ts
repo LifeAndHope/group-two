@@ -27,7 +27,7 @@ export class FilterBy implements PipeTransform {
         }
 
         /* Use provided keys if available */
-        let keys: Array<string> = args.slice(1);
+        let keys: Array<string> = args[1];
         if (!keys) {
             keys = Object.keys(input[0])
                          .filter(key => input[0].hasOwnProperty(key));
