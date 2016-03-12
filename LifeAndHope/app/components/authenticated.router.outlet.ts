@@ -15,11 +15,7 @@ export class AuthenticatedRouterOutlet extends RouterOutlet {
     private loginRouteName = "SignIn";
     private defaultRouteName = "Children";
 
-    constructor(elementRef: ElementRef,
-                loader: DynamicComponentLoader,
-                parentRouter: Router,
-                @Attribute('name') nameAttr: string) {
-
+    constructor(elementRef: ElementRef, loader: DynamicComponentLoader, parentRouter: Router, @Attribute('name') nameAttr: string) {
         super(elementRef, loader, parentRouter, nameAttr);
 
         this.parentRouter = parentRouter;
@@ -30,7 +26,7 @@ export class AuthenticatedRouterOutlet extends RouterOutlet {
     }
 
     activate(instruction: ComponentInstruction) {
-        //return super.activate(instruction);
+        return super.activate(instruction);
 
         /* The user is already logged in. Redirect to the default route */
         if (instruction.urlPath === this.loginRouteName.toLowerCase() && AccountService.isAuthenticated()) {

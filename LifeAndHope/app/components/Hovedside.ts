@@ -5,16 +5,18 @@ import {DataService} from "../services/data.service";
 import { RouterLink, Router } from 'angular2/router';
 import {Column} from "./editable.table";
 import {EditableTable} from "./editable.table";
+import {TextFilter} from "./text.filter";
 
 @Component({
     selector: 'Hovedside',
     templateUrl: 'app/components/views/Hovedside.html',
-    directives: [RouterLink, EditableTable]
+    directives: [RouterLink, EditableTable, TextFilter]
 })
 
 export class HovedsideComponent {
     // Do fancy stuff
 
+    filteredChildren: Array<Child> = [];
     children: Array<Child> = [];
     columns: Array<Column> = [
         {name: "First name", key: "first_name"},
@@ -28,6 +30,7 @@ export class HovedsideComponent {
         DataService.getChildren()
             .then(response => {
                 this.children = response.data.data;
+                this.filteredChildren = this.children;
             })
     }
 
@@ -49,17 +52,15 @@ export class HovedsideComponent {
         const genders = ['male', 'female'];
 
         const child: Child = {
-            first_name: firstNames[Math.floor(Math.random() * (firstNames.length))],
-            last_name: lastNames[Math.floor(Math.random() * (lastNames.length))],
+            first_name: firstNames[Math.floor(Math.random() * firstNames.length)],
+            last_name: lastNames[Math.floor(Math.random() * lastNames.length)],
             account_number: "12346578901",
-            sex: genders[Math.floor(Math.random() * (genders.length))],
+            sex: genders[Math.floor(Math.random() * genders.length)],
             date_of_birth: new Date(new Date().getMilliseconds() + Math.floor(Math.random()*1000000000000))
         };
 
         DataService.addChild(child)
             .then(response => this.children.push(child));
-
-        console.log("AddChild")
     }
 }
 
