@@ -2,39 +2,40 @@ import {DatabaseService} from "./database.service";
 import {PromiseType} from "../datatypes/interfaces";
 import {Account} from "../datatypes/interfaces";
 
+declare var Cookies;
 
 export class AccountService extends DatabaseService {
 
     protected static apiName: string = 'account';
-    protected static configuration: Object = {};
 
     public static authenticatedAccount: Account;
 
     public static isAuthenticated(): boolean {
-        return this.authenticatedAccount != undefined;
+        if (this.authenticatedAccount) {
+            return true;
+        }
+
+        return Cookies.get(this.authCookieName) != undefined;
     }
 
 
     public static login(username: string, password: string): PromiseType<Account> {
+        this.deauthorizeAccount();
+
         const promise: PromiseType<Account> = new Promise((resolve, reject) => {
 
-            const loginPromise = super.post('/authenticate', {
+            const loginPromise = axios.post('https://oyvindkg.pythonanywhere.com/authenticate', {
                 userName: username,
                 password: password
             });
 
             /* Successful authentication */
             loginPromise.then(response => {
-
-                /* Update the headers configuration */
-                this.configuration = {
-                    headers: {
-                        Authorization: response.headers.authorization
-                    }
-                };
+                console.log("New token:", response.data.data.token);
+                Cookies.set(this.authCookieName, response.data.data.token, {expires: 1, path: '/'});
 
                 /* Retrieve the authenticated user */
-                const userPromise = this.getAccount(response.data.data)
+                this.getAccount(response.data.data.uuid)
                 .then((account: Account) => {
                     this.authenticatedAccount = account;
                     resolve(account);
@@ -57,7 +58,7 @@ export class AccountService extends DatabaseService {
 
     private static deauthorizeAccount() {
         this.authenticatedAccount = undefined;
-        this.configuration = {};
+        Cookies.remove(this.authCookieName, {path: '/'});
     }
 
     public static signOut(): PromiseType<any> {
@@ -65,7 +66,7 @@ export class AccountService extends DatabaseService {
             const signOutPromise = super.post('/logout', {});
 
             signOutPromise.then(response => {
-                this.deauthorizeAccount()
+                this.deauthorizeAccount();
                 resolve(response);
             })
 

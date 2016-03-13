@@ -11,8 +11,28 @@ export class DataService extends DatabaseService {
     // Override the apiName used to create the base URL
     protected static apiName: string = 'data';
 
-    public static getChildren(): PromiseType<any> {
-        return super.get('/child?fields=*');
+    private static cachedData = {
+        children: undefined,
+        sponsors: undefined
+    };
+
+    public static getChildren(): PromiseType<Array<Child>> {
+        return new Promise((resolve, reject) => {
+
+            if (this.cachedData.children) {
+                console.log("Children from cache");
+                resolve(this.cachedData.children);
+                return;
+            }
+
+            super.get('/child?fields=*')
+                .then(response => {
+                    console.log("Updated cached children");
+                    this.cachedData.children = response.data.data;
+                    resolve(this.cachedData.children);
+                })
+                .catch(response => reject(undefined));
+        });
     }
 
     public static getSponsor() : PromiseType<any> {

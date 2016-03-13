@@ -1,16 +1,26 @@
 import {Axios, PromiseType} from './../datatypes/interfaces'
 
 declare var axios:Axios; // Tell typescript that there is a variable called 'axios' in its scope
-
+declare var Cookies;
 
 export class DatabaseService {
     private static directoryName: string = 'default';
     private static customerId: string = 'P88cSuYR';
 
-    protected static configuration: Object = {
-        headers: {
-            "Authorization": "Basic TzFLT0JPS0pWTDpaT0VJUTdIUTExTjUyNDU="
+    protected static authCookieName = "AuthToken";
+
+    static configuration(): Object {
+        const token = Cookies.get(this.authCookieName);
+        if (token) {
+            console.log(token);
+            return {
+                headers: {
+                    "Authorization": token
+                }
+            }
         }
+    console.log("dassdasdasdsadsa");
+        return {}
     };
 
     /** Name of the api. Override this in your subclass */
@@ -25,7 +35,7 @@ export class DatabaseService {
      * @returns {PromiseType}
      */
     protected static post(subpath: string, data: Object): PromiseType<any> {
-        return axios.post(this.baseUrl() + subpath, data, this.configuration);
+        return axios.post(this.baseUrl() + subpath, data, this.configuration());
     }
 
     /**
@@ -35,7 +45,7 @@ export class DatabaseService {
      * @returns {PromiseType}
      */
     protected static get(subpath: string): PromiseType<any> {
-        return axios.get(this.baseUrl() + subpath, this.configuration);
+        return axios.get(this.baseUrl() + subpath, this.configuration());
     }
 
     /**
@@ -46,22 +56,22 @@ export class DatabaseService {
      * @returns {PromiseType}
      */
     protected static put(subpath: string, data?: Object): PromiseType<any> {
-        return axios.put(this.baseUrl() + subpath, data, this.configuration);
+        return axios.put(this.baseUrl() + subpath, data, this.configuration());
     }
 
     /**
      * Send a DELETE request to a SecureDB API
      *
      * @param subpath Subpath for the requested service
+     * @param data Body data
      * @returns {PromiseType}
      */
     protected static delete(subpath: string, data: Object): PromiseType<any> {
-        const deleteConfiguration = {
-            headers: this.configuration.headers,
-            data: data,
-            method: 'DELETE',
-            url: this.baseUrl() + subpath
-        };
+        const deleteConfiguration = this.configuration();
+
+        deleteConfiguration['data'] = data;
+        deleteConfiguration['method'] = 'DELETE';
+        deleteConfiguration['url'] = this.baseUrl() + subpath;
 
         return axios(deleteConfiguration);
     }

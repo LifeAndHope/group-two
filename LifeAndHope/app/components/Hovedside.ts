@@ -28,14 +28,16 @@ export class HovedsideComponent {
         {name: "Account number", key: "account_number"}
     ];
 
-    constructor(private router: Router) {
+    constructor(private router: Router) {}
+
+    ngOnInit(){
+        this.initialized=true;
+
         DataService.getChildren()
-            .then(response => {
-                this.children = response.data.data;
+            .then(children => {
+                this.children = children;
             })
     }
-
-    ngOnInit(){ this.initialized=true; }
 
     editChild(child): void {
         this.router.navigate(['Child', {id: child.id}]);

@@ -4,15 +4,7 @@
     <exclude-output />
     <content url="file://$MODULE_DIR$" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="es6-shim" level="application" />
-    <orderEntry type="library" name="system-polyfills" level="application" />
-    <orderEntry type="library" name="system" level="application" />
-    <orderEntry type="library" name="angular2-polyfills" level="application" />
-    <orderEntry type="library" name="angular2.dev" level="application" />
-    <orderEntry type="library" name="Rx" level="application" />
-    <orderEntry type="library" name="axios" level="application" />
-    <orderEntry type="library" name="router.dev" level="application" />
-    <orderEntry type="library" name="bootstrap" level="application" />
-    <orderEntry type="library" name="jquery" level="application" />
+    <orderEntry type="library" name="js.cookie" level="application" />
+    <orderEntry type="library" name="jquery-2.2.1" level="application" />
   </component>
 </module>
