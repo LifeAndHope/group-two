@@ -4,6 +4,7 @@ import {Component, Input, EventEmitter, Output} from 'angular2/core';
 export interface Column {
     name: string;
     key: string;
+    customClasses?: string;
 }
 
 

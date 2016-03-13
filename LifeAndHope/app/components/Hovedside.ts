@@ -24,8 +24,8 @@ export class HovedsideComponent {
         {name: "First name", key: "first_name"},
         {name: "Last name", key: "last_name"},
         {name: "Gender", key: "sex"},
-        {name: "Birth year", key: "date_of_birth"},
-        {name: "Account number", key: "account_number"}
+        {name: "Birth year", key: "date_of_birth", customClasses: "hidden-xs"},
+        {name: "Account number", key: "account_number", customClasses: "hidden-xs"}
     ];
 
     constructor(private router: Router) {}

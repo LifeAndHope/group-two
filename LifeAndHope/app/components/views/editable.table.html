@@ -1,7 +1,7 @@
 <table class="table table-default table-hover">
     <thead>
         <tr>
-            <th *ngFor="#column of columns">{{ column.name }}</th>
+            <th *ngFor="#column of columns" [attr.class]="column.customClasses">{{ column.name }}</th>
             <th *ngIf="editable || removable" class="text-right">Actions</th>
         </tr>
     </thead>
@@ -12,7 +12,7 @@
             </td>
         </tr>
         <tr *ngFor="#row of rows">
-            <td *ngFor="#column of columns">{{row[column.key]}}</td>
+            <td *ngFor="#column of columns" [attr.class]="column.customClasses">{{row[column.key]}}</td>
 
             <td *ngIf="editable || removable" class="text-right">
                 <!-- Edit button if editable -->
