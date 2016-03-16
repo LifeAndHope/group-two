@@ -8,8 +8,7 @@ import {LoginComponent} from './login';
 import {ChildrenComponent} from "./children";
 import {AccountService} from "../services/account.service";
 import {ObjectDataComponent} from "./object.data";
-import {DataService} from "../services/data.service";
-import {Row} from "./object.data";
+import {InfoBoxComponent} from "./info.box";
 
 
 
@@ -23,7 +22,7 @@ import {Row} from "./object.data";
 @Component({
     selector: 'app',
     templateUrl: 'app/components/views/app.html',
-    directives: [RouterLink, AuthenticatedRouterOutlet, ObjectDataComponent]
+    directives: [RouterLink, AuthenticatedRouterOutlet, ObjectDataComponent],
 })
 
 export class App {

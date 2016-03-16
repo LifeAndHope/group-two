@@ -1,5 +1,11 @@
 
 <div class="container">
+    <div class="row">
+        <div class="col-xs-12" *ngIf="children && children.length">
+            <info-box [object]="children[0]" [properties]="properties"></info-box>
+        </div>
+    </div>
+
     <div class="row vertical-space-sm">
         <div class="col-sm-offset-4 col-sm-4 text-center">
             <div class="btn-group">
@@ -34,7 +40,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="#child of children | filterBy: filter.text:filter.keys">
+                    <tr *ngFor="#child of children | filterBy: filter.text : filter.keys">
                         <td>{{child.first_name}}</td>
                         <td>{{child.last_name}}</td>
                         <td>{{child.sex}}</td>
