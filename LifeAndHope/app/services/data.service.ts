@@ -61,4 +61,18 @@ export class DataService extends DatabaseService {
     public static addNote(note: Note): PromiseType<any> {
         return super.post('/note', [note]);
     }
+
+    public static updateChild(child: Child) : PromiseType<any> {
+        let updatedChild : any = {"id": child.id,
+            first_name: child.first_name,
+            last_name: child.last_name,
+            sex: child.sex,
+            date_of_birth: child.date_of_birth,
+            account_number: child.account_number,
+            school_id: child.school_id,
+            description: child.description,
+            filter: {id: child.id}}
+
+        return super.put('/child', [updatedChild]);
+    }
 }

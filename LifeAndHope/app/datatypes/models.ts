@@ -19,7 +19,7 @@ export interface Child {
     sex: string;
     date_of_birth: Date;
     account_number: string;
-    school: string;
+    school_id: string;
     description: string;
 }
 
