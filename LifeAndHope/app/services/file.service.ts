@@ -8,7 +8,10 @@ export class FileService extends DatabaseService {
     protected static apiName: string = 'files';
 
 
-    public static addFile(formData: FormData, container: string): PromiseType<any> {
+    public static addFile(file: File, container: string): PromiseType<any> {
+        let formData = new FormData();
+        formData.append('file', file);
+
         return super.post('/' + container + '/file', formData);
     }
 

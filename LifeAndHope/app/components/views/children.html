@@ -1,5 +1,11 @@
 
 <div class="container">
+    <div class="row">
+        <div class="col-xs-12" *ngIf="children && children.length">
+            <info-box [object]="children[0]" [properties]="properties"></info-box>
+        </div>
+    </div>
+
     <div class="row vertical-space-sm">
         <div class="col-sm-offset-4 col-sm-4 text-center">
             <div class="btn-group">
