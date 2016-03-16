@@ -15,9 +15,9 @@ import {Row} from "./object.data";
 
 
 @RouteConfig([
-    new Redirect({path: '/', redirectTo: ['Home'], useAsDefault: true }),
+    new Redirect({path: '/', redirectTo: ['Children'], useAsDefault: true }),
     new Route({path: '/signin', component: LoginComponent, name: 'SignIn'}),
-    new Route({path: '/home', component: ChildrenComponent, name: 'Home'}),
+    new Route({path: '/children', component: ChildrenComponent, name: 'Children'}),
 ])
 
 @Component({

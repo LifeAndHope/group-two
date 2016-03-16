@@ -1,6 +1,7 @@
 
 body {
     font-family: 'Raleway', sans-serif;
+    padding: 50px 0;
 }
 
 
@@ -62,31 +63,31 @@ table .btn {
 *********************/
 
 
-.navbar-default {
-    background-color: orange;
-}
+/*.navbar-default {*/
+    /*background-color: orange;*/
+/*}*/
 
-.navbar-default .navbar-brand {
-    color: white;
-}
+/*.navbar-default .navbar-brand {*/
+    /*color: white;*/
+/*}*/
 
-.navbar-nav>.btn-default,
-.navbar-nav>.btn-default:active,
-.navbar-nav>.btn-default:focus {
-    margin-right: 15px;
-    margin-top: 1px;
-    padding: 5px;
-    color: darkorange;
-    border: none;
-}
+/*.navbar-nav>.btn-default,*/
+/*.navbar-nav>.btn-default:active,*/
+/*.navbar-nav>.btn-default:focus {*/
+    /*margin-right: 15px;*/
+    /*margin-top: 1px;*/
+    /*padding: 5px;*/
+    /*color: darkorange;*/
+    /*border: none;*/
+/*}*/
 
-@media (min-width: 768px) {
-    .navbar-nav > .btn-default,
-    .navbar-nav > .btn-default:active,
-    .navbar-nav > .btn-default:focus {
-        margin-top: 9px;
-        padding: 5px;
-        color: darkorange;
-        border: none;
-    }
-}
+/*@media (min-width: 768px) {*/
+    /*.navbar-nav > .btn-default,*/
+    /*.navbar-nav > .btn-default:active,*/
+    /*.navbar-nav > .btn-default:focus {*/
+        /*margin-top: 9px;*/
+        /*padding: 5px;*/
+        /*color: darkorange;*/
+        /*border: none;*/
+    /*}*/
+/*}*/
