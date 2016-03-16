@@ -4,7 +4,10 @@
             <a class="navbar-brand" [routerLink]="['Home']">Life and hope</a>
         </div>
         <div class="nav navbar-nav navbar-right" [hidden]="!isAuthenticated()" style="float: right">
-            <div (click)="signOut()" class="btn btn-default"><span class="glyphicon glyphicon-log-out"></span> Sign out</div>
+            <button (click)="signOut()" [disabled]="signingOut" class="btn btn-default">
+                <span [hidden]="signingOut"><span class="glyphicon glyphicon-log-out"></span> Sign out</span>
+                <span [hidden]="!signingOut"><span class="spinner glyphicon glyphicon-refresh"></span> Signing out</span>
+            </button>
         </div>
     </div>
 </div>

@@ -4,6 +4,11 @@ body {
 }
 
 
+.bold {
+    font-weight: bold;
+}
+
+
 .vertical-space-xs {
     margin-top: 2rem;
 }
@@ -29,6 +34,18 @@ body {
     transition: 300ms background-color ease-in-out;
 }
 
+
+/*********************
+****** Spinner *******
+*********************/
+
+@keyframes spin {
+    to { transform: rotate(1turn); }
+}
+
+.spinner {
+    animation: spin 1s infinite linear;
+}
 
 
 
