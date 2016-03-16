@@ -35,7 +35,10 @@
 
 
                 <div class="text-center">
-                    <button type="submit" class="btn btn-primary col-xs-12">Sign in</button>
+                    <button [disabled]="signingIn" type="submit" class="btn btn-primary col-xs-12">
+                        <span [hidden]="signingIn">Sign in</span>
+                        <span [hidden]="!signingIn"><span class="spinner glyphicon glyphicon-refresh"></span> Signing in</span>
+                    </button>
                 </div>
             </form>
         </div>

@@ -14,25 +14,29 @@ export class LoginComponent {
 
     userForm: ControlGroup;
     failedAuthentication = false;
-
+    signingIn = false;
 
     constructor(private formBuilder: FormBuilder, private router: Router) {
         this.userForm = this.formBuilder.group({
-            'email': ['', Validators.required],
-            'password': ['', Validators.required]
+            'email': ['oyvindkg@yahoo.com', Validators.required],
+            'password': ['Eksperter_1', Validators.required]
         });
     }
 
     loginUser() {
-        if (this.userForm.dirty && this.userForm.valid) {
+        if (this.userForm.valid) {
+            this.signingIn = true;
+
             AccountService.login(this.userForm.value.email, this.userForm.value.password)
                 .then((account: Account) => {
                     console.log("Authenticated account:", account);
                     this.router.navigate(["Home"]);
+                    this.signingIn = false;
                 })
                 .catch(error => {
                     console.log("Failed to authenticate account:", error);
                     this.failedAuthentication = true;
+                    this.signingIn = false;
                 })
         }
     }

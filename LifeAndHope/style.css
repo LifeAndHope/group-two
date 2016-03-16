@@ -35,6 +35,18 @@ body {
 }
 
 
+/*********************
+****** Spinner *******
+*********************/
+
+@keyframes spin {
+    to { transform: rotate(1turn); }
+}
+
+.spinner {
+    animation: spin 1s infinite linear;
+}
+
 
 
 /*********************

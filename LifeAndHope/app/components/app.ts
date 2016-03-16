@@ -28,16 +28,21 @@ import {Row} from "./object.data";
 
 export class App {
 
-    title: string;
+    signingOut = false;
 
-    constructor(private router: Router) {
-        this.title = 'My super title';
-    }
+    constructor(private router: Router) {}
 
     signOut() {
+        this.signingOut = true;
         AccountService.signOut()
-            .then(response => this.router.navigate(['SignIn']))
-            .catch(response => alert("Failed to sign out"));
+            .then(response => {
+                this.router.navigate(['SignIn']);
+                this.signingOut = false;
+            })
+            .catch(response => {
+                alert("Failed to sign out");
+                this.signingOut = false;
+            });
     }
 
     isAuthenticated(): boolean {
