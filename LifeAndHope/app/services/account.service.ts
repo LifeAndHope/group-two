@@ -36,7 +36,13 @@ export class AccountService extends DatabaseService {
 
             /* Successful authentication */
             loginPromise.then(response => {
-                Cookies.set(this.authCookieName, response.data.data, {expires: 1, path: '/'});
+
+                /* Expire after 8 hours */
+                let expiryDate = new Date();
+                const hoursToLive = 8;
+                expiryDate.setTime(expiryDate.getTime() + (hoursToLive * 60 * 60 * 1000));
+
+                Cookies.set(this.authCookieName, response.data.data, {expires: expiryDate, path: '/'});
 
                 /* Retrieve the authenticated user */
                 this.updateAuthenticatedAccount()
