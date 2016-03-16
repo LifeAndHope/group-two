@@ -3,11 +3,12 @@ import {Router} from 'angular2/router';
 import {FormBuilder, Validators, ControlGroup} from 'angular2/common';
 import {AccountService} from "../services/account.service";
 import {Account} from "../datatypes/interfaces";
+import {IconComponent} from "./icon";
 
 @Component({
     selector: 'login',
     templateUrl: 'app/components/views/login.html',
-    directives: []
+    directives: [IconComponent]
 })
 
 export class LoginComponent {

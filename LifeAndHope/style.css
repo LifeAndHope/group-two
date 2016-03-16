@@ -43,6 +43,14 @@ table .btn {
     padding: 1px 10px;
 }
 
+tr {
+    transition: background-color 200ms ease-in-out;
+}
+
+.navbar-default .navbar-nav>li>a {
+    transition: color 200ms ease-in-out;
+}
+
 
 
 
