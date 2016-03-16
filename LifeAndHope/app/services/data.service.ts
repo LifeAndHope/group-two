@@ -80,20 +80,49 @@ export class DataService extends DatabaseService {
     }
 
     private static validateUpdatedChild(updatedChild: any){
-        for(var item in updatedChild){
-            if(updatedChild[item] == null){
+        let validatedUpdatedChild = updatedChild
+
+        for(var item in validatedUpdatedChild){
+            if(validatedUpdatedChild[item] == null){
                 if(item === "school_id"){
                     //TODO: school_id should be able to be null, but currently gets error 500
-                    delete updatedChild[item]
+                    delete validatedUpdatedChild[item]
                 }
                 else if(item === "date_of_birth"){
-                    updatedChild[item] = new Date()
+                    validatedUpdatedChild[item] = new Date().toISOString().slice(0,10)
                 }
                 else{
-                    updatedChild[item] = ""
+                    validatedUpdatedChild[item] = ""
                 }
             }
         }
-        return updatedChild
+
+        return validatedUpdatedChild
+    }
+
+    public static updateSponsor(sponsor: Sponsor) : PromiseType<any>{
+        let updateSponsor = {
+            last_name: sponsor.last_name,
+            first_name: sponsor.first_name,
+            phone: sponsor.phone,
+            email: sponsor.email,
+            join_date: sponsor.join_date.toISOString().slice(0,10),
+            address: sponsor.address,
+            filter:{
+                id: sponsor.id
+            }
+        }
+
+        updateSponsor = this.validateUpdatedSponsor(updateSponsor)
+
+        return super.put('/sponsor', updateSponsor)
+    }
+
+    private static validateUpdatedSponsor(updateSponsor){
+        let validatedUpdatedSponsor = updateSponsor
+
+        //TODO: phone, email and address are nullable. 
+
+        return validatedUpdatedSponsor
     }
 }
