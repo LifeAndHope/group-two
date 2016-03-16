@@ -30,7 +30,7 @@ export class LoginComponent {
             AccountService.login(this.userForm.value.email, this.userForm.value.password)
                 .then((account: Account) => {
                     console.log("Authenticated account:", account);
-                    this.router.navigate(["Home"]);
+                    this.router.navigate(["Children"]);
                     this.signingIn = false;
                 })
                 .catch(error => {
