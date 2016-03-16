@@ -34,7 +34,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="#child of children | filterBy: filter.text:filter.keys">
+                    <tr *ngFor="#child of children | filterBy: filter.text : filter.keys">
                         <td>{{child.first_name}}</td>
                         <td>{{child.last_name}}</td>
                         <td>{{child.sex}}</td>

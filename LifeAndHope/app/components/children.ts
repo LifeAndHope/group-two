@@ -5,11 +5,12 @@ import {Child} from "../datatypes/models";
 import {DataService} from "../services/data.service";
 import {Property} from "./filter.generator";
 import {FilterBy} from "../pipes/filter.by";
+import {InfoBoxComponent} from "./info.box";
 
 @Component({
     selector: 'Hovedside',
     templateUrl: 'app/components/views/children.html',
-    directives: [FilterGenerator],
+    directives: [FilterGenerator, InfoBoxComponent],
     pipes: [FilterBy]
 })
 
