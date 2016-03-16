@@ -63,16 +63,37 @@ export class DataService extends DatabaseService {
     }
 
     public static updateChild(child: Child) : PromiseType<any> {
-        let updatedChild : any = {"id": child.id,
+        let updatedChild = {
             first_name: child.first_name,
             last_name: child.last_name,
             sex: child.sex,
-            date_of_birth: child.date_of_birth,
+            date_of_birth: child.date_of_birth.toISOString().slice(0,10),
             account_number: child.account_number,
             school_id: child.school_id,
             description: child.description,
-            filter: {id: child.id}}
+            filter: {id: child.id}
+        }
 
-        return super.put('/child', [updatedChild]);
+        updatedChild = this.validateUpdatedChild(updatedChild)
+
+        return super.put('/child', updatedChild);
+    }
+
+    private static validateUpdatedChild(updatedChild: any){
+        for(var item in updatedChild){
+            if(updatedChild[item] == null){
+                if(item === "school_id"){
+                    //TODO: school_id should be able to be null, but currently gets error 500
+                    delete updatedChild[item]
+                }
+                else if(item === "date_of_birth"){
+                    updatedChild[item] = new Date()
+                }
+                else{
+                    updatedChild[item] = ""
+                }
+            }
+        }
+        return updatedChild
     }
 }
