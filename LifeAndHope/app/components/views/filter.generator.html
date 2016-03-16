@@ -1,0 +1,22 @@
+<div class="input-group">
+    <span class="input-group-addon">
+        <span class="glyphicon glyphicon-search"></span>
+    </span>
+
+    <input type="search" id="search" [(ngModel)]="searchTerm" (keyup)="updateFilter()" class="form-control" placeholder="search..">
+
+    <div class="input-group-btn">
+        <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
+            <span *ngIf="filterProperty">{{filterProperty.name}}</span>
+            <span *ngIf="!filterProperty">All</span>
+
+            <span class="caret"></span>
+        </button>
+
+        <ul class="dropdown-menu">
+            <li><a (click)="setFilterProperty()">All</a></li>
+            <li role="separator" class="divider"></li>
+            <li *ngFor="#property of properties; #i = index"><a (click)="setFilterProperty(property)">{{ property.name }}</a></li>
+        </ul>
+    </div>
+</div>

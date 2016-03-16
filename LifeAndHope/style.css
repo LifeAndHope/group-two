@@ -34,6 +34,16 @@ body {
     transition: 300ms background-color ease-in-out;
 }
 
+.input-group-addon {
+    background-color: #f4f4f4;
+}
+
+table .btn {
+    padding: 1px 10px;
+}
+
+
+
 
 /*********************
 ****** Spinner *******
@@ -46,8 +56,6 @@ body {
 .spinner {
     animation: spin 1s infinite linear;
 }
-
-
 
 /*********************
 *** Navigation Bar ***

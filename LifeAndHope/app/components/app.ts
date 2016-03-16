@@ -5,7 +5,7 @@ import {AuthenticatedRouterOutlet} from './authenticated.router.outlet';
 
 import {LoginComponent} from './login';
 
-import {HovedsideComponent} from "./Hovedside";
+import {ChildrenComponent} from "./children";
 import {AccountService} from "../services/account.service";
 import {ObjectDataComponent} from "./object.data";
 import {DataService} from "../services/data.service";
@@ -17,7 +17,7 @@ import {Row} from "./object.data";
 @RouteConfig([
     new Redirect({path: '/', redirectTo: ['Home'], useAsDefault: true }),
     new Route({path: '/signin', component: LoginComponent, name: 'SignIn'}),
-    new Route({path: '/home', component: HovedsideComponent, name: 'Home'}),
+    new Route({path: '/home', component: ChildrenComponent, name: 'Home'}),
 ])
 
 @Component({
