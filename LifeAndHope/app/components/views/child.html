@@ -1,0 +1,16 @@
+
+
+<div class="container">
+    <div class="row vertical-space-sm">
+        <div class="col-sm-4 col-sm-offset-2 text-center">
+            <img id="profile-image" class="img-responsive" src="" style="display: inline-block">
+        </div>
+        <div class="col-sm-4 text-center">
+            <h3 *ngIf="child">{{child.first_name}} {{child.last_name}}</h3>
+            <info-box *ngIf="child" [object]="child" [properties]="properties" [editable]="true" (change)="updateChild($event)"></info-box>
+        </div>
+    </div>
+
+    <div class="row vertical-space-xs">
+    </div>
+</div>

@@ -1,5 +1,5 @@
 import {Component} from 'angular2/core';
-import {CanActivate} from 'angular2/router';
+import {CanActivate, RouterLink} from 'angular2/router';
 import {FilterGenerator} from "./filter.generator";
 import {Child} from "../datatypes/models";
 import {DataService} from "../services/data.service";
@@ -10,7 +10,7 @@ import {InfoBoxComponent} from "./info.box";
 @Component({
     selector: 'Hovedside',
     templateUrl: 'app/components/views/children.html',
-    directives: [FilterGenerator, InfoBoxComponent],
+    directives: [FilterGenerator, InfoBoxComponent, RouterLink],
     pipes: [FilterBy]
 })
 
@@ -25,11 +25,15 @@ export class ChildrenComponent {
         {key: "sex",            name: "Gender"},
         {key: "date_of_birth",  name: "Birth date"},
         {key: "account_number", name: "Account number"},
+        {key: "description",     name: "Description"},
     ];
 
     filter = {text: "", keys: []};
+    initialized = false;
 
     ngOnInit() {
+        this.initialized = true;
+
         DataService.getChildren()
             .then(response => {
                 this.children = response.data.data;

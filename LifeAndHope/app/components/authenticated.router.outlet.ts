@@ -30,8 +30,6 @@ export class AuthenticatedRouterOutlet extends RouterOutlet {
     }
 
     activate(instruction: ComponentInstruction) {
-        return super.activate(instruction);
-
         /* The user is already logged in. Redirect to the default route */
         if (instruction.urlPath === this.loginRouteName.toLowerCase() && AccountService.isAuthenticated()) {
             this.parentRouter.navigate([this.defaultRouteName]);

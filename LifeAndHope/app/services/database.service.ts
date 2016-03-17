@@ -10,9 +10,11 @@ export class DatabaseService {
     protected static authCookieName = "AuthToken";
 
     static configuration(): Object {
-        const authCookie = JSON.parse(Cookies.get(this.authCookieName));
+        const cookie = Cookies.get(this.authCookieName);
 
-        if (authCookie) {
+        if (cookie) {
+            const authCookie = JSON.parse(cookie);
+
             return {
                 headers: {
                     "Authorization": authCookie.token
@@ -34,18 +36,19 @@ export class DatabaseService {
      * @param {Object} data Data to be sent
      * @returns {PromiseType}
      */
-    protected static post(subpath: string, data: Object): PromiseType<any> {
-        return axios.post(this.baseUrl() + subpath, data, this.configuration());
+    protected static post(subpath: string, data: Object, configuration: Object = this.configuration()): PromiseType<any> {
+        return axios.post(this.baseUrl() + subpath, data, configuration);
     }
 
     /**
      * Send a GET request to a SecureDB API
      *
      * @param subpath Subpath for the requested service
+     * @param configuration
      * @returns {PromiseType}
      */
-    protected static get(subpath: string): PromiseType<any> {
-        return axios.get(this.baseUrl() + subpath, this.configuration());
+    protected static get(subpath: string, configuration: Object = this.configuration()): PromiseType<any> {
+        return axios.get(this.baseUrl() + subpath, configuration);
     }
 
     /**
@@ -53,10 +56,11 @@ export class DatabaseService {
      *
      * @param subpath Subpath for the requested service
      * @param {Object} [data] Data to be sent
-     * @returns {PromiseType}
+     * @param configuration
+ * @returns {PromiseType}
      */
-    protected static put(subpath: string, data?: Object): PromiseType<any> {
-        return axios.put(this.baseUrl() + subpath, data, this.configuration());
+    protected static put(subpath: string, data?: Object, configuration: Object = this.configuration()): PromiseType<any> {
+        return axios.put(this.baseUrl() + subpath, data, configuration);
     }
 
     /**
@@ -64,10 +68,12 @@ export class DatabaseService {
      *
      * @param subpath Subpath for the requested service
      * @param data Body data
-     * @returns {PromiseType}
+     * @param configuration
+ * @returns {PromiseType}
      */
-    protected static delete(subpath: string, data: Object): PromiseType<any> {
-        const deleteConfiguration = this.configuration();
+    protected static delete(subpath: string, data: Object, configuration: Object = this.configuration()): PromiseType<any> {
+        /* Axios does not allow a body in DELETE requests by default */
+        const deleteConfiguration = configuration;
 
         deleteConfiguration['data'] = data;
         deleteConfiguration['method'] = 'DELETE';

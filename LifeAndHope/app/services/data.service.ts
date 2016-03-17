@@ -11,13 +11,33 @@ export class DataService extends DatabaseService {
     // Override the apiName used to create the base URL
     protected static apiName: string = 'data';
 
+
     public static getChildren(): PromiseType<any> {
-        return super.get('/child?fields=*');
+        return this.getInstancesFromTable('fields');
+    }
+
+    public static getChildById(id: string): PromiseType<any> {
+        return this.getInstancesFromTable('child', "id = '" + id + "'");
     }
 
     public static getSponsor() : PromiseType<any> {
-        return super.get('/sponsor?fields=*')
+        return this.getInstancesFromTable('sponsor')
     }
+
+    public static getSponsorById(id: string): PromiseType<any> {
+        return this.getInstancesFromTable('sponsor', "id = '" + id + "'");
+    }
+
+    private static getInstancesFromTable(tableName: string, filters?: string): PromiseType<any> {
+        let filterComponent = "";
+
+        if (filters) {
+            filterComponent = "&filters=" + filters
+        }
+
+        return super.get("/" + tableName + "?fields=*" + filterComponent)
+    }
+
 
     public static getNote(tableName : string, instanceId : string) : PromiseType<any> {
         let requestUrl = '/note?fields=*&filters=table_name%3D\''+ tableName +'\'%20AND%20instance_id%3D\''+ instanceId +'\'&&&'
@@ -73,6 +93,6 @@ export class DataService extends DatabaseService {
             description: child.description,
             filter: {id: child.id}}
 
-        return super.put('/child', [updatedChild]);
+        return super.put('/child', updatedChild);
     }
 }

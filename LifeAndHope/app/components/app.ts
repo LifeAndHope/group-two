@@ -9,6 +9,7 @@ import {ChildrenComponent} from "./children";
 import {AccountService} from "../services/account.service";
 import {ObjectDataComponent} from "./object.data";
 import {InfoBoxComponent} from "./info.box";
+import {ChildComponent} from "./child";
 
 
 
@@ -17,12 +18,13 @@ import {InfoBoxComponent} from "./info.box";
     new Redirect({path: '/', redirectTo: ['Children'], useAsDefault: true }),
     new Route({path: '/signin', component: LoginComponent, name: 'SignIn'}),
     new Route({path: '/children', component: ChildrenComponent, name: 'Children'}),
+    new Route({path: '/children/:id', component: ChildComponent, name: 'Child'}),
 ])
 
 @Component({
     selector: 'app',
     templateUrl: 'app/components/views/app.html',
-    directives: [RouterLink, AuthenticatedRouterOutlet, ObjectDataComponent],
+    directives: [RouterLink, AuthenticatedRouterOutlet],
 })
 
 export class App {

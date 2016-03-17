@@ -3,22 +3,20 @@ import {Component, Input, Output, EventEmitter} from 'angular2/core';
 
 const template = `
     <table class="table table-condensed">
-        <!--<thead>-->
-            <!--<tr>-->
-                <!--<th>Name</th>-->
-                <!--<th>Value</th>-->
-            <!--</tr>-->
-        <!--</thead>-->
         <tbody>
             <tr *ngFor="#property of properties">
-                <td>{{property.name}}</td>
-                <td><input class="form-control" type="text" [(ngModel)]="object[property.key]" [disabled]="!editable" (change)="onChange(property)"></td>
+                <td class="text-right">{{property.name}}</td>
+                <td><input class="form-control" type="text" [(ngModel)]="object[property.key]" [disabled]="!editable"></td>
             </tr>
         </tbody>
     </table>
 `
 
 const style = `
+    table {
+        table-layout: fixed;
+    }
+
     .table>tbody>tr>td {
         border: none;
     }
@@ -29,7 +27,12 @@ const style = `
 
     table>tbody>tr>td>.form-control:not(:focus) {
         border-color: transparent;
+        background: transparent;
         box-shadow: none;
+    }
+
+    table>tbody>tr>td>.form-control:hover:not(:focus) {
+        border-color: lightgray;
     }
 
     table>tbody>tr>td>.form-control:disabled {
@@ -55,14 +58,4 @@ export class InfoBoxComponent {
     @Input() properties: Array<Property>;
     @Input() object: Object;
     @Input() editable = false;
-
-    @Output() change = new EventEmitter();
-
-    onChange(property) {
-        this.change.next({
-            property: property,
-            object: this.object,
-            newValue: this.object[property.key]
-        })
-    }
 }
