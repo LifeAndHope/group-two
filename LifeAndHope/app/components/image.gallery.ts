@@ -2,43 +2,69 @@ import {Component, Input, Output, EventEmitter} from 'angular2/core';
 
 
 const template = `
-<div class="container-fluid gallery">
-    <div class="row">
-        <div class="col-xs-11 col-sm-5" *ngFor="#source of sources">
-            <a class="thumbnail" (click)="selectThumbnail($event)">
-                <img src="{{source}}">
-            </a>
-        </div>
+<div class="gallery">
+    <div id="full-screen" class="text-center">
+        <img src="{{sources[selectedIndex]}}" class="center-vertical">
     </div>
+
+    <a class="thumbnail" (click)="selectThumbnail(index)"  *ngFor="#source of sources; #index = index">
+        <img src="{{source}}">
+    </a>
 </div>
 
 <style>
-    .gallery .thumbnail a>img, .thumbnail>img {
-        height: 100%;
+    .gallery {
         width: 100%;
-        object-fit: cover;
-    }
-
-    .gallery .row {
+        height: 200px;
         overflow-x: auto;
         overflow-y: hidden;
         white-space: nowrap;
-        height: 200px;
     }
 
-    .gallery>.row>[class*="col"] {
-        display: inline-block;
-        float: none;
+    .gallery>.thumbnail>img{
+        height: 100%;
+        width: auto;
+        object-fit: cover;
     }
 
-    .gallery .thumbnail {
+    .gallery>.thumbnail {
         transition: all 300ms ease-in-out;
         height: 200px;
-        margin-bottom: 0;
+        display: inline-block;
+        margin: 0 1.5rem;
     }
 
-    .gallery .thumbnail:hover {
+    .gallery>.thumbnail:first-child,
+    .gallery>.thumbnail:last-child {
+        margin: 0;
+    }
+
+    .gallery>.thumbnail:hover {
         cursor: pointer;
+    }
+
+    .gallery>#full-screen {
+        display: none;
+        position: fixed;
+        background: rgba(0,0,0,0.9);
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 10000;
+    }
+
+    .gallery>#full-screen>img {
+        height: auto;
+        width: auto;
+        max-height: 90%;
+        max-width: 90%;
+    }
+
+    .center-vertical {
+        position: relative;
+        top: 50%;
+        transform: translateY(-50%);
     }
 </style>
 `;
@@ -57,18 +83,33 @@ export class ImageGalleryComponent {
         "https://static.pexels.com/photos/1029/landscape-mountains-nature-clouds.jpg"
     ];
 
-    selected: any;
+    selectedIndex: number;
 
-    selectThumbnail(event) {
-        console.log(event);
-        if (this.selected) {
-            this.selected.classList.remove("selected");
-        }
+    constructor() {
+        key('esc', this.closeFullscreen);
+        key('right', event => {
+            this.selectedIndex = Math.min(this.selectedIndex+1, this.sources.length-1);
+            this.updateFullscreenImage();
+            event.preventDefault();
+        })
+        key('left', event => {
+            this.selectedIndex = Math.max(this.selectedIndex-1, 0);
+            this.updateFullscreenImage();
+            event.preventDefault();
+        })
+    }
 
-        this.selected = event.target;
+    selectThumbnail(index) {
+        this.selectedIndex = index;
+        this.updateFullscreenImage();
+        $('#full-screen').fadeIn(200);
+    }
 
-        this.selected.classList.add("selected");
+    closeFullscreen() {
+        $('#full-screen').fadeOut(200);
+    }
 
-        event.preventDefault();
+    private updateFullscreenImage() {
+        $('.gallery #full-screen>img').attr('src', this.sources[this.selectedIndex])
     }
 }
