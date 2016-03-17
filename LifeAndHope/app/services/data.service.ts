@@ -28,6 +28,7 @@ export class DataService extends DatabaseService {
         return this.getInstancesFromTable('sponsor', "id = '" + id + "'");
     }
 
+    //TODO: Make me pretty
     private static getInstancesFromTable(tableName: string, filters?: string): PromiseType<any> {
         let filterComponent = "";
 
@@ -83,16 +84,66 @@ export class DataService extends DatabaseService {
     }
 
     public static updateChild(child: Child) : PromiseType<any> {
-        let updatedChild : any = {"id": child.id,
+        let updatedChild = {
             first_name: child.first_name,
             last_name: child.last_name,
             sex: child.sex,
-            date_of_birth: child.date_of_birth,
+            date_of_birth: child.date_of_birth.toISOString().slice(0,10),
             account_number: child.account_number,
             school_id: child.school_id,
             description: child.description,
-            filter: {id: child.id}}
+            filter: {id: child.id}
+        };
+
+        updatedChild = this.validateUpdatedChild(updatedChild)
 
         return super.put('/child', updatedChild);
+    }
+
+    private static validateUpdatedChild(updatedChild: any){
+        let validatedUpdatedChild = updatedChild
+
+        for(var item in validatedUpdatedChild){
+            if(validatedUpdatedChild[item] == null){
+                if(item === "school_id"){
+                    //TODO: school_id should be able to be null, but currently gets error 500
+                    delete validatedUpdatedChild[item]
+                }
+                else if(item === "date_of_birth"){
+                    validatedUpdatedChild[item] = new Date().toISOString().slice(0,10)
+                }
+                else{
+                    validatedUpdatedChild[item] = ""
+                }
+            }
+        }
+
+        return validatedUpdatedChild
+    }
+
+    public static updateSponsor(sponsor: Sponsor) : PromiseType<any>{
+        let updateSponsor = {
+            last_name: sponsor.last_name,
+            first_name: sponsor.first_name,
+            phone: sponsor.phone,
+            email: sponsor.email,
+            join_date: sponsor.join_date.toISOString().slice(0,10),
+            address: sponsor.address,
+            filter:{
+                id: sponsor.id
+            }
+        }
+
+        updateSponsor = this.validateUpdatedSponsor(updateSponsor)
+
+        return super.put('/sponsor', updateSponsor)
+    }
+
+    private static validateUpdatedSponsor(updateSponsor){
+        let validatedUpdatedSponsor = updateSponsor
+
+        //TODO: phone, email and address are nullable. 
+
+        return validatedUpdatedSponsor
     }
 }
