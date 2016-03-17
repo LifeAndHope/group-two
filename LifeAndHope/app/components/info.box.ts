@@ -5,8 +5,12 @@ const template = `
     <table class="table table-condensed">
         <tbody>
             <tr *ngFor="#property of properties">
-                <td class="text-right">{{property.name}}</td>
-                <td><input class="form-control" type="text" [(ngModel)]="object[property.key]" [disabled]="!editable"></td>
+                <td class="text-left">{{property.name}}</td>
+                <td><input *ngIf="object"
+                           class="form-control text-right"
+                           type="text"
+                           [(ngModel)]="object[property.key]"
+                           [disabled]="!editable"></td>
             </tr>
         </tbody>
     </table>

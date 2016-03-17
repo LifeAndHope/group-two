@@ -5,10 +5,11 @@ import {DataService} from "../services/data.service";
 import {InfoBoxComponent} from "./info.box";
 import {Property} from "./info.box";
 import {FileService} from "../services/file.service";
+import {ImageGalleryComponent} from "./image.gallery";
 
 @Component({
     templateUrl: 'app/components/views/child.html',
-    directives: [InfoBoxComponent]
+    directives: [InfoBoxComponent, ImageGalleryComponent]
 })
 
 export class ChildComponent {
@@ -31,7 +32,7 @@ export class ChildComponent {
             });
 
 
-        FileService.getFile('042824bf-75d2-4853-9b35-1ab1218f3d47', 'uuid_images')
+        FileService.getFile('a46b3c8c-faf5-4e94-ae7d-20d1d8bf1334', 'uuid_images')
             .then(response => {
                 $("#profile-image")[0].src = 'data:image/jpeg;base64,' + response.data;
             })

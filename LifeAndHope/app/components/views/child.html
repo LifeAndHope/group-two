@@ -1,16 +1,47 @@
 
 
 <div class="container">
-    <div class="row vertical-space-sm">
-        <div class="col-sm-4 col-sm-offset-2 text-center">
-            <img id="profile-image" class="img-responsive" src="" style="display: inline-block">
+    <div class="row hidden-xs vertical-space-sm"></div>
+
+    <div class="row">
+        <div class="col-sm-5 col-lg-4 col-sm-offset-1 col-lg-offset-2 text-center">
+            <img id="profile-image" class="img-responsive" src="" alt="Loading image.." style="height: 300px; width:100%;object-fit: cover; display: inline-block">
         </div>
-        <div class="col-sm-4 text-center">
-            <h3 *ngIf="child">{{child.first_name}} {{child.last_name}}</h3>
-            <info-box *ngIf="child" [object]="child" [properties]="properties" [editable]="true" (change)="updateChild($event)"></info-box>
+
+        <div class="col-sm-5 col-lg-4 text-center">
+            <h2>
+                <span *ngIf="child">{{child.first_name}} {{child.last_name}}</span>
+                <span *ngIf="!child" class="text-muted"><span class="glyphicon glyphicon-refresh spinner"></span> Laster inn..</span>
+            </h2>
+            <hr>
+
+            <info-box [object]="child"
+                      [properties]="properties"
+                      [editable]="true"
+                      (change)="updateChild($event)"></info-box>
         </div>
     </div>
 
-    <div class="row vertical-space-xs">
+    <div class="row vertical-space-md">
+        <div class="col-xs-12">
+            <h3>Images</h3>
+            <hr>
+            <image-gallery></image-gallery>
+        </div>
     </div>
+
+    <div class="row vertical-space-md">
+        <div class="col-xs-12">
+            <h3>Log</h3>
+            <hr>
+        </div>
+    </div>
+
+    <div class="row vertical-space-md">
+        <div class="col-xs-12">
+            <h3>Transaction history</h3>
+            <hr>
+        </div>
+    </div>
+
 </div>

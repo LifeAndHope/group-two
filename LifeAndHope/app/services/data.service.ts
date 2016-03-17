@@ -13,7 +13,7 @@ export class DataService extends DatabaseService {
 
 
     public static getChildren(): PromiseType<any> {
-        return this.getInstancesFromTable('fields');
+        return this.getInstancesFromTable('child');
     }
 
     public static getChildById(id: string): PromiseType<any> {
