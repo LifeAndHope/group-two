@@ -1,18 +1,58 @@
-import {Component, Input, Output, EventEmitter} from 'angular2/core';
+import {Component, Input} from 'angular2/core';
 
 
 const template = `
 <div class="gallery">
     <div id="full-screen" class="text-center">
-        <img src="{{sources[selectedIndex]}}" class="center-vertical">
-    </div>
+        <span class="glyphicon glyphicon-remove close-button" (click)="closeFullscreen()"></span>
+        <img src="" class="center-vertical">
 
-    <a class="thumbnail" (click)="selectThumbnail(index)"  *ngFor="#source of sources; #index = index">
-        <img src="{{source}}">
-    </a>
+        <span class="gallery-nav gallery-nav-right glyphicon glyphicon-chevron-right center-vertical"
+              (click)="nextImage()"></span>
+        <span class="gallery-nav gallery-nav-left glyphicon glyphicon-chevron-left center-vertical"
+              (click)="previousImage()"></span>
+    </div>
+    <div class="thumbnails">
+        <a class="thumbnail" (click)="selectThumbnail(index)"  *ngFor="#source of sources; #index = index">
+            <img src="{{source}}">
+        </a>
+    </div>
 </div>
 
 <style>
+    .gallery #full-screen .gallery-nav {
+        font-size: xx-large;
+        position: fixed;
+        color: white;
+        margin: 2rem;
+        cursor: pointer;
+        transition: color 200ms linear;
+    }
+
+    .gallery #full-screen .gallery-nav:hover,
+    .gallery #full-screen .close-button:hover {
+        color: lightgray;
+    }
+
+    .gallery #full-screen .gallery-nav-left {
+        left: 0;
+    }
+
+    .gallery #full-screen .gallery-nav-right {
+        right: 0;
+    }
+
+    .gallery #full-screen .close-button {
+        position: fixed;
+        top: 0;
+        right: 0;
+        margin: 2rem;
+        color: white;
+        font-size: x-large;
+        cursor: pointer;
+        transition: color 200ms linear;
+    }
+
     .gallery {
         width: 100%;
         height: 200px;
@@ -21,25 +61,27 @@ const template = `
         white-space: nowrap;
     }
 
-    .gallery>.thumbnail>img{
+    .gallery>.thumbnails>.thumbnail>img{
         height: 100%;
         width: auto;
         object-fit: cover;
     }
 
-    .gallery>.thumbnail {
+    .gallery>.thumbnails>.thumbnail {
         transition: all 300ms ease-in-out;
         height: 200px;
         display: inline-block;
         margin: 0 1.5rem;
     }
 
-    .gallery>.thumbnail:first-child,
-    .gallery>.thumbnail:last-child {
-        margin: 0;
+    .gallery>.thumbnails>.thumbnail:first-child {
+        margin-left: 0;
+    }
+    .gallery>.thumbnails>.thumbnail:last-child {
+        margin-right: 0;
     }
 
-    .gallery>.thumbnail:hover {
+    .gallery>.thumbnails>.thumbnail:hover {
         cursor: pointer;
     }
 
@@ -75,28 +117,30 @@ const template = `
 })
 
 export class ImageGalleryComponent {
-    sources: Array<string> = [
-        "http://images.matprat.no/8n2mc52r56-jumbotron/large",
-        "http://im.rediff.com/news/2015/dec/24tpoty20.jpg",
-        "http://i164.photobucket.com/albums/u8/hemi1hemi/COLOR/COL9-6.jpg",
-        "https://www.planwallpaper.com/static/images/nasas-images-of-most-remarkable-events-you-cant-miss.jpg",
-        "https://static.pexels.com/photos/1029/landscape-mountains-nature-clouds.jpg"
-    ];
+    @Input() sources: Array<string> = [];
 
     selectedIndex: number;
 
     constructor() {
         key('esc', this.closeFullscreen);
         key('right', event => {
-            this.selectedIndex = Math.min(this.selectedIndex+1, this.sources.length-1);
-            this.updateFullscreenImage();
+            this.nextImage();
             event.preventDefault();
-        })
+        });
         key('left', event => {
-            this.selectedIndex = Math.max(this.selectedIndex-1, 0);
-            this.updateFullscreenImage();
+            this.previousImage();
             event.preventDefault();
-        })
+        });
+    }
+
+    previousImage() {
+        this.selectedIndex = Math.max(this.selectedIndex-1, 0);
+        this.updateFullscreenImage();
+    }
+
+    nextImage() {
+        this.selectedIndex = Math.min(this.selectedIndex+1, this.sources.length-1);
+        this.updateFullscreenImage();
     }
 
     selectThumbnail(index) {

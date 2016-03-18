@@ -19,8 +19,8 @@ export class LoginComponent {
 
     constructor(private formBuilder: FormBuilder, private router: Router) {
         this.userForm = this.formBuilder.group({
-            'email': ['oyvindkg@yahoo.com', Validators.required],
-            'password': ['Eksperter_1', Validators.required]
+            'email': ['', Validators.required],
+            'password': ['', Validators.required]
         });
     }
 

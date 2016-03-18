@@ -23,8 +23,17 @@ export class ChildComponent {
         {key: "account_number", name: "Account number"},
     ];
 
+    imageSources: Array<string>;
+
     constructor(parameters: RouteParams) {
-        console.log(parameters);
+
+        FileService.getImagesForChild(parameters.params.id)
+            .then(response => {
+                this.imageSources = response;
+            })
+            .catch(response => {
+                console.log(response);
+            });
 
         DataService.getChildById(parameters.params.id)
             .then(response => {

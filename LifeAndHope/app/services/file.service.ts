@@ -6,6 +6,52 @@ export class FileService extends DatabaseService {
     protected static apiName: string = 'files';
 
 
+    public static getImagesForChild(id: string): PromiseType<Array<string>> {
+        return new Promise( (resolve, reject) => {
+            this.getFilesFromContainer('uuid_images')
+                .then(files => {
+                    resolve( files.map(file => 'data:' + file.file_type + ';base64,' + file.file_data) );
+                })
+                .catch(reject)
+        })
+
+    }
+
+
+    /**
+     * Retrieve all files from a container.
+     * The file data is represented in binary and encoded as base64
+     *
+     * @param container Container name
+     * @returns {Promise}
+     */
+
+    //TODO: Maybe this should support filtering files retrieved?
+    private static getFilesFromContainer(container: string): PromiseType<Array<File>> {
+        return new Promise((resolve, reject) => {
+            this.getContainer(container)
+                .then(response => {
+                    const files = response.data.data.enfaas_files;
+
+                    /* Get data for all the files, update the file, and return them */
+                    const fileDataPromises = files.map(file => this.getFile(file.file_uuid, container));
+
+                    Promise.all(fileDataPromises)
+                        .then(responses => {
+                            for (let i = 0; i < files.length; i++) {
+                                files[i].file_data = responses[i].data;
+                            }
+                            resolve(files)
+                        })
+                        .catch(reject);
+                })
+                .catch(reject);
+        });
+    }
+
+
+
+
     public static addFile(file: File, container: string): PromiseType<any> {
         let formData = new FormData();
         formData.append('file', file);

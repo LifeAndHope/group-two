@@ -11,7 +11,7 @@
         <div class="col-sm-5 col-lg-4 text-center">
             <h2>
                 <span *ngIf="child">{{child.first_name}} {{child.last_name}}</span>
-                <span *ngIf="!child" class="text-muted"><span class="glyphicon glyphicon-refresh spinner"></span> Laster inn..</span>
+                <span *ngIf="!child" class="text-muted glyphicon glyphicon-refresh spinner"></span>
             </h2>
             <hr>
 
@@ -26,7 +26,8 @@
         <div class="col-xs-12">
             <h3>Images</h3>
             <hr>
-            <image-gallery></image-gallery>
+            <span *ngIf="!imageSources" class="glyphicon glyphicon-refresh spinner" style="font-size: large; text-align: center; width: 100%;"></span>
+            <image-gallery *ngIf="imageSources" [sources]="imageSources"></image-gallery>
         </div>
     </div>
 

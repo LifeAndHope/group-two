@@ -6,11 +6,16 @@ const template = `
         <tbody>
             <tr *ngFor="#property of properties">
                 <td class="text-left">{{property.name}}</td>
-                <td><input *ngIf="object"
+                <td>
+                    <input *ngIf="object"
                            class="form-control text-right"
                            type="text"
                            [(ngModel)]="object[property.key]"
-                           [disabled]="!editable"></td>
+                           [disabled]="!editable">
+                    <input *ngIf="!object"
+                           class="form-control text-right"
+                           type="text">
+                </td>
             </tr>
         </tbody>
     </table>
