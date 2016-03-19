@@ -31,7 +31,7 @@ export class ChildComponent {
     constructor(parameters: RouteParams) {
 
         /* Get all images for the child */
-        FileService.getImagesForChild(parameters.params.id)
+        FileService.getImagesForID(parameters.params.id)
             .then(response => {
                 this.images = response;
                 this.updateImageSources();
@@ -50,7 +50,7 @@ export class ChildComponent {
         /* Get profile image */
         FileService.getFile('a46b3c8c-faf5-4e94-ae7d-20d1d8bf1334', 'uuid_images')
             .then(response => {
-                $("#profile-image")[0].src = FileService.fileAsURL(response);
+                $("#profile-image")[0].src = FileService.blobAsURL(response);
             })
             .catch(response => console.log("Error:",response))
     }
@@ -65,12 +65,13 @@ export class ChildComponent {
     imagesDropped(files) {
         /** Upload the image to SecureDB. Assign the uuid and show in the view when completed */
         for (let file of files) {
-            FileService.addFile(file, 'uuid_images')
-                .then(response => {
-                    file.uuid = response.data.data;
+            FileService.addImageForID(file, this.child.id)
+                .then(uuid => {
+                    file.uuid = uuid;
                     this.images.push(file);
                     this.updateImageSources();
-                });
+                })
+                .catch(response => console.log(response));
         }
     }
 
@@ -79,7 +80,7 @@ export class ChildComponent {
             this.imageSources = undefined;
         }
 
-        this.imageSources = this.images.map(FileService.fileAsURL);
+        this.imageSources = this.images.map(FileService.blobAsURL);
     }
 }
 

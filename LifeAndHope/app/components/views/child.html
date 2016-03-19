@@ -4,11 +4,11 @@
     <div class="row hidden-xs vertical-space-sm"></div>
 
     <div class="row">
-        <div class="col-sm-5 col-lg-4 col-sm-offset-1 col-lg-offset-2 text-center">
+        <div class="col-sm-6 text-center">
             <img id="profile-image" class="img-responsive" src="" alt="Loading image.." style="height: 300px; width:100%;object-fit: cover; display: inline-block">
         </div>
 
-        <div class="col-sm-5 col-lg-4 text-center">
+        <div class="col-sm-6 text-center">
             <h2>
                 <span *ngIf="child">{{child.first_name}} {{child.last_name}}</span>
                 <span *ngIf="!child" class="text-muted glyphicon glyphicon-refresh spinner"></span>

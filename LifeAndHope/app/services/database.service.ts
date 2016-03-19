@@ -1,6 +1,8 @@
 import {Axios, PromiseType} from './../datatypes/interfaces'
 
-declare var axios:Axios; // Tell typescript that there is a variable called 'axios' in its scope
+//import * as axios from 'axios';
+
+declare var axios:Axios;
 declare var Cookies;
 
 export class DatabaseService {
