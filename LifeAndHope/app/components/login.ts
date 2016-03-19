@@ -7,8 +7,7 @@ import {IconComponent} from "./icon";
 
 @Component({
     selector: 'login',
-    templateUrl: 'app/components/views/login.html',
-    directives: [IconComponent]
+    templateUrl: 'app/components/views/login.html'
 })
 
 export class LoginComponent {

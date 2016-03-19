@@ -26,8 +26,8 @@
         <div class="col-xs-12">
             <h3>Images</h3>
             <hr>
-            <span *ngIf="!imageSources" class="glyphicon glyphicon-refresh spinner" style="font-size: large; text-align: center; width: 100%;"></span>
-            <image-gallery *ngIf="imageSources" [sources]="imageSources"></image-gallery>
+            <span *ngIf="!images" class="glyphicon glyphicon-refresh spinner" style="font-size: large; text-align: center; width: 100%;"></span>
+            <image-gallery *ngIf="images" [sources]="imageSources" dropZone (dropped)="imagesDropped($event)"></image-gallery>
         </div>
     </div>
 

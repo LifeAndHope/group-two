@@ -1,13 +1,13 @@
 import {Component, View} from 'angular2/core';
 import { RouteConfig, RouterLink, Router, Route, Redirect } from 'angular2/router';
 
-import {AuthenticatedRouterOutlet} from './authenticated.router.outlet';
+import {AuthenticatedRouterOutlet} from './../directives/authenticated.router.outlet';
+
+import {AccountService} from "../services/account.service";
 
 import {LoginComponent} from './login';
 
 import {ChildrenComponent} from "./children";
-import {AccountService} from "../services/account.service";
-import {ObjectDataComponent} from "./object.data";
 import {InfoBoxComponent} from "./info.box";
 import {ChildComponent} from "./child";
 
@@ -36,7 +36,7 @@ export class App {
     signOut() {
         this.signingOut = true;
         AccountService.signOut()
-            .then(response => {
+            .then(() => {
                 this.router.navigate(['SignIn']);
                 this.signingOut = false;
             })

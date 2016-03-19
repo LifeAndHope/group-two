@@ -14,7 +14,7 @@ export interface PromiseType<T> {
      *
      * @param callback A function with the response as the first parameter
      */
-    catch(callback: (T) => void): PromiseType<T>;
+    catch(callback: (any) => void): PromiseType<T>;
 }
 
 
@@ -38,8 +38,8 @@ export interface UUIDGenerator {
 /** Interface representing the axios library */
 export interface Axios {
     post(url: string, data?: Object, configuration?: Object): PromiseType<any>;
-    get(url: string, configuration?: Object): PromiseType<any>;
     put(url: string, data?: Object, configuration?: Object): PromiseType<any>;
+    get(url: string, configuration?: Object): PromiseType<any>;
     delete(url: string, configuration?: Object): PromiseType<any>;
 }
 
@@ -74,4 +74,29 @@ export interface Account {
     accountBasic: AccountBasic;
     accountCredentials: AccountCredentials;
     accountRole: AccountRole;
+}
+
+export interface Container {
+    container_name: string;
+    enfaas_files: Array<SecureDBFileDescription>
+}
+
+export interface SecureDBFileDescription {
+    file_len: number;
+    file_ext: string;
+    file_name: string;
+    file_type: string;
+    file_desc: string;
+    file_uuid: string;
+    file_lastmodified: string;
+}
+
+/** A file is a blob with a name and last modified date */
+export interface SecureDBFile extends File {
+    uuid: string;
+}
+
+/** Data with an uuid from SecureDB */
+export interface SecureDBBlob extends Blob {
+    uuid: string;
 }

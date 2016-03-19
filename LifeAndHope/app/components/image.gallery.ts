@@ -4,7 +4,7 @@ import {Component, Input} from 'angular2/core';
 const template = `
 <div class="gallery">
     <div id="full-screen" class="text-center">
-        <span class="glyphicon glyphicon-remove close-button" (click)="closeFullscreen()"></span>
+        <span class="glyphicon glyphicon-remove gallery-nav close-button" (click)="closeFullscreen()"></span>
         <img src="" class="center-vertical">
 
         <span class="gallery-nav gallery-nav-right glyphicon glyphicon-chevron-right center-vertical"
@@ -24,13 +24,14 @@ const template = `
         font-size: xx-large;
         position: fixed;
         color: white;
-        margin: 2rem;
+        padding: 2rem;
         cursor: pointer;
-        transition: color 200ms linear;
+
+        transition-property: color, right, left, transform;
+        transition-duration: 200ms;
     }
 
-    .gallery #full-screen .gallery-nav:hover,
-    .gallery #full-screen .close-button:hover {
+    .gallery #full-screen .gallery-nav:hover {
         color: lightgray;
     }
 
@@ -38,20 +39,27 @@ const template = `
         left: 0;
     }
 
+    .gallery #full-screen .gallery-nav-left:hover {
+        left: -0.5rem;
+    }
+
     .gallery #full-screen .gallery-nav-right {
         right: 0;
     }
 
+    .gallery #full-screen .gallery-nav-right:hover {
+        right: -0.5rem;
+    }
+
     .gallery #full-screen .close-button {
-        position: fixed;
         top: 0;
         right: 0;
-        margin: 2rem;
-        color: white;
-        font-size: x-large;
-        cursor: pointer;
-        transition: color 200ms linear;
     }
+
+    .gallery #full-screen .close-button:hover {
+        transform: scale(1.2);
+    }
+
 
     .gallery {
         width: 100%;

@@ -13,7 +13,7 @@ export class AuthenticatedRouterOutlet extends RouterOutlet {
     private parentRouter: Router;
 
     private loginRouteName = "SignIn";
-    private defaultRouteName = "Home";
+    private defaultRouteName = "Children";
 
     constructor(elementRef: ElementRef,
                 loader: DynamicComponentLoader,
