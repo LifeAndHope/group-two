@@ -88,7 +88,7 @@ export class DataService extends DatabaseService {
             first_name: child.first_name,
             last_name: child.last_name,
             sex: child.sex,
-            date_of_birth: child.date_of_birth.toISOString().slice(0,10),
+            date_of_birth: child.date_of_birth,
             account_number: child.account_number,
             school_id: child.school_id,
             description: child.description,
@@ -110,7 +110,7 @@ export class DataService extends DatabaseService {
                     delete validatedUpdatedChild[item]
                 }
                 else if(item === "date_of_birth"){
-                    validatedUpdatedChild[item] = new Date().toISOString().slice(0,10)
+                    validatedUpdatedChild[item] = new Date()
                 }
                 else{
                     validatedUpdatedChild[item] = ""
