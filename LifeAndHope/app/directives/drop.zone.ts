@@ -26,8 +26,7 @@ export class DropZone {
 
         element.bind('drop', event => {
             this.dropped.next(event.originalEvent.dataTransfer.files);
-        })
-        
+        });
     }
 }
 

@@ -1,0 +1,28 @@
+
+
+<div class="container">
+    <div class="row hidden-xs vertical-space-sm"></div>
+
+    <div class="row">
+        <div class="col-sm-6 col-sm-offset-3 text-center">
+            <h2>
+                <span *ngIf="sponsor">{{sponsor.first_name}} {{sponsor.last_name}}</span>
+                <span *ngIf="!sponsor" class="text-muted glyphicon glyphicon-refresh spinner"></span>
+            </h2>
+            <hr>
+
+            <info-box [object]="sponsor"
+                      [properties]="properties"
+                      [editable]="true"
+                      (change)="updateChild($event)"></info-box>
+        </div>
+    </div>
+
+    <div class="row vertical-space-sm">
+        <div class="col-xs-12">
+            <h3>Transaction history</h3>
+            <hr>
+        </div>
+    </div>
+
+</div>

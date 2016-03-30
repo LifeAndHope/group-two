@@ -114,7 +114,7 @@ export class FileService extends DatabaseService {
      *
      * @returns {Promise} An empty promise
      */
-    private static addContainer(containerName: string): Promise<any> {
+    private static addContainer(containerName: string): Promise<void> {
         return new Promise( (resolve, reject) => {
             super.post('', {'container_name': containerName})
                 .then(response => resolve())
