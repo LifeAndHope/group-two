@@ -1,4 +1,4 @@
-import {Sponsor, Child, Note} from './../datatypes/models'
+import {Sponsor, Child, Note, Transaction} from './../datatypes/models'
 import {UUIDGenerator} from './../datatypes/interfaces'
 import {DatabaseService} from './database.service'
 import {Promise} from "../datatypes/models";
@@ -50,6 +50,19 @@ export class DataService extends DatabaseService {
         return this.getNote('child', childId);
     }
 
+    public static getTransaction(parameter : string) : Promise<any> {
+        let requestUrl = '/transaction?fields=*' + parameter;
+
+        return super.get(requestUrl);
+    }
+
+    public static getTransactionsToChild(childId : string) : Promise<any> {
+        return this.getTransaction('&filters=child%3D\'' + childId + '\'&&&')
+    }
+
+    public static getTransactionsFromSponsor(sponsorId : string) : Promise<any> {
+        return this.getTransaction('&filters=sponsor%3D\'' + sponsorId + '\'&&&')
+    }
 
     /**
      * Add a new child to the database. A UUID will be generated and assigned before the request is sent.
@@ -81,6 +94,16 @@ export class DataService extends DatabaseService {
      */
     public static addNote(note: Note): Promise<any> {
         return super.post('/note', [note]);
+    }
+
+    /**
+     * Add a new transaction to the database
+     *
+     * @param {Transaction} transaction Transaction to be added to the database
+     * @returns {Promise}
+     */
+    public static addTransaction(transaction: Transaction) : Promise<any>{
+        return super.post('/transaction', [transaction]);
     }
 
     public static updateChild(child: Child) : Promise<any> {
