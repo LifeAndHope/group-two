@@ -7,7 +7,7 @@ import {Property} from "./info.box";
 import {FileService} from "../services/file.service";
 import {ImageGalleryComponent} from "./image.gallery";
 import {DropZone} from "../directives/drop.zone";
-import {SecureDBFile} from "../services/file.service";
+import {SecureDBFile} from "../datatypes/interfaces";
 
 @Component({
     templateUrl: 'app/components/views/child.html',
@@ -35,6 +35,9 @@ export class ChildComponent {
             .then(response => {
                 this.images = response;
                 this.updateImageSources();
+                if (this.imageSources) {
+                    $("#profile-image").attr('src', this.imageSources[0]);
+                }
             })
             .catch(response => {
                 console.log(response);
@@ -45,14 +48,6 @@ export class ChildComponent {
             .then(response => {
                 this.child = response.data.data[0];
             });
-
-
-        /* Get profile image */
-        FileService.getFile('a46b3c8c-faf5-4e94-ae7d-20d1d8bf1334', 'uuid_images')
-            .then(response => {
-                $("#profile-image")[0].src = FileService.blobAsURL(response);
-            })
-            .catch(response => console.log("Error:",response))
     }
 
 
