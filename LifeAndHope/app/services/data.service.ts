@@ -1,6 +1,7 @@
 import {Sponsor, Child, Note} from './../datatypes/models'
-import {UUIDGenerator, PromiseType} from './../datatypes/interfaces'
+import {UUIDGenerator} from './../datatypes/interfaces'
 import {DatabaseService} from './database.service'
+import {Promise} from "../datatypes/models";
 
 declare var uuid:UUIDGenerator; // Tell typescript that there is a variable called 'uuid' in its scope
 
@@ -12,24 +13,23 @@ export class DataService extends DatabaseService {
     protected static apiName: string = 'data';
 
 
-    public static getChildren(): PromiseType<any> {
+    public static getChildren(): Promise<any> {
         return this.getInstancesFromTable('child');
     }
 
-    public static getChildById(id: string): PromiseType<any> {
+    public static getChildById(id: string): Promise<any> {
         return this.getInstancesFromTable('child', "id = '" + id + "'");
     }
-
+    
     public static getSponsors() : PromiseType<any> {
         return this.getInstancesFromTable('sponsor')
     }
 
-    public static getSponsorById(id: string): PromiseType<any> {
+    public static getSponsorById(id: string): Promise<any> {
         return this.getInstancesFromTable('sponsor', "id = '" + id + "'");
     }
 
-    //TODO: Make me pretty
-    private static getInstancesFromTable(tableName: string, filters?: string): PromiseType<any> {
+    private static getInstancesFromTable(tableName: string, filters?: string): Promise<any> {
         let filterComponent = "";
 
         if (filters) {
@@ -40,13 +40,13 @@ export class DataService extends DatabaseService {
     }
 
 
-    public static getNote(tableName : string, instanceId : string) : PromiseType<any> {
+    public static getNote(tableName : string, instanceId : string) : Promise<any> {
         let requestUrl = '/note?fields=*&filters=table_name%3D\''+ tableName +'\'%20AND%20instance_id%3D\''+ instanceId +'\'&&&'
 
         return super.get(requestUrl)
     }
 
-    public static getNotesFromChild(childId : string): PromiseType<any> {
+    public static getNotesFromChild(childId : string): Promise<any> {
         return this.getNote('child', childId);
     }
 
@@ -55,9 +55,9 @@ export class DataService extends DatabaseService {
      * Add a new child to the database. A UUID will be generated and assigned before the request is sent.
      *
      * @param {Child} child Child to be added to the database
-     * @returns {PromiseType}
+     * @returns {Promise}
      */
-    public static addChild(child: Child): PromiseType<any> {
+    public static addChild(child: Child): Promise<any> {
         child.id = uuid.v4();
         return super.post('/child', [child]);
     }
@@ -66,9 +66,9 @@ export class DataService extends DatabaseService {
      * Add a new sponsor to the database. A UUID will be generated and assigned before the request is sent.
      *
      * @param {Sponsor} sponsor Sponsor to be added to the database
-     * @returns {PromiseType}
+     * @returns {Promise}
      */
-    public static addSponsor(sponsor: Sponsor): PromiseType<any> {
+    public static addSponsor(sponsor: Sponsor): Promise<any> {
         sponsor.id = uuid.v4();
         return super.post('/sponsor', [sponsor]);
     }
@@ -77,18 +77,18 @@ export class DataService extends DatabaseService {
      * Add a new note to the database
      *
      * @param {Note} note Note to be added to the database
-     * @returns {PromiseType}
+     * @returns {Promise}
      */
-    public static addNote(note: Note): PromiseType<any> {
+    public static addNote(note: Note): Promise<any> {
         return super.post('/note', [note]);
     }
 
-    public static updateChild(child: Child) : PromiseType<any> {
+    public static updateChild(child: Child) : Promise<any> {
         let updatedChild = {
             first_name: child.first_name,
             last_name: child.last_name,
             sex: child.sex,
-            date_of_birth: child.date_of_birth.toISOString().slice(0,10),
+            date_of_birth: child.date_of_birth,
             account_number: child.account_number,
             school_id: child.school_id,
             description: child.description,
@@ -110,7 +110,7 @@ export class DataService extends DatabaseService {
                     delete validatedUpdatedChild[item]
                 }
                 else if(item === "date_of_birth"){
-                    validatedUpdatedChild[item] = new Date().toISOString().slice(0,10)
+                    validatedUpdatedChild[item] = new Date()
                 }
                 else{
                     validatedUpdatedChild[item] = ""
@@ -121,7 +121,7 @@ export class DataService extends DatabaseService {
         return validatedUpdatedChild
     }
 
-    public static updateSponsor(sponsor: Sponsor) : PromiseType<any>{
+    public static updateSponsor(sponsor: Sponsor) : Promise<any>{
         let updateSponsor = {
             last_name: sponsor.last_name,
             first_name: sponsor.first_name,
@@ -140,7 +140,7 @@ export class DataService extends DatabaseService {
     }
 
     private static validateUpdatedSponsor(updateSponsor){
-        let validatedUpdatedSponsor = updateSponsor
+        let validatedUpdatedSponsor = updateSponsor;
 
         //TODO: phone, email and address are nullable. 
 

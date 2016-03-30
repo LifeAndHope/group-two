@@ -1,16 +1,7 @@
-import {PromiseType} from './../datatypes/interfaces'
 import {DatabaseService} from './database.service'
 import {Container} from "../datatypes/interfaces";
-import {SecureDBFile} from "../datatypes/interfaces";
-import {SecureDBBlob} from "../datatypes/interfaces";
-
-declare class Promise<T> {
-    constructor(Function);
-    then(Function): Promise<T>;
-    catch(Function): Promise<T>;
-
-    public static all(promises: Array<Promise<any>>): Promise< Array<any> >;
-}
+import {SecureDBFile, SecureDBBlob} from "../datatypes/interfaces";
+//import {Promise} from "../datatypes/models"; //FIXME: This causes an error at runtime
 
 export class FileService extends DatabaseService {
     protected static apiName: string = 'files';
@@ -27,14 +18,26 @@ export class FileService extends DatabaseService {
         return this.addFileToContainer(file, containerName);
     }
 
+    /**
+     * Create a URL from a blob. The URL can be used as the source of an img-tag etc.
+     *
+     * @param blob A blob containing raw data
+     * @returns {string} The URL
+     */
     public static blobAsURL(blob: Blob): string {
         return URL.createObjectURL(blob);
     }
 
 
-
+    /**
+     * Add the file to the container. If the container does not exist, it will be created
+     * @param file The file to be added
+     * @param containerName The container the file will be added to
+     * @returns {Promise} A promise providing the SecureDB UUID of the added file
+     */
     private static addFileToContainer(file: File, containerName): Promise<string> {
         return new Promise( (resolve, reject) => {
+
             /* Create the container if it does not exist */
             this.getContainer(containerName)
                 .then(() => {
@@ -56,33 +59,33 @@ export class FileService extends DatabaseService {
 
     /**
      * Retrieve all files from a container.
-     * The file data is represented in binary and encoded as base64
+     * If the container does not exist, an empty array is returned
      *
      * @param containerName
      *
-     * @returns {Promise}
+     * @returns {Promise} A promise providing an array of files
      */
 
-    //TODO: Maybe this should support filtering files retrieved?
     private static getFilesFromContainer(containerName: string): Promise< Array<SecureDBFile> > {
-        return new Promise<any>((resolve, reject) => {
+        return new Promise<any>( (resolve, reject) => {
             this.getContainer(containerName)
 
                 .then(container => {
+                    /* The container exists, but does not contain any files */
                     if (!container.enfaas_files) {
                         return resolve([]);
                     }
 
-                    const fileDescriptions = container.enfaas_files;
-
                     /* Get data for all the files, update the file, and return them */
+                    const fileDescriptions = container.enfaas_files;
                     const filePromises = fileDescriptions.map(fileDescription => this.getFile(fileDescription.file_uuid, container.container_name));
 
+                    /* Wait for all the promises  to complete, then update the blobs with a name and last modified date */
                     Promise.all(filePromises)
                         .then(blobs => {
                             let files: Array<SecureDBFile> = [];
                             for (let i = 0; i < blobs.length; i++) {
-                                let file = blobs[i];
+                                let file: SecureDBFile = blobs[i];
                                 file.lastModifiedDate = new Date(fileDescriptions[i].file_lastmodified);
                                 file.name = fileDescriptions[i].file_name;
                                 files.push(file);
@@ -92,21 +95,43 @@ export class FileService extends DatabaseService {
                         .catch(reject);
                 })
 
-                .catch(reject);
+                .catch(response => {
+                    /* The container does not exist */
+                    if (response.status === 404) {
+                        return resolve([])
+                    }
+
+                    /* Something else went wrong */
+                    reject(response);
+                });
         });
     }
 
-
-    private static addContainer(container: string): Promise<void> {
+    /**
+     * Add a new container
+     *
+     * @param containerName
+     *
+     * @returns {Promise} An empty promise
+     */
+    private static addContainer(containerName: string): Promise<any> {
         return new Promise( (resolve, reject) => {
-            super.post('', {'container_name': container})
+            super.post('', {'container_name': containerName})
                 .then(response => resolve())
                 .catch(reject)
         });
     }
 
-    private static addFile(file: File, container: string): Promise<string> {
+    /**
+     * Add the file to the container
+     *
+     * @param file The file to be added
+     * @param containerName The target container name
+     * @returns {Promise} A promise providing the UUID received from SecureDB if successful
+     */
+    private static addFile(file: File, containerName: string): Promise<string> {
         return new Promise( (resolve, reject) => {
+
             const name = file.name.split(".")[0];
             if (name !== FileService.secureDBName(name)) {
                 return reject("File name cannot contain special characters (" + name + ")");
@@ -115,7 +140,7 @@ export class FileService extends DatabaseService {
             let formData = new FormData();
             formData.append('file', file);
 
-            return super.post('/' + container + '/file', formData)
+            return super.post('/' + containerName + '/file', formData)
                 .then(response => resolve(response.data.data))
                 .catch(reject)
         });
