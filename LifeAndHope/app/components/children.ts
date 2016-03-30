@@ -6,11 +6,13 @@ import {DataService} from "../services/data.service";
 import {Property} from "./filter.generator";
 import {FilterBy} from "../pipes/filter.by";
 import {InfoBoxComponent} from "./info.box";
+import {AddButtonComponent} from "./add.button.ts";
+import {Field} from "./add.button.ts";
 
 @Component({
     selector: 'Hovedside',
     templateUrl: 'app/components/views/children.html',
-    directives: [FilterGenerator, InfoBoxComponent, RouterLink],
+    directives: [FilterGenerator, InfoBoxComponent, RouterLink, AddButtonComponent],
     pipes: [FilterBy]
 })
 
@@ -28,6 +30,15 @@ export class ChildrenComponent {
         {key: "description",    name: "Description"},
     ];
 
+    fields: Array<Field> = [
+        {key: "first_name",     name: "First name",     type: "text"},
+        {key: "last_name",      name: "Last name",      type: "text"},
+        {key: "sex",            name: "Gender",         type: "select", options: ["Male", "Female"]},
+        {key: "date_of_birth",  name: "Birth date",     type: "date"},
+        {key: "account_number", name: "Account number", type: "number"},
+        {key: "description",    name: "Description",    type: "text"},
+    ];
+
     filter = {text: "", keys: []};
     initialized = false;
 
@@ -38,6 +49,14 @@ export class ChildrenComponent {
             .then(response => {
                 this.children = response.data.data;
             })
+    }
+
+    addChild(child: Child) {
+        DataService.addChild(child)
+            .then(response => {
+                this.children.push(child)
+            })
+            .catch(console.log);
     }
 
 }

@@ -12,7 +12,7 @@
 
     <div class="row vertical-space-sm">
         <div class="col-sm-4">
-            <button type="button" class="btn btn-success"><span class="glyphicon glyphicon-plus"></span> Add Child</button>
+            <input-view [fields]="fields" [title]="'Add child'" (save)="addChild($event)"></input-view>
         </div>
 
         <div class="col-sm-5 col-sm-offset-3">
