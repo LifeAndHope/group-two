@@ -25,7 +25,7 @@ export class ChildrenComponent {
         {key: "sex",            name: "Gender"},
         {key: "date_of_birth",  name: "Birth date"},
         {key: "account_number", name: "Account number"},
-        {key: "description",     name: "Description"},
+        {key: "description",    name: "Description"},
     ];
 
     filter = {text: "", keys: []};

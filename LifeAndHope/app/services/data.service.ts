@@ -20,7 +20,7 @@ export class DataService extends DatabaseService {
         return this.getInstancesFromTable('child', "id = '" + id + "'");
     }
 
-    public static getSponsor() : PromiseType<any> {
+    public static getSponsors() : PromiseType<any> {
         return this.getInstancesFromTable('sponsor')
     }
 
