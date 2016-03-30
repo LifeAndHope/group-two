@@ -13,7 +13,7 @@ import {InfoBoxComponent} from "./info.box";
     pipes: [FilterBy]
 })
 
-export class SponsorComponent {
+export class SponsorsComponent {
     sponsors: Array<Sponsor>;
 
     properties: Array<Property> = [

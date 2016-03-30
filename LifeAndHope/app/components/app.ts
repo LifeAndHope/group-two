@@ -11,6 +11,7 @@ import {ChildrenComponent} from "./children";
 import {InfoBoxComponent} from "./info.box";
 import {ChildComponent} from "./child";
 import {SponsorComponent} from "./sponsor";
+import {SponsorsComponent} from "./sponsors";
 
 
 
@@ -20,7 +21,7 @@ import {SponsorComponent} from "./sponsor";
     new Route({path: '/signin', component: LoginComponent, name: 'SignIn'}),
     new Route({path: '/children', component: ChildrenComponent, name: 'Children'}),
     new Route({path: '/children/:id', component: ChildComponent, name: 'Child'}),
-    //new Route({path: '/sponsors', component: SponsorsComponent, name: 'Sponsors'}),
+    new Route({path: '/sponsors', component: SponsorsComponent, name: 'Sponsors'}),
     new Route({path: '/sponsors/:id', component: SponsorComponent, name: 'Sponsor'})
 ])
 
