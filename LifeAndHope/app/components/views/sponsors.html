@@ -12,7 +12,7 @@
 
     <div class="row vertical-space-sm">
         <div class="col-sm-4">
-            <button type="button" class="btn btn-success"><span class="glyphicon glyphicon-plus"></span> Add Child</button>
+            <add-button [fields]="fields" [title]="'Sponsor'" (save)="addSponsor($event)"></add-button>
         </div>
 
         <div class="col-sm-5 col-sm-offset-3">
@@ -27,9 +27,9 @@
                 <tr>
                     <th>Fornavn</th>
                     <th>Etternavn</th>
-                    <th>Kjønn</th>
-                    <th>Fødselsår</th>
-                    <th>Kontonummer</th>
+                    <th>Telefon</th>
+                    <th>E-post</th>
+                    <th>Medlem siden</th>
                     <th class="text-right">Actions</th>
                 </tr>
                 </thead>
@@ -37,9 +37,9 @@
                 <tr *ngFor="#sponsor of sponsors | filterBy: filter.text : filter.keys">
                     <td>{{sponsor.first_name}}</td>
                     <td>{{sponsor.last_name}}</td>
-                    <td>{{sponsor.sex}}</td>
-                    <td>{{sponsor.date_of_birth}}</td>
-                    <td>{{sponsor.account_number}}</td>
+                    <td>{{sponsor.phone}}</td>
+                    <td>{{sponsor.email}}</td>
+                    <td>{{sponsor.join_date}}</td>
                     <td class="text-right">
                         <button type="button" class="btn btn-info" [routerLink]="['Sponsor', {id:sponsor.id}]">Edit</button>
                         <button type="button" class="btn btn-danger">Delete</button>

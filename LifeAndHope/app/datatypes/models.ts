@@ -10,7 +10,6 @@ export interface Sponsor {
     address: string;
 }
 
-
 export interface Child {
     id: string;
     first_name: string;
@@ -21,7 +20,6 @@ export interface Child {
     school_id: string;
     description: string;
 }
-
 
 export interface Note {
     table_name: string;
@@ -38,6 +36,8 @@ export interface Transaction {
     sponsor: string;
     receipt: string;
 }
+
+
 
 
 export declare function axios(configuration: Object):Promise<any>;

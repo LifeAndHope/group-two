@@ -6,8 +6,8 @@ import {DataService} from "../services/data.service";
 import {Property} from "./filter.generator";
 import {FilterBy} from "../pipes/filter.by";
 import {InfoBoxComponent} from "./info.box";
-import {AddButtonComponent} from "./add.button.ts";
-import {Field} from "./add.button.ts";
+import {AddButtonComponent} from "./add.button";
+import {Field} from "./add.button";
 
 @Component({
     selector: 'Hovedside',
@@ -31,7 +31,7 @@ export class ChildrenComponent {
     ];
 
     fields: Array<Field> = [
-        {key: "first_name",     name: "First name",     type: "text"},
+        {key: "first_name",     name: "First name",     type: "text",   options: ["Ole", "Dole", "Jens", "Rens"]},
         {key: "last_name",      name: "Last name",      type: "text"},
         {key: "sex",            name: "Gender",         type: "select", options: ["Male", "Female"]},
         {key: "date_of_birth",  name: "Birth date",     type: "date"},

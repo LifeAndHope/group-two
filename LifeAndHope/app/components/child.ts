@@ -8,10 +8,14 @@ import {FileService} from "../services/file.service";
 import {ImageGalleryComponent} from "./image.gallery";
 import {DropZone} from "../directives/drop.zone";
 import {SecureDBFile} from "../datatypes/interfaces";
+import {AddButtonComponent} from "./add.button";
+import {Field} from "./add.button";
+import {Note} from "../datatypes/models";
+import {Transaction} from "../datatypes/models";
 
 @Component({
     templateUrl: 'app/components/views/child.html',
-    directives: [InfoBoxComponent, ImageGalleryComponent, DropZone]
+    directives: [InfoBoxComponent, ImageGalleryComponent, DropZone, AddButtonComponent]
 })
 
 export class ChildComponent {
@@ -24,6 +28,20 @@ export class ChildComponent {
         {key: "date_of_birth",  name: "Birth date"},
         {key: "account_number", name: "Account number"},
     ];
+
+    noteFields: Array<Field> = [
+        {key: "text",     name: "Text",     type: "text", required: true},
+    ];
+
+    transactionFields: Array<Field> = [
+        {key: "amount",     name: "Amount",     type: "number", required: true},
+        {key: "child",      name: "Child ID",   type: "text",   required: true},
+        {key: "sponsor",    name: "Sponsor ID", type: "text",   required: true},
+        {key: "date",       name: "Date",       type: "date",   required: true, value: new Date()},
+        {key: "receipt",    name: "Receipt",    type: "file",   required: true},
+    ];
+
+    fields: Array<Field> = [];
 
     images: Array<SecureDBFile>;
     imageSources: Array<string>;
@@ -68,6 +86,19 @@ export class ChildComponent {
                 })
                 .catch(response => console.log(response));
         }
+    }
+
+    addNote(textObject: Object) {
+        let note = <Note> textObject;
+        note.table_name = "child";
+        note.instance_id = this.child.id;
+        note.date = new Date();
+
+        console.log(note);
+    }
+
+    addTransaction(transaction: Transaction) {
+        console.log(transaction);
     }
 
     private updateImageSources() {

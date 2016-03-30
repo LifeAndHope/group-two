@@ -1,0 +1,48 @@
+<button type="button" class="btn btn-success" (click)="showModal()"><span class="glyphicon glyphicon-plus"></span> {{title}}</button>
+
+<div id="modal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">{{title}}</h4>
+            </div>
+            <div class="modal-body">
+
+                <form [ngFormModel]="form" (ngSubmit)="saveData()">
+
+                    <div *ngFor="#field of fields" class="form-group">
+                        <label>{{field.name}}</label>
+
+                        <div [ngSwitch]="field.type">
+
+                            <!--Dropdown menu-->
+                            <template ngSwitchWhen="select">
+                                <select class="form-control" name="{{field.key}}" ngControl="{{field.key}}">
+                                    <option *ngFor="#option of field.options" value="{{option}}">{{option}}</option>
+                                </select>
+                            </template>
+
+                            <!--Regular input-->
+                            <template ngSwitchDefault>
+                                <input  class="form-control"
+                                        type="{{field.type}}"
+                                        id="{{field.key}}"
+                                        placeholder="{{field.name}}"
+                                        ngControl="{{field.key}}">
+                            </template>
+
+                        </div>
+
+                    </div>
+
+                    </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="saveData()" >Save</button>
+            </div>
+        </div>
+
+    </div>
+</div>
