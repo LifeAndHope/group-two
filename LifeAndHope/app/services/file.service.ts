@@ -8,6 +8,9 @@ export class FileService extends DatabaseService {
 
     private static imagesPostfix = "images";
 
+    private static hexlist = '0123456789abcdef';
+    private static b36list = 'abcdefghijklmnopqrstuvwxyz0123456789';
+
     public static getImagesForID(id: string): Promise< Array<SecureDBFile> > {
         const containerName = this.containerNameForID(id, this.imagesPostfix);
         return this.getFilesFromContainer(containerName);
@@ -194,7 +197,30 @@ export class FileService extends DatabaseService {
      */
 
     private static containerNameForID(id: string, postfix: string): string {
-        const name = this.secureDBName(id + postfix);
+        const name = this.uuidToBase36(id) + postfix;
         return name.substr( Math.max(0, name.length-32) );
+    }
+
+    private static uuidToBase36(uuid: string) : string{
+        let s = uuid.replace(/[^0-9a-f]/ig,'').toLowerCase();
+        if (s.length != 32) return '';
+
+        s += '0';
+
+        let a, p, q;
+        let r = '';
+        let i = 0;
+        while (i < 33) {
+            a =  (this.hexlist.indexOf(s.charAt(i++)) << 8) |
+                (this.hexlist.indexOf(s.charAt(i++)) << 4) |
+                (this.hexlist.indexOf(s.charAt(i++)));
+
+            p = a >> 7;
+            q = a & 35;
+
+            r += this.b36list.charAt(p) + this.b36list.charAt(q);
+        }
+
+        return r;
     }
 }
