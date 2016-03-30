@@ -30,15 +30,12 @@ export interface Note {
 
 export interface Transaction {
     id: string;
-    date: string;
+    date: Date;
     amount: string;
     child: string;
     sponsor: string;
     receipt: string;
 }
-
-
-
 
 export declare function axios(configuration: Object):Promise<any>;
 export declare class Axios {
