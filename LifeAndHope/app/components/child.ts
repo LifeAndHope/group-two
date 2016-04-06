@@ -12,10 +12,13 @@ import {AddButtonComponent} from "./add.button";
 import {Field} from "./add.button";
 import {Note} from "../datatypes/models";
 import {Transaction} from "../datatypes/models";
+import {RowSelectionComponent} from "./row.selection.component";
+import {Sponsor} from "../datatypes/models";
+import {Column} from "./table.component";
 
 @Component({
     templateUrl: 'app/components/views/child.html',
-    directives: [InfoBoxComponent, ImageGalleryComponent, DropZone, AddButtonComponent]
+    directives: [InfoBoxComponent, ImageGalleryComponent, DropZone, AddButtonComponent, RowSelectionComponent]
 })
 
 export class ChildComponent {
@@ -45,13 +48,23 @@ export class ChildComponent {
         {key: "receipt",        name: "Kvittering",         type: "file",   required: true},
     ];
 
+    sponsorFields: Array<Column> = [
+        {key: "first_name",     name: "Fornavn"},
+        {key: "last_name",      name: "Etternavn"},
+        {key: "email",          name: "E-post"},
+    ];
+
     fields: Array<Field> = [];
 
     images: Array<SecureDBFile>;
     imageSources: Array<string>;
     transactions: Array<Transaction>;
 
+    sponsors: Array<Sponsor> = [];
+
     constructor(parameters: RouteParams) {
+
+        DataService.getSponsors().then(response => this.sponsors = response.data.data).catch(res => console.log(res));
 
         /* Get all images for the child */
         FileService.getImagesForID(parameters.params.id)
@@ -79,6 +92,11 @@ export class ChildComponent {
             });
     }
 
+    selectParent(sponsor) {
+        this.child.sponsor = sponsor.id;
+        console.log(this.child);
+        this.updateChild()
+    }
 
     updateChild(event) {
         DataService.updateChild(this.child)
@@ -120,6 +138,8 @@ export class ChildComponent {
             .catch(r => console.log(r));
         console.log(transaction);
     }
+
+
 
     private updateImageSources() {
         if (this.images === undefined || this.images === null) {

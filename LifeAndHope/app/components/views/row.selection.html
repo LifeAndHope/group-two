@@ -1,0 +1,33 @@
+<button type="button" class="btn btn-default" (click)="showModal()"><span class="glyphicon glyphicon-edit"></span> {{title}}</button>
+
+<div id="modal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">{{title}}</h4>
+            </div>
+            <div class="modal-body">
+
+                    <div class="row">
+
+                        <div class="col-sm-12">
+                            <filter-generator (filter)="filter = $event" [properties]="columns"></filter-generator>
+                        </div>
+                    </div>
+
+                    <div class="row vertical-space-xs">
+                        <div class="col-sm-12">
+                            <dynamic-table [columns]="columns" [rows]="rows | filterBy: filter.text : filter.keys"  [selectable]="true" (selected)="selectedRow($event)" ></dynamic-table>
+                        </div>
+                    </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="saveData()" >Save</button>
+            </div>
+        </div>
+
+    </div>
+</div>

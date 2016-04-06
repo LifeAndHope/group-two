@@ -22,7 +22,7 @@ const template = `
                 <span class="spinner glyphicon glyphicon-refresh"></span> Loading data..
             </td>
         </tr>
-        <tr *ngFor="#row of rows">
+        <tr *ngFor="#row of rows" [class]="{'selectable': selectable}" (click)="selectRow(row)">
             <td *ngFor="#column of columns" [attr.class]="column.customClasses">{{row[column.key]}}</td>
 
             <td *ngIf="editable || removable" class="text-right">
@@ -37,14 +37,20 @@ const template = `
             </td>
         </tr>
     </tbody>
-</table>`;
+</table>
+
+<style>
+    .selectable {
+        cursor: pointer;
+    }
+</style>`;
 
 
 
 @Component({
     selector: 'dynamic-table',
     template: template,
-    events : ['edit', 'remove']
+    events : ['edit', 'remove', 'selected']
 })
 
 export class TableComponent {
@@ -53,10 +59,12 @@ export class TableComponent {
 
     @Input() editable: boolean = false;
     @Input() removable: boolean = false;
+    @Input() selectable: boolean = false;
 
     constructor() {
         this.edit = new EventEmitter();
         this.remove = new EventEmitter();
+        this.selected = new EventEmitter();
     }
 
     editRow(row): void {
@@ -65,5 +73,11 @@ export class TableComponent {
 
     removeRow(row): void {
         this.remove.next(row);
+    }
+
+    selectRow(row): void {
+        if (this.selectable) {
+            this.selected.next(row);
+        }
     }
 }

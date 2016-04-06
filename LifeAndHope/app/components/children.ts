@@ -26,23 +26,23 @@ export class ChildrenComponent {
         {key: "first_name",     name: "Fornavn"},
         {key: "last_name",      name: "Etternavn"},
         {key: "gender",         name: "Kjønn"},
-        {key: "account_number", name: "Kontonummer", customClasses: "hidden-xs"},
-        {key: "description",    name: "Generelt", customClasses: "hidden-sm hidden-xs"},
-        {key: "school_name",    name: "Skole", customClasses: "hidden-xs"},
-        {key: "school_address", name: "Adresse", customClasses: "hidden-sm hidden-xs"},
+        {key: "account_number", name: "Kontonummer",customClasses: "hidden-xs"},
+        {key: "description",    name: "Generelt",   customClasses: "hidden-sm hidden-xs"},
+        {key: "school_name",    name: "Skole",      customClasses: "hidden-xs"},
+        {key: "school_address", name: "Adresse",    customClasses: "hidden-sm hidden-xs"},
         {key: "grade",          name: "Trinn"},
     ];
 
     fields: Array<Field> = [
-        {key: "first_name",     name: "Fornavn",     type: "text"},
-        {key: "last_name",      name: "Etternavn",      type: "text"},
-        {key: "gender",         name: "Kjønn",         type: "select", options: ["Male", "Female"]},
-        {key: "date_of_birth",  name: "Fødselsdato",     type: "date"},
-        {key: "account_number", name: "Kontonummer", type: "number"},
-        {key: "description",    name: "Generelt",    type: "text"},
-        {key: "school_name",    name: "Skole",    type: "text"},
-        {key: "school_address", name: "Adresse", type: "text"},
-        {key: "grade",          name: "Trinn",          type: "number"},
+        {key: "first_name",     name: "Fornavn",    type: "text"},
+        {key: "last_name",      name: "Etternavn",  type: "text"},
+        {key: "gender",         name: "Kjønn",      type: "select", options: ["Male", "Female"]},
+        {key: "date_of_birth",  name: "Fødselsdato",type: "date"},
+        {key: "account_number", name: "Kontonummer",type: "number"},
+        {key: "description",    name: "Generelt",   type: "text"},
+        {key: "school_name",    name: "Skole",      type: "text"},
+        {key: "school_address", name: "Adresse",    type: "text"},
+        {key: "grade",          name: "Trinn",      type: "number"},
     ];
 
     filter = { text: "", keys: [] };

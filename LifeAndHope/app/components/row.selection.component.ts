@@ -1,53 +1,38 @@
 import {Component, Input, Output, EventEmitter, ElementRef} from 'angular2/core';
+import {TableComponent} from "./table.component";
+import {FilterGenerator} from "./filter.generator";
+import {FilterBy} from "../pipes/filter.by";
+import {Column} from "./table.component";
 
 
 @Component({
-    selector: "add-button",
-    templateUrl: 'app/components/views/add.button.html'
+    selector: "row-selection",
+    templateUrl: 'app/components/views/row.selection.html',
+    directives: [TableComponent, FilterGenerator],
+    pipes: [FilterBy]
 })
 
-export class AddButtonComponent {
+export class RowSelectionComponent {
 
-    @Input() columns: Array<Field>;
-    @Input() rows: Array<Any>;
+    @Input() columns: Array<Column>;
+    @Input() rows: Array<any>;
     @Input() title: string;
 
-    @Output() save = new EventEmitter();
+    @Output() selected = new EventEmitter();
 
-    ngOnInit() {
-        let controlGroupDefinition = {};
+    filter = {text: "", keys: []};
 
-        for (let field of this.fields) {
-            let controlDefinition = [field.value];
+    constructor(private element: ElementRef) {}
 
-            if (field.required) {
-                controlDefinition.push(Validators.required)
-            }
-
-            controlGroupDefinition[field.key] = controlDefinition;
-        }
-
-        this.form = this.formBuilder.group(controlGroupDefinition);
-    }
-
-    saveData() {
-        this.save.next(this.form.value);
+    selectedRow(row) {
+        console.log("selected");
+        $(this.element.nativeElement).children('.modal').modal('hide');
+        this.selected.next(row);
     }
 
     showModal() {
-        $(this.element.nativeElement).children('.modal').modal('show')
+        $(this.element.nativeElement).children('.modal').modal('show');
     }
 }
 
-AddButtonComponent.parameters = [FormBuilder, ElementRef];
-
-export interface Field {
-    key: string;
-    type: string;
-
-    value?: any;
-    name?: string;
-    description?: string;
-    options?: Array<any>;
-    required?:boolean;
-}
+RowSelectionComponent.parameters = [ElementRef];

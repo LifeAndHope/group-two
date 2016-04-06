@@ -22,7 +22,7 @@
 
     <div class="row vertical-space-xs">
         <div class="col-sm-12">
-            <dynamic-table [columns]="properties" [rows]="children  | filterBy: filter.text : filter.keys" (remove)="removeChild($event)" (edit)="editChild($event)" [editable]="true" [removable]="true"></dynamic-table>
+            <dynamic-table [columns]="properties" [rows]="children | filterBy: filter.text : filter.keys" (remove)="removeChild($event)" (edit)="editChild($event)" [editable]="true" [removable]="true"></dynamic-table>
         </div>
     </div>
 </div>
