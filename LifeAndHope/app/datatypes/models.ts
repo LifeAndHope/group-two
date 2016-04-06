@@ -32,10 +32,12 @@ export interface Note {
 
 export interface Transaction {
     id : string;
-    date : Date;
-    amount : string;
-    child : string;
-    sponsor : string;''
+    dateSent : Date;
+    dateReceived : Date;
+    amountSent : string;
+    amountReceived : string;
+    child : Child;
+    sponsor : Sponsor;
     //TODO: path to transaction file
 }
 
