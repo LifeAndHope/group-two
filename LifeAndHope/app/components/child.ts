@@ -8,7 +8,6 @@ import {FileService} from "../services/file.service";
 import {ImageGalleryComponent} from "./image.gallery";
 import {DropZone} from "../directives/drop.zone";
 import {SecureDBFile} from "../datatypes/interfaces";
-import {Transaction} from "../datatypes/models";
 
 @Component({
     templateUrl: 'app/components/views/child.html',
@@ -28,7 +27,6 @@ export class ChildComponent {
 
     images: Array<SecureDBFile>;
     imageSources: Array<string>;
-    transactions: Array<Transaction>;
 
     constructor(parameters: RouteParams) {
 
@@ -49,12 +47,6 @@ export class ChildComponent {
         DataService.getChildById(parameters.params.id)
             .then(response => {
                 this.child = response.data.data[0];
-            });
-
-        /* Get transactions to the child */
-        DataService.getTransactionsToChild(this.child.id)
-            .then(response => {
-                this.transactions = response.data;
             });
     }
 

@@ -66,36 +66,24 @@ tr {
     animation: spin 1s infinite linear;
 }
 
-/*********************
-*** Navigation Bar ***
-*********************/
 
 
-/*.navbar-default {*/
-    /*background-color: orange;*/
-/*}*/
+ul.autocomplete {
+    list-style: none;
+    padding: 0;
+    border-radius: 5px;
+    border: 1px solid #eee;
+    width: 100%;
+}
 
-/*.navbar-default .navbar-brand {*/
-    /*color: white;*/
-/*}*/
+ul.autocomplete li {
+    background: white;
+    cursor: pointer;
+    padding: 6px;
+    border-radius: 5px;
+}
 
-/*.navbar-nav>.btn-default,*/
-/*.navbar-nav>.btn-default:active,*/
-/*.navbar-nav>.btn-default:focus {*/
-    /*margin-right: 15px;*/
-    /*margin-top: 1px;*/
-    /*padding: 5px;*/
-    /*color: darkorange;*/
-    /*border: none;*/
-/*}*/
-
-/*@media (min-width: 768px) {*/
-    /*.navbar-nav > .btn-default,*/
-    /*.navbar-nav > .btn-default:active,*/
-    /*.navbar-nav > .btn-default:focus {*/
-        /*margin-top: 9px;*/
-        /*padding: 5px;*/
-        /*color: darkorange;*/
-        /*border: none;*/
-    /*}*/
-/*}*/
+ul.autocomplete li:hover {
+    background: #eee;
+    font-weight: 500;
+}

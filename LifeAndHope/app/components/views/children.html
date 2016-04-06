@@ -12,7 +12,7 @@
 
     <div class="row vertical-space-sm">
         <div class="col-sm-4">
-            <button type="button" class="btn btn-success"><span class="glyphicon glyphicon-plus"></span> Add Child</button>
+            <add-button [fields]="fields" [title]="'Child'" (save)="addChild($event)"></add-button>
         </div>
 
         <div class="col-sm-5 col-sm-offset-3">

@@ -38,7 +38,7 @@ export interface Transaction {
     amountReceived : string;
     child : Child;
     sponsor : Sponsor;
-    //TODO: path to transaction file
+    receipt: string;
 }
 
 export declare function axios(configuration: Object):Promise<any>;

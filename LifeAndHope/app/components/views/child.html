@@ -33,15 +33,15 @@
 
     <div class="row vertical-space-sm">
         <div class="col-xs-12">
-            <h3>Log</h3>
-            <hr>
+            <h3>Logg</h3> <hr>
+            <add-button class="col-xs-4" [fields]="noteFields" title="Logg" (save)="addNote($event)"></add-button>
         </div>
     </div>
 
     <div class="row vertical-space-sm">
         <div class="col-xs-12">
-            <h3>Transaction history</h3>
-            <hr>
+            <h3>Transaction history</h3> <hr>
+            <add-button class="col-xs-4" [fields]="transactionFields" title="Transaction" (save)="addTransaction($event)"></add-button>
         </div>
     </div>
 
