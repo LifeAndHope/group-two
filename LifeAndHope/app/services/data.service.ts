@@ -22,7 +22,7 @@ export class DataService extends DatabaseService {
         return this.getInstancesFromTable('child', "id = '" + id + "'");
     }
     
-    public static getSponsors() : PromiseType<any> {
+    public static getSponsors() : Promise<any> {
         return this.getInstancesFromTable('sponsor')
     }
 
@@ -192,5 +192,13 @@ export class DataService extends DatabaseService {
         //TODO: phone, email and address are nullable. 
 
         return validatedUpdatedSponsor
+    }
+
+    public static deleteChild(child): Promise<void> {
+        return super.delete("/child", {
+            "filter": {
+                "id": child.id
+            }
+        });
     }
 }

@@ -22,31 +22,7 @@
 
     <div class="row vertical-space-xs">
         <div class="col-sm-12">
-            <table class="table table-striped table-hover" *ngIf="initialized">
-                <thead>
-                <tr>
-                    <th>Fornavn</th>
-                    <th>Etternavn</th>
-                    <th>Telefon</th>
-                    <th>E-post</th>
-                    <th>Medlem siden</th>
-                    <th class="text-right">Actions</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr *ngFor="#sponsor of sponsors | filterBy: filter.text : filter.keys">
-                    <td>{{sponsor.first_name}}</td>
-                    <td>{{sponsor.last_name}}</td>
-                    <td>{{sponsor.phone}}</td>
-                    <td>{{sponsor.email}}</td>
-                    <td>{{sponsor.join_date}}</td>
-                    <td class="text-right">
-                        <button type="button" class="btn btn-info" [routerLink]="['Sponsor', {id:sponsor.id}]">Edit</button>
-                        <button type="button" class="btn btn-danger">Delete</button>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
+            <dynamic-table [columns]="properties" [rows]="sponsors  | filterBy: filter.text : filter.keys" [editable]="true" [removable]="true"></dynamic-table>
         </div>
     </div>
 </div>

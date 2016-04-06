@@ -7,11 +7,12 @@ import {FilterBy} from "../pipes/filter.by";
 import {InfoBoxComponent} from "./info.box";
 import {Field} from "./add.button";
 import {AddButtonComponent} from "./add.button";
+import {TableComponent} from "./table.component";
 
 @Component({
     selector: 'sponsors',
     templateUrl: 'app/components/views/sponsors.html',
-    directives: [FilterGenerator, InfoBoxComponent, RouterLink, AddButtonComponent],
+    directives: [FilterGenerator, InfoBoxComponent, RouterLink, AddButtonComponent, TableComponent],
     pipes: [FilterBy]
 })
 
@@ -19,21 +20,21 @@ export class SponsorsComponent {
     sponsors: Array<Sponsor>;
 
     properties: Array<Property> = [
-        {key: "first_name",     name: "First name"},
-        {key: "last_name",      name: "Last name"},
-        {key: "phone",          name: "Phone nr"},
-        {key: "email",          name: "Email"},
-        {key: "join_date",      name: "Join date"},
-        {key: "address",        name: "Address"}
+        {key: "first_name",     name: "Fornavn"},
+        {key: "last_name",      name: "Etternavn"},
+        {key: "phone",          name: "Telefon"},
+        {key: "email",          name: "E-post"},
+        {key: "join_date",      name: "Medlem siden", customClasses: "hidden-sm hidden-xs"},
+        {key: "address",        name: "Adresse",      customClasses: "hidden-xs"}
     ];
 
     fields: Array<Field> = [
-        {key: "first_name",     name: "First name",     type: "text",},
-        {key: "last_name",      name: "Last name",      type: "text"},
-        {key: "phone",          name: "Telephone",      type: "tel"},
-        {key: "email",          name: "E-mail",         type: "email"},
-        {key: "address",        name: "Address",        type: "text"},
-        {key: "join_date",      name: "Join date",      type: "date", value: new Date()},
+        {key: "first_name",     name: "Fornavn",     type: "text",},
+        {key: "last_name",      name: "Etternavn",      type: "text"},
+        {key: "phone",          name: "Telefon",      type: "tel"},
+        {key: "email",          name: "E-post",         type: "email"},
+        {key: "address",        name: "Adresse",        type: "text"},
+        {key: "join_date",      name: "Medlem siden",      type: "date", value: new Date()},
     ];
 
 
