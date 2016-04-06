@@ -22,33 +22,7 @@
 
     <div class="row vertical-space-xs">
         <div class="col-sm-12">
-            <table class="table table-striped table-hover" *ngIf="initialized">
-                <thead>
-                    <tr>
-                        <th>Fornavn</th>
-                        <th>Etternavn</th>
-                        <th>Kjønn</th>
-                        <th>Skole</th>
-                        <th>Klasse</th>
-                        <th>Kontonummer</th>
-                        <th class="text-right">Handlinger</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr *ngFor="#child of children | filterBy: filter.text : filter.keys">
-                        <td>{{child.first_name}}</td>
-                        <td>{{child.last_name}}</td>
-                        <td>{{child.gender}}</td>
-                        <td>{{child.school_name}}</td>
-                        <td>{{child.grade}}</td>
-                        <td>{{child.account_number}}</td>
-                        <td class="text-right">
-                            <button type="button" class="btn btn-info" [routerLink]="['Child', {id:child.id}]"><span class="glyphicon glyphicon-edit"></span></button>
-                            <button type="button" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></button>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+            <dynamic-table [columns]="properties" [rows]="children  | filterBy: filter.text : filter.keys" (remove)="removeChild($event)" (edit)="editChild($event)" [editable]="true" [removable]="true"></dynamic-table>
         </div>
     </div>
 </div>
