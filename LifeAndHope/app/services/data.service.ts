@@ -57,15 +57,17 @@ export class DataService extends DatabaseService {
         return super.get(requestUrl);
     }
 
-    public static getTransactionsToChild(childId : string) : Promise<Transaction> {
+    public static getTransactionsToChild(childId : string) : Promise<Array<Transaction>> {
         return new Promise((resolve, reject) => {
             return this.getTransaction('&filters=child%3D\'' + childId + '\'&&&')
                 .then(
                     response =>{
-                        let transaction: Transaction = response.data.data;
-                        transaction.child = new Child(id = childId);
-                        transaction.sponsor = new Sponsor(id = response.data.data.sponsor);
-                        resolve(transaction);
+                        let transactions: Array<Transaction> = [];
+                        for (let i = 0; i < response.data.length; i++){
+                            let transaction: Transaction = response.data.data;
+                            transactions.push(transaction);
+                        }
+                        resolve(transactions);
                     }
                 )
                 .catch(reject)
@@ -76,11 +78,13 @@ export class DataService extends DatabaseService {
         return new Promise((resolve, reject) => {
             return this.getTransaction('&filters=sponsor%3D\'' + sponsorId + '\'&&&')
                 .then(
-                    response => {
-                        let transaction:Transaction = response.data.data;
-                        transaction.child = new Child(id = response.data.data.child);
-                        transaction.sponsor = new Sponsor(id = sponsorId);
-                        resolve(transaction);
+                    response =>{
+                        let transactions: Array<Transaction> = [];
+                        for (let i = 0; i < response.data.length; i++){
+                            let transaction: Transaction = response.data.data;
+                            transactions.push(transaction);
+                        }
+                        resolve(transactions);
                     }
                 )
                 .catch(reject)
