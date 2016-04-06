@@ -35,7 +35,20 @@ export class AddButtonComponent {
     }
 
     saveData() {
-        this.save.next(this.form.value);
+        let data = this.form.value;
+
+        for (let field of this.fields) {
+            if (field.type === "file") {
+                data[field.key] = $(this.element.nativeElement).find('#'+field.key)[0].files;
+            }
+            if (field.required === true && !data[field.key]) {
+                return
+            }
+        }
+
+        console.log(data);
+        this.save.next(data);
+        $(this.element.nativeElement).children('.modal').modal('hide');
     }
 
     showModal() {

@@ -8,6 +8,7 @@
             <!--<img id="profile-image" class="img-responsive" src="" alt="Child" style="height: 300px; width:100%;object-fit: cover; display: inline-block">-->
         <!--</div>-->
     <!--</div>-->
+
     <div class="row">
         <div class="col-sm-6 col-sm-offset-3 text-center">
             <h2>
@@ -31,7 +32,7 @@
                     <div class="col-sm-6 text-right">
                         <span *ngIf="sponsor">{{sponsor.first_name}} {{sponsor.last_name}}</span>
                         <span *ngIf="!sponsor">Ingen fadder!</span>
-                        <row-selection [rows]="sponsors" [columns]="sponsorFields" (selected)="selectParent($event)"></row-selection>
+                        <row-selection [rows]="sponsors" [columns]="sponsorFields"  (selected)="selectParent($event)"></row-selection>
                     </div>
                 </div>
             </div>
@@ -43,6 +44,7 @@
             <h3>Images</h3>
             <hr>
             <span *ngIf="!images" class="glyphicon glyphicon-refresh spinner" style="font-size: large; text-align: center; width: 100%;"></span>
+            <add-button class="col-xs-4" [fields]="noteFields" title="Logg" (save)="addNote($event)"></add-button>
             <image-gallery *ngIf="images" [sources]="imageSources" dropZone (dropped)="imagesDropped($event)"></image-gallery>
         </div>
     </div>
