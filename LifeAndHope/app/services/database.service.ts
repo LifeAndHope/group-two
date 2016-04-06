@@ -23,8 +23,19 @@ export class DatabaseService {
      * @param {Object} data Data to be sent
      * @returns {PromiseType}
      */
-    protected static post(subpath: string, data: Object, configuration: Object = this.configuration()): Promise<any> {
-        return axios.post(this.baseUrl() + subpath, data, configuration);
+    protected static post(subpath: string, data: Array<any>, configuration: Object = this.configuration()): Promise<any> {
+        let newData = [];
+        for(let i = 0; i < data.length; i++){
+            let newObject = {};
+            for(let property in data[i]){
+                if(data[0][property]){
+                    newObject[property] = data[i][property];
+                }
+            }
+            newData.push(newObject);
+        }
+
+        return axios.post(this.baseUrl() + subpath, newData, configuration);
     }
 
     /**

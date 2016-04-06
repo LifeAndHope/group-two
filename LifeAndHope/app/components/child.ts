@@ -152,9 +152,10 @@ export class ChildComponent {
     }
 
     addTransaction(transaction: Transaction) {
-        transaction.child = this.child;
-        transaction.sponsor = this.sponsor;
-        
+
+        transaction.child = this.child.id;
+        transaction.sponsor = this.sponsor.id;
+
         DataService.addTransaction(transaction)
             .then(() => {
                 alert("Logg opprettet!")
