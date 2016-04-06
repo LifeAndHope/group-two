@@ -8,14 +8,10 @@ import {FileService} from "../services/file.service";
 import {ImageGalleryComponent} from "./image.gallery";
 import {DropZone} from "../directives/drop.zone";
 import {SecureDBFile} from "../datatypes/interfaces";
-import {AddButtonComponent} from "./add.button";
-import {Field} from "./add.button";
-import {Note} from "../datatypes/models";
-import {Transaction} from "../datatypes/models";
 
 @Component({
     templateUrl: 'app/components/views/child.html',
-    directives: [InfoBoxComponent, ImageGalleryComponent, DropZone, AddButtonComponent]
+    directives: [InfoBoxComponent, ImageGalleryComponent, DropZone]
 })
 
 export class ChildComponent {
@@ -29,6 +25,7 @@ export class ChildComponent {
         {key: "account_number", name: "Account number"},
     ];
 
+<<<<<<< HEAD
     noteFields: Array<Field> = [
         {key: "text",     name: "Text",     type: "text", required: true},
     ];
@@ -43,6 +40,8 @@ export class ChildComponent {
 
     fields: Array<Field> = [];
 
+=======
+>>>>>>> 13b059e75d22f5f91e418e35f61550bec915735d
     images: Array<SecureDBFile>;
     imageSources: Array<string>;
 

@@ -13,6 +13,7 @@ export interface Sponsor {
     child?: UUID;
 }
 
+
 export interface Child {
     id: UUID;
     first_name: string;
@@ -26,6 +27,7 @@ export interface Child {
     grade: string;
     sponsor: UUID;
 }
+
 
 export interface Note {
     table_name: string;
@@ -44,6 +46,9 @@ export interface Transaction {
     child: UUID;
     sponsor: UUID;
     receipt: UUID;
+
+    //child : Child;
+    //sponsor : Sponsor;
 }
 
 export declare function axios(configuration: Object):Promise<any>;

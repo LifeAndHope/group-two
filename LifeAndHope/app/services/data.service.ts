@@ -57,12 +57,34 @@ export class DataService extends DatabaseService {
         return super.get(requestUrl);
     }
 
-    public static getTransactionsToChild(childId : string) : Promise<any> {
-        return this.getTransaction('&filters=child%3D\'' + childId + '\'&&&')
+    public static getTransactionsToChild(childId : string) : Promise<Transaction> {
+        return new Promise((resolve, reject) => {
+            return this.getTransaction('&filters=child%3D\'' + childId + '\'&&&')
+                .then(
+                    response =>{
+                        let transaction: Transaction = response.data.data;
+                        transaction.child = new Child(id = childId);
+                        transaction.sponsor = new Sponsor(id = response.data.data.sponsor);
+                        resolve(transaction);
+                    }
+                )
+                .catch(reject)
+        }) ;
     }
 
     public static getTransactionsFromSponsor(sponsorId : string) : Promise<any> {
-        return this.getTransaction('&filters=sponsor%3D\'' + sponsorId + '\'&&&')
+        return new Promise((resolve, reject) => {
+            return this.getTransaction('&filters=sponsor%3D\'' + sponsorId + '\'&&&')
+                .then(
+                    response => {
+                        let transaction:Transaction = response.data.data;
+                        transaction.child = new Child(id = response.data.data.child);
+                        transaction.sponsor = new Sponsor(id = sponsorId);
+                        resolve(transaction);
+                    }
+                )
+                .catch(reject)
+        });
     }
 
     /**
@@ -103,7 +125,8 @@ export class DataService extends DatabaseService {
      * @param {Transaction} transaction Transaction to be added to the database
      * @returns {Promise}
      */
-    public static addTransaction(transaction: Transaction) : Promise<any>{
+    public static addTransaction(transaction: Transaction) : Promise<any> {
+        transaction.id = uuid.v4();
         return super.post('/transaction', [transaction]);
     }
 
