@@ -4,8 +4,8 @@
     <div class="row vertical-space-sm">
         <div class="col-sm-offset-4 col-sm-4 text-center">
             <div class="btn-group">
-                <a [routerLink]="['Children']"><button type="button" class="btn btn-default active">Barn</button></a>
-                <a [routerLink]="['Sponsors']"><button type="button" class="btn btn-default">Fadder</button></a>
+                <button type="button" class="btn btn-default active" [routerLink]="['Children']">Barn</button>
+                <button type="button" class="btn btn-default" [routerLink]="['Sponsors']">Fadder</button>
             </div>
         </div>
     </div>
@@ -28,21 +28,23 @@
                         <th>Fornavn</th>
                         <th>Etternavn</th>
                         <th>Kjønn</th>
-                        <th>Fødselsår</th>
+                        <th>Skole</th>
+                        <th>Klasse</th>
                         <th>Kontonummer</th>
-                        <th class="text-right">Actions</th>
+                        <th class="text-right">Handlinger</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr *ngFor="#child of children | filterBy: filter.text : filter.keys">
                         <td>{{child.first_name}}</td>
                         <td>{{child.last_name}}</td>
-                        <td>{{child.sex}}</td>
-                        <td>{{child.date_of_birth}}</td>
+                        <td>{{child.gender}}</td>
+                        <td>{{child.school_name}}</td>
+                        <td>{{child.grade}}</td>
                         <td>{{child.account_number}}</td>
                         <td class="text-right">
-                            <button type="button" class="btn btn-info" [routerLink]="['Child', {id:child.id}]">Edit</button>
-                            <button type="button" class="btn btn-danger">Delete</button>
+                            <button type="button" class="btn btn-info" [routerLink]="['Child', {id:child.id}]"><span class="glyphicon glyphicon-edit"></span></button>
+                            <button type="button" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></button>
                         </td>
                     </tr>
                 </tbody>

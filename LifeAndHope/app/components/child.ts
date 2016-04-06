@@ -34,11 +34,11 @@ export class ChildComponent {
     ];
 
     transactionFields: Array<Field> = [
-        {key: "amount",     name: "Amount",     type: "number", required: true},
-        {key: "child",      name: "Child ID",   type: "text",   required: true},
-        {key: "sponsor",    name: "Sponsor ID", type: "text",   required: true},
-        {key: "date",       name: "Date",       type: "date",   required: true, value: new Date()},
-        {key: "receipt",    name: "Receipt",    type: "file",   required: true},
+        {key: "amount_sent",    name: "Beløp sendt (NOK)",  type: "number", required: true},
+        {key: "date_sent",      name: "Dato sendt",         type: "date",   required: true, value: new Date()},
+        {key: "amount_received",name: "Beløp mottatt (Birr)", type: "number", required: true},
+        {key: "date_received",  name: "Dato mottatt",       type: "date",   required: true},
+        {key: "receipt",        name: "Kvittering",         type: "file",   required: true},
     ];
 
     fields: Array<Field> = [];
@@ -94,10 +94,19 @@ export class ChildComponent {
         note.instance_id = this.child.id;
         note.date = new Date();
 
-        console.log(note);
+        DataService.addNote(note)
+            .then(() => {
+                alert("Logg opprettet!")
+            })
+            .catch(r => console.log(r));
     }
 
     addTransaction(transaction: Transaction) {
+        DataService.addTransaction(transaction)
+            .then(() => {
+                alert("Logg opprettet!")
+            })
+            .catch(r => console.log(r));
         console.log(transaction);
     }
 

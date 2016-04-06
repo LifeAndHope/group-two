@@ -1,6 +1,6 @@
 import {Component} from "angular2/core";
-import {Sponsor} from "../datatypes/models";
 import {CanActivate, RouterLink} from 'angular2/router';
+import {Sponsor} from "../datatypes/models";
 import {DataService} from "../services/data.service";
 import {Property, FilterGenerator} from "./filter.generator";
 import {FilterBy} from "../pipes/filter.by";

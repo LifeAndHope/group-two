@@ -22,24 +22,37 @@ export class ChildrenComponent {
     children: Array<Child>;
 
     properties: Array<Property> = [
-        {key: "first_name",     name: "First name"},
-        {key: "last_name",      name: "Last name"},
-        {key: "sex",            name: "Gender"},
-        {key: "date_of_birth",  name: "Birth date"},
-        {key: "account_number", name: "Account number"},
-        {key: "description",    name: "Description"},
-    ];
-
-    fields: Array<Field> = [
-        {key: "first_name",     name: "First name",     type: "text",   options: ["Ole", "Dole", "Jens", "Rens"]},
+        //{key: "first_name",     name: "First name"},
+        //{key: "last_name",      name: "Last name"},
+        //{key: "gender",         name: "Gender"},
+        //{key: "date_of_birth",  name: "Birth date"},
+        //{key: "account_number", name: "Account number"},
+        //{key: "description",    name: "Description"},
+        {key: "first_name",     name: "First name",     type: "text"},
         {key: "last_name",      name: "Last name",      type: "text"},
-        {key: "sex",            name: "Gender",         type: "select", options: ["Male", "Female"]},
+        {key: "gender",         name: "Gender",         type: "select", options: ["Male", "Female"]},
         {key: "date_of_birth",  name: "Birth date",     type: "date"},
         {key: "account_number", name: "Account number", type: "number"},
         {key: "description",    name: "Description",    type: "text"},
+        {key: "school_name",    name: "School name",    type: "text"},
+        {key: "school_address", name: "School address", type: "text"},
+        {key: "grade",          name: "Grade",          type: "number"},
     ];
 
-    filter = {text: "", keys: []};
+    fields: Array<Field> = [
+        {key: "first_name",     name: "First name",     type: "text"},
+        {key: "last_name",      name: "Last name",      type: "text"},
+        {key: "gender",         name: "Gender",         type: "select", options: ["Male", "Female"]},
+        {key: "date_of_birth",  name: "Birth date",     type: "date"},
+        {key: "account_number", name: "Account number", type: "number"},
+        {key: "description",    name: "Description",    type: "text"},
+        {key: "school_name",    name: "School name",    type: "text"},
+        {key: "school_address", name: "School address", type: "text"},
+        {key: "grade",          name: "Grade",          type: "number"},
+    ];
+
+    filter = { text: "", keys: [] };
+
     initialized = false;
 
     ngOnInit() {
@@ -60,16 +73,3 @@ export class ChildrenComponent {
     }
 
 }
-
-
-/**BarnVisning.onclick = function() {
-    alert(ChildrenComponent.barn())
-}
-
-FadderVisning.onclick = function() {
-    alert(ChildrenComponent.Fadder())
-}
-
-addChild.onclick = function() {
-    alert(ChildrenComponent.addChild())
-}**/

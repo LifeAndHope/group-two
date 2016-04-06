@@ -1,40 +1,49 @@
 import {UUIDGenerator} from "./interfaces";
 
+type UUID = string;
+
 export interface Sponsor {
-    id: string;
+    id: UUID;
     first_name: string;
     last_name: string;
     phone: string;
     email: string;
     join_date: Date;
     address: string;
+    child?: UUID;
 }
 
 export interface Child {
-    id: string;
+    id: UUID;
     first_name: string;
     last_name: string;
-    sex: string;
+    gender: string;
     date_of_birth: Date;
     account_number: string;
-    school_id: string;
     description: string;
+    school_name: string;
+    school_address: string;
+    grade: string;
+    sponsor: UUID;
 }
 
 export interface Note {
     table_name: string;
-    instance_id: string;
+    instance_id: UUID;
     text: string;
     date: Date;
 }
 
 export interface Transaction {
-    id: string;
-    date: Date;
-    amount: string;
-    child: string;
-    sponsor: string;
-    receipt: string;
+    id: UUID;
+    date_sent: Date;
+    date_received?: Date;
+    amount_sent: number;
+    amount_received?: number;
+
+    child: UUID;
+    sponsor: UUID;
+    receipt: UUID;
 }
 
 export declare function axios(configuration: Object):Promise<any>;
