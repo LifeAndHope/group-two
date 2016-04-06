@@ -18,6 +18,21 @@
         </div>
     </div>
 
+    <div class="row">
+        <div class="col-sm-6 col-sm-offset-3 text-center">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-sm-6 text-left">Fadder</div>
+                    <div class="col-sm-6 text-right">
+                        <span *ngIf="child">{{child.first_name}} {{child.last_name}}</span>
+                        <span *ngIf="!child">Ingen fadderbarn!</span>
+                        <row-selection class="text-left" [rows]="children" [columns]="childColumns" (selected)="selectChild($event)" [selectable]="true"></row-selection>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="row vertical-space-sm">
         <div class="col-xs-12">
             <h3>Transaction history</h3>

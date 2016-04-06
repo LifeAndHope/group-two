@@ -5,16 +5,21 @@ import {DropZone} from "../directives/drop.zone";
 import {Sponsor, Transaction} from "../datatypes/models";
 import {Property} from "./info.box";
 import {DataService} from "../services/data.service";
+import {RowSelectionComponent} from "./row.selection.component";
+import {Child} from "../datatypes/models";
+import {Column} from "./table.component";
 
 
 @Component({
-    directives: [InfoBoxComponent, DropZone],
+    directives: [InfoBoxComponent, DropZone, RowSelectionComponent],
     templateUrl: 'app/components/views/sponsor.html'
 })
 
 export class SponsorComponent {
 
     sponsor: Sponsor;
+    children: Array<Child> = [];
+    child: Child;
 
     properties: Array<Property> = [
         {key: "first_name",     name: "First name"},
@@ -25,6 +30,12 @@ export class SponsorComponent {
         {key: "address",        name: "Address"}
     ];
 
+    childColumns: Array<Column> = [
+        {key: "first_name",     name: "Fornavn"},
+        {key: "last_name",      name: "Etternavn"},
+        //{key: "email",          name: "E-post"},
+    ];
+
     transactions: Array<Transaction>;
 
     constructor(parameters: RouteParams) {
@@ -33,8 +44,20 @@ export class SponsorComponent {
             .then(sponsor => {
                 this.sponsor = sponsor.data.data[0];
                 console.log(this.sponsor);
+
+                if (this.sponsor.child) {
+                    DataService.getChildById(this.sponsor.child)
+                        .then(result => this.child = result.data.data[0])
+
+                }
             })
             .catch(error => console.log(error));
+
+        DataService.getChildren()
+            .then(response => {
+                console.log(response.data.data);
+                this.children = response.data.data
+            });
 
         /* Get transactions from the sponsor */
         DataService.getTransactionsFromSponsor(parameters.params.id)
@@ -42,6 +65,16 @@ export class SponsorComponent {
                 this.transactions = response;
             });
     }
+
+    selectChild(child) {
+        this.sponsor.child = child.id;
+        DataService.updateSponsor(this.sponsor)
+            .then(res => {
+                this.child = child;
+            })
+            .catch(res => console.log(res))
+    }
+
 
 }
 

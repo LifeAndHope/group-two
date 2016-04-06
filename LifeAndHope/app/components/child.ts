@@ -75,16 +75,16 @@ export class ChildComponent {
 
     constructor(parameters: RouteParams) {
 
-        DataService.getSponsors().then(response => this.sponsors = response.data.data).catch(res => console.log(res));
+        // FIXME: Should not always load all sponsors
+        DataService.getSponsors()
+            .then(response => this.sponsors = response.data.data)
+            .catch(res => console.log(res));
 
         /* Get all images for the child */
         FileService.getImagesForID(parameters.params.id)
             .then(response => {
                 this.images = response;
                 this.updateImageSources();
-                if (this.imageSources) {
-                    $("#profile-image").attr('src', this.imageSources[0]);
-                }
             })
             .catch(response => {
                 console.log(response);

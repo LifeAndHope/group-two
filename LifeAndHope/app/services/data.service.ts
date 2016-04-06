@@ -186,7 +186,7 @@ export class DataService extends DatabaseService {
             filter:{
                 id: sponsor.id
             }
-        }
+        };
 
         updateSponsor = this.validateUpdatedSponsor(updateSponsor)
 
