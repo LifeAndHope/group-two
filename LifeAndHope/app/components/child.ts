@@ -23,6 +23,7 @@ import {Column} from "./table.component";
 
 export class ChildComponent {
     child: Child;
+    sponsor: Sponsor;
 
     properties: Array<Property> = [
         {key: "first_name",     name: "Fornavn"},
@@ -83,6 +84,15 @@ export class ChildComponent {
         DataService.getChildById(parameters.params.id)
             .then(response => {
                 this.child = response.data.data[0];
+                console.log(this.child);
+                if (this.child.sponsor) {
+                    DataService.getSponsorById(this.child.sponsor)
+                        .then(response => {
+                            console.log(response.data.data[0]);
+                            this.sponsor = response.data.data[0];
+                        })
+                        .catch(res => console.log(res))
+                }
             });
 
         /* Get transactions to the child */
@@ -94,6 +104,7 @@ export class ChildComponent {
 
     selectParent(sponsor) {
         this.child.sponsor = sponsor.id;
+        this.sponsor = sponsor;
         console.log(this.child);
         this.updateChild()
     }

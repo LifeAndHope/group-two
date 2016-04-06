@@ -144,6 +144,7 @@ export class DataService extends DatabaseService {
             school_name: child.school_name,
             school_address: child.school_address,
             description: child.description,
+            sponsor: child.sponsor,
             filter: {id: child.id}
         };
 

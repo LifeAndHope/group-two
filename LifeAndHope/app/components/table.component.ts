@@ -22,7 +22,7 @@ const template = `
                 <span class="spinner glyphicon glyphicon-refresh"></span> Loading data..
             </td>
         </tr>
-        <tr *ngFor="#row of rows" [class]="{'selectable': selectable}" (click)="selectRow(row)">
+        <tr *ngFor="#row of rows" [attr.class]="{'selectable': selectable}" (click)="selectRow(row)">
             <td *ngFor="#column of columns" [attr.class]="column.customClasses">{{row[column.key]}}</td>
 
             <td *ngIf="editable || removable" class="text-right">
