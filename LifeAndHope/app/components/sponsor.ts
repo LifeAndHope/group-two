@@ -2,7 +2,7 @@ import {Component} from "angular2/core";
 import {RouteParams} from 'angular2/router';
 import {InfoBoxComponent} from "./info.box";
 import {DropZone} from "../directives/drop.zone";
-import {Sponsor} from "../datatypes/models";
+import {Sponsor, Transaction} from "../datatypes/models";
 import {Property} from "./info.box";
 import {DataService} from "../services/data.service";
 
@@ -25,6 +25,8 @@ export class SponsorComponent {
         {key: "address",        name: "Address"}
     ];
 
+    transactions: Array<Transaction>;
+
     constructor(parameters: RouteParams) {
 
         DataService.getSponsorById(parameters.params.id)
@@ -32,8 +34,13 @@ export class SponsorComponent {
                 this.sponsor = sponsor.data.data[0];
                 console.log(this.sponsor);
             })
-            .catch(error => console.log(error))
-        }
+            .catch(error => console.log(error));
+
+        /* Get transactions from the sponsor */
+        DataService.getTransactionsFromSponsor(parameters.params.id)
+            .then(response => {
+                this.transactions = response;
+            });
     }
 
 }
