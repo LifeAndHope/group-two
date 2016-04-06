@@ -138,15 +138,17 @@ export class DataService extends DatabaseService {
         let updatedChild = {
             first_name: child.first_name,
             last_name: child.last_name,
-            sex: child.sex,
+            gender: child.gender,
             date_of_birth: child.date_of_birth,
             account_number: child.account_number,
-            school_id: child.school_id,
+            school_name: child.school_name,
+            school_address: child.school_address,
             description: child.description,
+            sponsor: child.sponsor,
             filter: {id: child.id}
         };
 
-        updatedChild = this.validateUpdatedChild(updatedChild)
+        updatedChild = this.validateUpdatedChild(updatedChild);
 
         return super.put('/child', updatedChild);
     }
@@ -178,8 +180,9 @@ export class DataService extends DatabaseService {
             first_name: sponsor.first_name,
             phone: sponsor.phone,
             email: sponsor.email,
-            join_date: sponsor.join_date.toISOString().slice(0,10),
+            join_date: sponsor.join_date,
             address: sponsor.address,
+            child: sponsor.child,
             filter:{
                 id: sponsor.id
             }

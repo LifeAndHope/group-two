@@ -13,14 +13,18 @@ import {Field} from "./add.button";
 import {Note} from "../datatypes/models";
 import {Transaction} from "../datatypes/models";
 import {TableComponent} from "./table.component";
+import {RowSelectionComponent} from "./row.selection.component";
+import {Sponsor} from "../datatypes/models";
+import {Column} from "./table.component";
 
 @Component({
     templateUrl: 'app/components/views/child.html',
-    directives: [InfoBoxComponent, ImageGalleryComponent, DropZone, AddButtonComponent, TableComponent]
+    directives: [InfoBoxComponent, ImageGalleryComponent, DropZone, AddButtonComponent, RowSelectionComponent, TableComponent]
 })
 
 export class ChildComponent {
     child: Child;
+    sponsor: Sponsor;
 
     properties: Array<Property> = [
         {key: "first_name",     name: "Fornavn"},
@@ -55,13 +59,23 @@ export class ChildComponent {
         {key: "receipt",        name: "Kvittering",         type: "file",   required: true},
     ];
 
+    sponsorFields: Array<Column> = [
+        {key: "first_name",     name: "Fornavn"},
+        {key: "last_name",      name: "Etternavn"},
+        {key: "email",          name: "E-post"},
+    ];
+
     fields: Array<Field> = [];
 
     images: Array<SecureDBFile>;
     imageSources: Array<string>;
     transactions: Array<Transaction>;
 
+    sponsors: Array<Sponsor> = [];
+
     constructor(parameters: RouteParams) {
+
+        DataService.getSponsors().then(response => this.sponsors = response.data.data).catch(res => console.log(res));
 
         /* Get all images for the child */
         FileService.getImagesForID(parameters.params.id)
@@ -80,16 +94,30 @@ export class ChildComponent {
         DataService.getChildById(parameters.params.id)
             .then(response => {
                 this.child = response.data.data[0];
+                console.log(this.child);
+                if (this.child.sponsor) {
+                    DataService.getSponsorById(this.child.sponsor)
+                        .then(response => {
+                            console.log(response.data.data[0]);
+                            this.sponsor = response.data.data[0];
+                        })
+                        .catch(res => console.log(res))
+                }
             });
 
         /* Get transactions to the child */
         DataService.getTransactionsToChild(parameters.params.id)
             .then(response => {
                 this.transactions = response;
-                console.log(response)
             });
     }
 
+    selectParent(sponsor) {
+        this.child.sponsor = sponsor.id;
+        this.sponsor = sponsor;
+        console.log(this.child);
+        this.updateChild()
+    }
 
     updateChild(event) {
         DataService.updateChild(this.child)
