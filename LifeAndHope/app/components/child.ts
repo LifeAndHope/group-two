@@ -69,7 +69,7 @@ export class ChildComponent {
             });
 
         /* Get transactions to the child */
-        DataService.getTransactionsToChild(this.child.id)
+        DataService.getTransactionsToChild(parameters.params.id)
             .then(response => {
                 this.transactions = response;
             });

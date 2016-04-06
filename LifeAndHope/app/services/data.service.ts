@@ -1,7 +1,7 @@
 import {Sponsor, Child, Note, Transaction} from './../datatypes/models'
 import {UUIDGenerator} from './../datatypes/interfaces'
 import {DatabaseService} from './database.service'
-import {Promise} from "../datatypes/models";
+//import {Promise} from "../datatypes/models";
 import {FileService} from "./file.service";
 
 declare var uuid:UUIDGenerator; // Tell typescript that there is a variable called 'uuid' in its scope
