@@ -12,13 +12,14 @@ import {AddButtonComponent} from "./add.button";
 import {Field} from "./add.button";
 import {Note} from "../datatypes/models";
 import {Transaction} from "../datatypes/models";
+import {TableComponent} from "./table.component";
 import {RowSelectionComponent} from "./row.selection.component";
 import {Sponsor} from "../datatypes/models";
 import {Column} from "./table.component";
 
 @Component({
     templateUrl: 'app/components/views/child.html',
-    directives: [InfoBoxComponent, ImageGalleryComponent, DropZone, AddButtonComponent, RowSelectionComponent]
+    directives: [InfoBoxComponent, ImageGalleryComponent, DropZone, AddButtonComponent, RowSelectionComponent, TableComponent]
 })
 
 export class ChildComponent {
@@ -35,6 +36,15 @@ export class ChildComponent {
         {key: "school_name",    name: "Skole"},
         {key: "school_address", name: "Skoleadresse"},
         {key: "grade",          name: "Trinn"},
+    ];
+
+    transactionProperties: Array<any> = [
+        {key: "date_sent",      name: "Dato sendt" },
+        {key: "date_received",  name: "Dato mottatt"},
+        {key: "amount_sent",    name: "Beløp sendt"},
+        {key: "amount_received",name: "Beløp mottatt"},
+        {key: "child",          name: "Barn"},
+        {key: "sponsor",        name: "Fadder"},
     ];
 
     noteFields: Array<Field> = [
@@ -149,8 +159,6 @@ export class ChildComponent {
             .catch(r => console.log(r));
         console.log(transaction);
     }
-
-
 
     private updateImageSources() {
         if (this.images === undefined || this.images === null) {
