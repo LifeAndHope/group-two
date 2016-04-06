@@ -15,18 +15,22 @@ import {Transaction} from "../datatypes/models";
 
 @Component({
     templateUrl: 'app/components/views/child.html',
-    directives: [InfoBoxComponent, ImageGalleryComponent, DropZone]
+    directives: [InfoBoxComponent, ImageGalleryComponent, DropZone, AddButtonComponent]
 })
 
 export class ChildComponent {
     child: Child;
 
     properties: Array<Property> = [
-        {key: "first_name",     name: "First name"},
-        {key: "last_name",      name: "Last name"},
-        {key: "sex",            name: "Gender"},
-        {key: "date_of_birth",  name: "Birth date"},
-        {key: "account_number", name: "Account number"},
+        {key: "first_name",     name: "Fornavn"},
+        {key: "last_name",      name: "Etternavn"},
+        {key: "gender",         name: "Kjønn"},
+        {key: "date_of_birth",  name: "Fødselsdato"},
+        {key: "account_number", name: "Kontonummer"},
+        {key: "description",    name: "Beskrivelse"},
+        {key: "school_name",    name: "Skole"},
+        {key: "school_address", name: "Skoleadresse"},
+        {key: "grade",          name: "Trinn"},
     ];
 
     noteFields: Array<Field> = [
