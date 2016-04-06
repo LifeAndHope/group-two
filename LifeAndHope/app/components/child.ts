@@ -12,10 +12,11 @@ import {AddButtonComponent} from "./add.button";
 import {Field} from "./add.button";
 import {Note} from "../datatypes/models";
 import {Transaction} from "../datatypes/models";
+import {TableComponent} from "./table.component";
 
 @Component({
     templateUrl: 'app/components/views/child.html',
-    directives: [InfoBoxComponent, ImageGalleryComponent, DropZone, AddButtonComponent]
+    directives: [InfoBoxComponent, ImageGalleryComponent, DropZone, AddButtonComponent, TableComponent]
 })
 
 export class ChildComponent {
@@ -31,6 +32,15 @@ export class ChildComponent {
         {key: "school_name",    name: "Skole"},
         {key: "school_address", name: "Skoleadresse"},
         {key: "grade",          name: "Trinn"},
+    ];
+
+    transactionProperties: Array<any> = [
+        {key: "date_sent",      name: "Dato sendt" },
+        {key: "date_received",  name: "Dato mottatt"},
+        {key: "amount_sent",    name: "Beløp sendt"},
+        {key: "amount_received",name: "Beløp mottatt"},
+        {key: "child",          name: "Barn"},
+        {key: "sponsor",        name: "Fadder"},
     ];
 
     noteFields: Array<Field> = [
@@ -76,6 +86,7 @@ export class ChildComponent {
         DataService.getTransactionsToChild(parameters.params.id)
             .then(response => {
                 this.transactions = response;
+                console.log(response)
             });
     }
 

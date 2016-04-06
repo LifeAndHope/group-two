@@ -42,6 +42,7 @@
         <div class="col-xs-12">
             <h3>Transaction history</h3> <hr>
             <add-button class="col-xs-4" [fields]="transactionFields" title="Transaction" (save)="addTransaction($event)"></add-button>
+            <dynamic-table [columns]="transactionProperties" [rows]="transactions"></dynamic-table>
         </div>
     </div>
 

@@ -63,8 +63,8 @@ export class DataService extends DatabaseService {
                 .then(
                     response =>{
                         let transactions: Array<Transaction> = [];
-                        for (let i = 0; i < response.data.length; i++){
-                            let transaction: Transaction = response.data.data;
+                        for (let i = 0; i < response.data.data.length; i++){
+                            let transaction: Transaction = response.data.data[i];
                             transactions.push(transaction);
                         }
                         resolve(transactions);
