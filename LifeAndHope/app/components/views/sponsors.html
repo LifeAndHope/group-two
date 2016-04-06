@@ -22,7 +22,7 @@
 
     <div class="row vertical-space-xs">
         <div class="col-sm-12">
-            <dynamic-table [columns]="properties" [rows]="sponsors  | filterBy: filter.text : filter.keys" [editable]="true" [removable]="true"></dynamic-table>
+            <dynamic-table [columns]="properties" [rows]="sponsors  | filterBy: filter.text : filter.keys" (remove)="removeSponsor($event)" (edit)="editSponsor($event)" [editable]="true" [removable]="true"></dynamic-table>
         </div>
     </div>
 </div>

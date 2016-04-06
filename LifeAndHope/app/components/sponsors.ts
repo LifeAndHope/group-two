@@ -1,5 +1,5 @@
 import {Component} from "angular2/core";
-import {CanActivate, RouterLink} from 'angular2/router';
+import {CanActivate, RouterLink, Router} from 'angular2/router';
 import {Sponsor} from "../datatypes/models";
 import {DataService} from "../services/data.service";
 import {Property, FilterGenerator} from "./filter.generator";
@@ -42,6 +42,8 @@ export class SponsorsComponent {
 
     initialized = false;
 
+    constructor(private router: Router) {}
+
     ngOnInit() {
         this.initialized = true;
 
@@ -58,4 +60,17 @@ export class SponsorsComponent {
             })
             .catch(console.log)
     }
+
+    removeSponsor(removeSponsor) {
+        //DataService.deleteSponsor(removeChild)
+        //    .then( result => {
+        //        this.sponsors = this.sponsors.filter(sponsor => return sponsor.id !== removeSponsor.id)
+        //    })
+    }
+
+    editSponsor(sponsor) {
+        this.router.navigate(['Sponsor', {id: sponsor.id}]);
+    }
 }
+
+SponsorsComponent.parameters = [Router];
