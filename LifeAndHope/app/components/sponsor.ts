@@ -22,7 +22,6 @@ export class SponsorComponent {
     child: Child;
 
     properties: Array<Property> = [
-        {key: "identifier",     name: "ID"},
         {key: "first_name",     name: "Fornavn"},
         {key: "last_name",      name: "Etternavn"},
         {key: "phone",          name: "Telefon"},

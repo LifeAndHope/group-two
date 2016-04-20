@@ -20,7 +20,6 @@ export class SponsorsComponent {
     sponsors: Array<Sponsor>;
 
     properties: Array<Property> = [
-        {key: "identifier",     name: "ID"},
         {key: "first_name",     name: "Fornavn"},
         {key: "last_name",      name: "Etternavn"},
         {key: "phone",          name: "Telefon"},
@@ -30,7 +29,6 @@ export class SponsorsComponent {
     ];
 
     fields: Array<Field> = [
-        {key: "identifier",     name: "ID",          type: "number"},
         {key: "first_name",     name: "Fornavn",     type: "text",},
         {key: "last_name",      name: "Etternavn",      type: "text"},
         {key: "phone",          name: "Telefon",      type: "tel"},
@@ -64,10 +62,13 @@ export class SponsorsComponent {
     }
 
     removeSponsor(removeSponsor) {
-        //DataService.deleteSponsor(removeChild)
-        //    .then( result => {
-        //        this.sponsors = this.sponsors.filter(sponsor => return sponsor.id !== removeSponsor.id)
-        //    })
+        DataService.deleteSponsor(removeSponsor)
+            .then( result => {
+                this.sponsors = this.sponsors.filter(sponsor => sponsor.id !== removeSponsor.id)
+            })
+            .catch(result => {
+                console.log(result)
+            });
     }
 
     editSponsor(sponsor) {

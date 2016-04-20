@@ -168,7 +168,7 @@ export class ChildComponent {
 
         DataService.addTransaction(transaction)
             .then(() => {
-                alert("Logg opprettet!")
+                alert("Transaksjon opprettet!")
             })
             .catch(r => console.log(r));
         console.log(transaction);

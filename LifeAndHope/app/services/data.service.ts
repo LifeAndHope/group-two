@@ -99,7 +99,25 @@ export class DataService extends DatabaseService {
      */
     public static addChild(child: Child): Promise<any> {
         child.id = uuid.v4();
-        return super.post('/child', [child]);
+        let validateChild = this.validateChild(child);
+        return super.post('/child', [validateChild]);
+    }
+
+    private static validateChild(child: Child) : Child{
+        let validatedChild = child
+
+        for(var item in validatedChild){
+            if(validatedChild[item] == null){
+                if(item === "school_id" || item === "description"){
+                    delete validatedChild[item]
+                }
+                else{
+                    validatedChild[item] = ""
+                }
+            }
+        }
+
+        return validatedChild
     }
 
     /**
@@ -131,7 +149,26 @@ export class DataService extends DatabaseService {
      */
     public static addTransaction(transaction: Transaction) : Promise<any> {
         transaction.id = uuid.v4();
-        return super.post('/transaction', [transaction]);
+        let verifiedTransaction = this.verifiedTransaction(transaction);
+        return super.post('/transaction', [verifiedTransaction]);
+    }
+
+    private static verifiedTransaction(transaction: Transaction){
+        let verifiedTransaction = transaction;
+
+        for(var item in verifiedTransaction){
+            console.log(item);
+            if(verifiedTransaction[item] == null){
+                if(item === "receipt" || item === "amount_received" || item === "date_received") {
+                    delete verifiedTransaction[item]
+                }
+            }
+            if(item === "receipt" && verifiedTransaction[item].length == 0){
+                delete verifiedTransaction[item]
+            }
+        }
+
+        return verifiedTransaction
     }
 
     public static updateChild(child: Child) : Promise<any> {
@@ -142,6 +179,7 @@ export class DataService extends DatabaseService {
             date_of_birth: child.date_of_birth,
             account_number: child.account_number,
             school_name: child.school_name,
+            grade: child.grade,
             school_address: child.school_address,
             description: child.description,
             sponsor: child.sponsor,
@@ -176,7 +214,6 @@ export class DataService extends DatabaseService {
 
     public static updateSponsor(sponsor: Sponsor) : Promise<any>{
         let updateSponsor = {
-            identifier: sponsor.identifier,
             last_name: sponsor.last_name,
             first_name: sponsor.first_name,
             phone: sponsor.phone,
@@ -206,6 +243,14 @@ export class DataService extends DatabaseService {
         return super.delete("/child", {
             "filter": {
                 "id": child.id
+            }
+        });
+    }
+
+    public static deleteSponsor(sponsor): Promise<void> {
+        return super.delete("/sponsor", {
+            "filter": {
+                "id": sponsor.id
             }
         });
     }
