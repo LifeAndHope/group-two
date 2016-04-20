@@ -71,7 +71,7 @@ export class ChildrenComponent {
     removeChild(removeChild) {
         DataService.deleteChild(removeChild)
             .then( result => {
-                this.children = this.children.filter(child => return child.id !== removeChild.id)
+                this.children = this.children.filter(child => child.id !== removeChild.id)
             })
             .catch(result => {
                 console.log(result)

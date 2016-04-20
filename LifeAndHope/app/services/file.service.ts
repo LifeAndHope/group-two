@@ -3,6 +3,7 @@ import {Container} from "../datatypes/interfaces";
 import {SecureDBFile, SecureDBBlob} from "../datatypes/interfaces";
 //import {Promise} from "../datatypes/models"; //FIXME: This causes an error at runtime
 
+
 export class FileService extends DatabaseService {
     protected static apiName: string = 'files';
 
@@ -119,7 +120,9 @@ export class FileService extends DatabaseService {
      */
     private static addContainer(containerName: string): Promise<void> {
         return new Promise( (resolve, reject) => {
-            super.post('', {'container_name': containerName})
+            super.post('', {
+                    'container_name': containerName
+                })
                 .then(response => resolve())
                 .catch(reject)
         });

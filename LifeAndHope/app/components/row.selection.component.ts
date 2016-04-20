@@ -22,10 +22,15 @@ export class RowSelectionComponent {
 
     filter = {text: "", keys: []};
 
+    initialized = false;
+
     constructor(private element: ElementRef) {}
 
+    ngOnInit() {
+        this.initialized = true;
+    }
+
     selectedRow(row) {
-        console.log("selected");
         $(this.element.nativeElement).children('.modal').modal('hide');
         this.selected.next(row);
     }

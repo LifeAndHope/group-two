@@ -47,6 +47,11 @@ export class ChildComponent {
         {key: "sponsor",        name: "Fadder"},
     ];
 
+    noteProperties: Array<Column> = [
+        {key: "text",     name: "Tekst"},
+        {key: "date",     name: "Dato"},
+    ];
+
     noteFields: Array<Field> = [
         {key: "text",     name: "Text",     type: "text", required: true},
     ];
@@ -54,9 +59,9 @@ export class ChildComponent {
     transactionFields: Array<Field> = [
         {key: "amount_sent",    name: "Beløp sendt (NOK)",  type: "number", required: true},
         {key: "date_sent",      name: "Dato sendt",         type: "date",   required: true, value: new Date()},
-        {key: "amount_received",name: "Beløp mottatt (Birr)", type: "number", required: true},
-        {key: "date_received",  name: "Dato mottatt",       type: "date",   required: true},
-        {key: "receipt",        name: "Kvittering",         type: "file",   required: true},
+        {key: "amount_received",name: "Beløp mottatt (Birr)", type: "number", required: false},
+        {key: "date_received",  name: "Dato mottatt",       type: "date",   required: false},
+        {key: "receipt",        name: "Kvittering",         type: "file",   required: false},
     ];
 
     sponsorFields: Array<Column> = [
@@ -70,6 +75,7 @@ export class ChildComponent {
     images: Array<SecureDBFile>;
     imageSources: Array<string>;
     transactions: Array<Transaction>;
+    notes: Array<Note>;
 
     sponsors: Array<Sponsor> = [];
 
@@ -88,6 +94,11 @@ export class ChildComponent {
             })
             .catch(response => {
                 console.log(response);
+            });
+
+        DataService.getNotesFromChild(parameters.params.id)
+            .then(response => {
+                this.notes = response.data.data;
             });
 
         /* Get the child */
@@ -152,7 +163,6 @@ export class ChildComponent {
     }
 
     addTransaction(transaction: Transaction) {
-
         transaction.child = this.child.id;
         transaction.sponsor = this.sponsor.id;
 

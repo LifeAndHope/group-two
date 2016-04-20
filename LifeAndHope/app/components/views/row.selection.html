@@ -1,6 +1,6 @@
 <button type="button" class="btn btn-default" (click)="showModal()"><span class="glyphicon glyphicon-edit"></span> {{title}}</button>
 
-<div id="modal" class="modal fade" role="dialog">
+<div *ngIf="initialized" id="modal" class="modal fade" role="dialog">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">

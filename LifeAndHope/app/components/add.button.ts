@@ -24,9 +24,10 @@ export class AddButtonComponent {
         for (let field of this.fields) {
             let controlDefinition = [field.value];
 
-            if (field.required) {
-                controlDefinition.push(Validators.required)
-            }
+            //if (field.required === true) {
+            //    console.log(field.key);
+            //    controlDefinition.push(Validators.required)
+            //}
 
             controlGroupDefinition[field.key] = controlDefinition;
         }
@@ -36,17 +37,16 @@ export class AddButtonComponent {
 
     saveData() {
         let data = this.form.value;
-
         for (let field of this.fields) {
             if (field.type === "file") {
                 data[field.key] = $(this.element.nativeElement).find('#'+field.key)[0].files;
             }
-            if (field.required === true && !data[field.key]) {
+            if (field.required && !data[field.key]) {
+                console.log("Fail", field, data[field.key]);
                 return
             }
         }
 
-        console.log(data);
         this.save.next(data);
         $(this.element.nativeElement).children('.modal').modal('hide');
     }

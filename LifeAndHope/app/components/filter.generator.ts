@@ -1,5 +1,5 @@
 import {Component, Input, EventEmitter, Output} from 'angular2/core';
-import {Column} from "./editable.table";
+import {Column} from "./table.component";
 
 //declare function key(keys: string, callback: (Event)=>void);
 

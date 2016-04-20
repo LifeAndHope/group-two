@@ -26,7 +26,12 @@
                     <div class="col-sm-6 text-right">
                         <span *ngIf="child">{{child.first_name}} {{child.last_name}}</span>
                         <span *ngIf="!child">Ingen fadderbarn!</span>
-                        <row-selection class="text-left" [rows]="children" [columns]="childColumns" (selected)="selectChild($event)" [selectable]="true"></row-selection>
+                        <row-selection class="text-left"
+                                       title="Velg fadderbarn"
+                                       [rows]="children"
+                                       [columns]="childColumns"
+                                       (selected)="selectChild($event)"
+                                       [selectable]="true"></row-selection>
                     </div>
                 </div>
             </div>
