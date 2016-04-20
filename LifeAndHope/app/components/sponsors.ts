@@ -20,6 +20,7 @@ export class SponsorsComponent {
     sponsors: Array<Sponsor>;
 
     properties: Array<Property> = [
+        {key: "identifier",     name: "ID"},
         {key: "first_name",     name: "Fornavn"},
         {key: "last_name",      name: "Etternavn"},
         {key: "phone",          name: "Telefon"},
@@ -29,6 +30,7 @@ export class SponsorsComponent {
     ];
 
     fields: Array<Field> = [
+        {key: "identifier",     name: "ID",          type: "number"},
         {key: "first_name",     name: "Fornavn",     type: "text",},
         {key: "last_name",      name: "Etternavn",      type: "text"},
         {key: "phone",          name: "Telefon",      type: "tel"},

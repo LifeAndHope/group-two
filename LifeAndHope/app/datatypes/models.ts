@@ -4,6 +4,7 @@ type UUID = string;
 
 export interface Sponsor {
     id: UUID;
+    identifier: number;
     first_name: string;
     last_name: string;
     phone: string;

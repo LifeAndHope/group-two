@@ -22,12 +22,13 @@ export class SponsorComponent {
     child: Child;
 
     properties: Array<Property> = [
-        {key: "first_name",     name: "First name"},
-        {key: "last_name",      name: "Last name"},
-        {key: "phone",          name: "Phone"},
-        {key: "email",          name: "Email"},
-        {key: "join_date",      name: "Join date"},
-        {key: "address",        name: "Address"}
+        {key: "identifier",     name: "ID"},
+        {key: "first_name",     name: "Fornavn"},
+        {key: "last_name",      name: "Etternavn"},
+        {key: "phone",          name: "Telefon"},
+        {key: "email",          name: "E-post"},
+        {key: "join_date",      name: "Medlem siden"},
+        {key: "address",        name: "Adresse"}
     ];
 
     childColumns: Array<Column> = [
@@ -73,6 +74,12 @@ export class SponsorComponent {
                 this.child = child;
             })
             .catch(res => console.log(res))
+    }
+
+    updateSponsor(event) {
+        DataService.updateSponsor(this.sponsor)
+            .then(response => console.log(response))
+            .catch(response => console.log(response))
     }
 
 

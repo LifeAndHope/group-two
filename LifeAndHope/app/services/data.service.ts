@@ -176,6 +176,7 @@ export class DataService extends DatabaseService {
 
     public static updateSponsor(sponsor: Sponsor) : Promise<any>{
         let updateSponsor = {
+            identifier: sponsor.identifier,
             last_name: sponsor.last_name,
             first_name: sponsor.first_name,
             phone: sponsor.phone,
