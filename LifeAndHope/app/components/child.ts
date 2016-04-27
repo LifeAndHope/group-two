@@ -108,9 +108,13 @@ export class ChildComponent {
         ChildService.getChildById(parameters.params.id)
             .then(response => {
                 this.child = response.data.data[0];
-                console.log(this.child);
 
-                console.error("Does not load sponsors");
+                SponsorService.getSponsorsForChild(this.child)
+                    .then(sponsors => {
+                        if (sponsors.length) {
+                            this.sponsor = sponsors[0]
+                        }
+                    })
             });
 
         /* Get transactions to the child */
@@ -122,6 +126,7 @@ export class ChildComponent {
 
     selectParent(sponsor) {
         console.error("Cannor set sponsor for children");
+        SponsorService.beginSponsoringChild(sponsor, this.child);
     }
 
     updateChild(event) {

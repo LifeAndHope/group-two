@@ -1,5 +1,6 @@
 import {Axios} from './../datatypes/models'
 import {Promise} from "../datatypes/models";
+import {UUIDGenerator} from "../datatypes/interfaces";
 
 //import * as axios from 'axios';
 

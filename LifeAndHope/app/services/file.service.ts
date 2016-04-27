@@ -4,6 +4,7 @@ import {SecureDBFile, SecureDBBlob} from "../datatypes/interfaces";
 //import {Promise} from "../datatypes/models"; //FIXME: This causes an error at runtime
 
 
+
 export class FileService extends DatabaseService {
     protected static apiName: string = 'files';
 
@@ -71,9 +72,8 @@ export class FileService extends DatabaseService {
      */
 
     private static getFilesFromContainer(containerName: string): Promise< Array<SecureDBFile> > {
-        return new Promise<any>( (resolve, reject) => {
+        return new Promise( (resolve, reject) => {
             this.getContainer(containerName)
-
                 .then(container => {
                     /* The container exists, but does not contain any files */
                     if (!container.enfaas_files) {

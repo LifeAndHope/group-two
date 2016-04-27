@@ -1,9 +1,9 @@
 import {DatabaseService} from "./database.service";
-//import {Promise} from "../datatypes/models"; //FIXME: Causes error. Maybe a problem with polyfills
+//import {Promise} from "../datatypes/models";
 import {Transaction} from "../datatypes/models";
-import {uuid} from "../datatypes/interfaces";
+import {UUIDGenerator} from "../datatypes/interfaces";
 
-
+var uuid:UUIDGenerator;
 
 /** Responsible for retrieving and updating data */
 export class TransactionService extends DatabaseService {

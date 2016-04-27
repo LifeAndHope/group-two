@@ -45,9 +45,13 @@ export class SponsorComponent {
         SponsorService.getSponsorById(parameters.params.id)
             .then(sponsor => {
                 this.sponsor = sponsor.data.data[0];
-                console.log(this.sponsor);
 
-                console.error("Does not retrieve child for sponsor");
+                ChildService.getChildrenForSponsor(this.sponsor)
+                    .then(children => {
+                        if (children.length) {
+                            this.child = children[0]
+                        }
+                    })
             })
             .catch(error => console.log(error));
 
@@ -66,6 +70,7 @@ export class SponsorComponent {
 
     selectChild(child) {
         console.error("Cannot set child for sponsors");
+        SponsorService.beginSponsoringChild(this.sponsor, child)
     }
 
     updateSponsor(event) {

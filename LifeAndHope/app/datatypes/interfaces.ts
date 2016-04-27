@@ -17,7 +17,6 @@ export interface UUIDGenerator {
     v5(): string;
 }
 
-export declare var uuid:UUIDGenerator;
 
 /*
  * User account

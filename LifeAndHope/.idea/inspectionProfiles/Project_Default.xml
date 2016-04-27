@@ -1,0 +1,55 @@
+<component name="InspectionProjectProfileManager">
+  <profile version="1.0">
+    <option name="myName" value="Project Default" />
+    <inspection_tool class="HtmlUnknownAttribute" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="myValues">
+        <value>
+          <list size="15">
+            <item index="0" class="java.lang.String" itemvalue="[hidden]" />
+            <item index="1" class="java.lang.String" itemvalue="*ngif" />
+            <item index="2" class="java.lang.String" itemvalue="[(ngmodel)]" />
+            <item index="3" class="java.lang.String" itemvalue="(keyup)" />
+            <item index="4" class="java.lang.String" itemvalue="*ngfor" />
+            <item index="5" class="java.lang.String" itemvalue="(click)" />
+            <item index="6" class="java.lang.String" itemvalue="[ngformmodel]" />
+            <item index="7" class="java.lang.String" itemvalue="(ngsubmit)" />
+            <item index="8" class="java.lang.String" itemvalue="ngcontrol" />
+            <item index="9" class="java.lang.String" itemvalue="[disabled]" />
+            <item index="10" class="java.lang.String" itemvalue="[routerlink]" />
+            <item index="11" class="java.lang.String" itemvalue="[ngswitch]" />
+            <item index="12" class="java.lang.String" itemvalue="ngswitchwhen" />
+            <item index="13" class="java.lang.String" itemvalue="ngswitchdefault" />
+            <item index="14" class="java.lang.String" itemvalue="[required]" />
+          </list>
+        </value>
+      </option>
+      <option name="myCustomValuesEnabled" value="true" />
+    </inspection_tool>
+    <inspection_tool class="HtmlUnknownTag" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="myValues">
+        <value>
+          <list size="13">
+            <item index="0" class="java.lang.String" itemvalue="nobr" />
+            <item index="1" class="java.lang.String" itemvalue="noembed" />
+            <item index="2" class="java.lang.String" itemvalue="comment" />
+            <item index="3" class="java.lang.String" itemvalue="noscript" />
+            <item index="4" class="java.lang.String" itemvalue="embed" />
+            <item index="5" class="java.lang.String" itemvalue="script" />
+            <item index="6" class="java.lang.String" itemvalue="image-gallery" />
+            <item index="7" class="java.lang.String" itemvalue="add-button" />
+            <item index="8" class="java.lang.String" itemvalue="dynamic-table" />
+            <item index="9" class="java.lang.String" itemvalue="row-selection" />
+            <item index="10" class="java.lang.String" itemvalue="info-box" />
+            <item index="11" class="java.lang.String" itemvalue="filter-generator" />
+            <item index="12" class="java.lang.String" itemvalue="router-outlet" />
+          </list>
+        </value>
+      </option>
+      <option name="myCustomValuesEnabled" value="true" />
+    </inspection_tool>
+    <inspection_tool class="LoggerInitializedWithForeignClass" enabled="false" level="WARNING" enabled_by_default="false">
+      <option name="loggerClassName" value="org.apache.log4j.Logger,org.slf4j.LoggerFactory,org.apache.commons.logging.LogFactory,java.util.logging.Logger" />
+      <option name="loggerFactoryMethodName" value="getLogger,getLogger,getLog,getLogger" />
+    </inspection_tool>
+  </profile>
+</component>
