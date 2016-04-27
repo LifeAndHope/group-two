@@ -8,6 +8,7 @@ import {Field} from "./add.button";
 import {AddButtonComponent} from "./add.button";
 import {TableComponent} from "./table.component";
 import {SponsorService} from "../services/sponsor.service";
+import {CSVService} from "../services/csv.service";
 
 @Component({
     selector: 'sponsors',
