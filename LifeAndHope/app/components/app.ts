@@ -1,7 +1,7 @@
 import {Component, View} from 'angular2/core';
 import { RouteConfig, RouterLink, Router, Route, Redirect } from 'angular2/router';
 
-import {AuthenticatedRouterOutlet} from './../directives/authenticated.router.outlet';
+import {AuthenticatedRouterOutlet} from './../directives/authenticatedRouterOutlet.directive';
 
 import {AccountService} from "../services/account.service";
 

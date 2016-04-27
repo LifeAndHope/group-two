@@ -8,9 +8,8 @@ export interface Sponsor {
     last_name: string;
     phone: string;
     email: string;
-    join_date: Date;
     address: string;
-    child?: UUID;
+    join_date: Date;
 }
 
 
@@ -25,7 +24,29 @@ export interface Child {
     school_name: string;
     school_address: string;
     grade: string;
-    sponsor: UUID;
+    school_id?: UUID;
+}
+
+export interface School {
+    id: UUID;
+    name: string;
+    address: string;
+}
+
+export interface SponsorHasChild {
+    id: UUID;
+    child_id: UUID;
+    sponsor_id: UUID;
+    from_date: Date;
+    to_date?: Date;
+}
+
+export interface ChildHasSchool {
+    id: UUID;
+    child_id: UUID;
+    school_id: UUID;
+    from_date: Date;
+    to_date?: Date;
 }
 
 

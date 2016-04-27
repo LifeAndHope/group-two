@@ -58,8 +58,11 @@
     <div class="row vertical-space-sm">
         <div class="col-xs-12">
             <h3>Transaction history</h3> <hr>
-            <add-button class="col-xs-4" [fields]="transactionFields" title="Transaction" (save)="addTransaction($event)"></add-button>
-            <dynamic-table [columns]="transactionProperties" [rows]="transactions"></dynamic-table>
+            <div [hidden]="!sponsor">
+                <add-button class="col-xs-4" [fields]="transactionFields" title="Transaction" (save)="addTransaction($event)"></add-button>
+                <dynamic-table [columns]="transactionProperties" [rows]="transactions"></dynamic-table>
+            </div>
+            <span [hidden]="sponsor">Du må gi fadderbarnet en fadder før du kan legge til transaksjoner</span>
         </div>
     </div>
 

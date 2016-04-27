@@ -1,13 +1,13 @@
 import {Component} from "angular2/core";
 import {CanActivate, RouterLink, Router} from 'angular2/router';
 import {Sponsor} from "../datatypes/models";
-import {DataService} from "../services/data.service";
 import {Property, FilterGenerator} from "./filter.generator";
 import {FilterBy} from "../pipes/filter.by";
 import {InfoBoxComponent} from "./info.box";
 import {Field} from "./add.button";
 import {AddButtonComponent} from "./add.button";
 import {TableComponent} from "./table.component";
+import {SponsorService} from "../services/sponsor.service";
 
 @Component({
     selector: 'sponsors',
@@ -29,12 +29,12 @@ export class SponsorsComponent {
     ];
 
     fields: Array<Field> = [
-        {key: "first_name",     name: "Fornavn",     type: "text",},
+        {key: "first_name",     name: "Fornavn",        type: "text",},
         {key: "last_name",      name: "Etternavn",      type: "text"},
-        {key: "phone",          name: "Telefon",      type: "tel"},
+        {key: "phone",          name: "Telefon",        type: "tel"},
         {key: "email",          name: "E-post",         type: "email"},
         {key: "address",        name: "Adresse",        type: "text"},
-        {key: "join_date",      name: "Medlem siden",      type: "date", value: new Date()},
+        {key: "join_date",      name: "Medlem siden",   type: "date", value: new Date()},
     ];
 
 
@@ -47,14 +47,14 @@ export class SponsorsComponent {
     ngOnInit() {
         this.initialized = true;
 
-        DataService.getSponsors()
+        SponsorService.getSponsors()
             .then(response => {
                 this.sponsors = response.data.data;
             })
     }
 
     addSponsor(sponsor) {
-        DataService.addSponsor(sponsor)
+        SponsorService.addSponsor(sponsor)
             .then(response => {
                 this.sponsors.push(sponsor);
             })
@@ -62,7 +62,7 @@ export class SponsorsComponent {
     }
 
     removeSponsor(removeSponsor) {
-        DataService.deleteSponsor(removeSponsor)
+        SponsorService.deleteSponsor(removeSponsor)
             .then( result => {
                 this.sponsors = this.sponsors.filter(sponsor => sponsor.id !== removeSponsor.id)
             })

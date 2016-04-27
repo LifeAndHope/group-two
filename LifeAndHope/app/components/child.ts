@@ -1,12 +1,11 @@
 import {Component} from 'angular2/core';
-import {Child} from "../datatypes/models";
 import {RouteParams} from 'angular2/router';
-import {DataService} from "../services/data.service";
+import {Child} from "../datatypes/models";
 import {InfoBoxComponent} from "./info.box";
 import {Property} from "./info.box";
 import {FileService} from "../services/file.service";
 import {ImageGalleryComponent} from "./image.gallery";
-import {DropZone} from "../directives/drop.zone";
+import {DropZone} from "../directives/dropZone.directive";
 import {SecureDBFile} from "../datatypes/interfaces";
 import {AddButtonComponent} from "./add.button";
 import {Field} from "./add.button";
@@ -16,6 +15,10 @@ import {TableComponent} from "./table.component";
 import {RowSelectionComponent} from "./row.selection.component";
 import {Sponsor} from "../datatypes/models";
 import {Column} from "./table.component";
+import {SponsorService} from "../services/sponsor.service";
+import {ChildService} from "../services/child.service";
+import {NoteService} from "../services/note.service";
+import {TransactionService} from "../services/transaction.service";
 
 @Component({
     templateUrl: 'app/components/views/child.html',
@@ -82,7 +85,7 @@ export class ChildComponent {
     constructor(parameters: RouteParams) {
 
         // FIXME: Should not always load all sponsors
-        DataService.getSponsors()
+        SponsorService.getSponsors()
             .then(response => this.sponsors = response.data.data)
             .catch(res => console.log(res));
 
@@ -96,42 +99,33 @@ export class ChildComponent {
                 console.log(response);
             });
 
-        DataService.getNotesFromChild(parameters.params.id)
+        NoteService.getNotesFromChild(parameters.params.id)
             .then(response => {
                 this.notes = response.data.data;
             });
 
         /* Get the child */
-        DataService.getChildById(parameters.params.id)
+        ChildService.getChildById(parameters.params.id)
             .then(response => {
                 this.child = response.data.data[0];
                 console.log(this.child);
-                if (this.child.sponsor) {
-                    DataService.getSponsorById(this.child.sponsor)
-                        .then(response => {
-                            console.log(response.data.data[0]);
-                            this.sponsor = response.data.data[0];
-                        })
-                        .catch(res => console.log(res))
-                }
+
+                console.error("Does not load sponsors");
             });
 
         /* Get transactions to the child */
-        DataService.getTransactionsToChild(parameters.params.id)
+        TransactionService.getTransactionsToChild(parameters.params.id)
             .then(response => {
                 this.transactions = response;
             });
     }
 
     selectParent(sponsor) {
-        this.child.sponsor = sponsor.id;
-        this.sponsor = sponsor;
-        console.log(this.child);
-        this.updateChild()
+        console.error("Cannor set sponsor for children");
     }
 
     updateChild(event) {
-        DataService.updateChild(this.child)
+        ChildService.updateChild(this.child)
             .then(response => console.log(response))
             .catch(response => console.log(response))
     }
@@ -155,7 +149,7 @@ export class ChildComponent {
         note.instance_id = this.child.id;
         note.date = new Date();
 
-        DataService.addNote(note)
+        NoteService.addNote(note)
             .then(() => {
                 alert("Logg opprettet!")
             })
@@ -164,9 +158,10 @@ export class ChildComponent {
 
     addTransaction(transaction: Transaction) {
         transaction.child = this.child.id;
+
         transaction.sponsor = this.sponsor.id;
 
-        DataService.addTransaction(transaction)
+        TransactionService.addTransaction(transaction)
             .then(() => {
                 alert("Transaksjon opprettet!")
             })

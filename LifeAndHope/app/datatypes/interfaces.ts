@@ -17,6 +17,11 @@ export interface UUIDGenerator {
     v5(): string;
 }
 
+export declare var uuid:UUIDGenerator;
+
+/*
+ * User account
+ */
 
 export interface AccountBasic {
     ab_id: string;
@@ -49,6 +54,10 @@ export interface Account {
     accountCredentials: AccountCredentials;
     accountRole: AccountRole;
 }
+
+/*
+ * Fles
+ */
 
 export interface Container {
     container_name: string;

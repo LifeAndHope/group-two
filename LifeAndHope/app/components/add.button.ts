@@ -37,6 +37,7 @@ export class AddButtonComponent {
 
     saveData() {
         let data = this.form.value;
+
         for (let field of this.fields) {
             if (field.type === "file") {
                 data[field.key] = $(this.element.nativeElement).find('#'+field.key)[0].files;

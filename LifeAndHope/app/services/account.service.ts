@@ -1,5 +1,5 @@
 import {DatabaseService} from "./database.service";
-import {PromiseType} from "../datatypes/interfaces";
+//import {Promise} from "../datatypes/interfaces";//FIXME: This causes an error at runtime
 import {Account} from "../datatypes/interfaces";
 
 declare var Cookies;
@@ -24,7 +24,7 @@ export class AccountService extends DatabaseService {
     }
 
 
-    public static login(username: string, password: string): PromiseType<Account> {
+    public static login(username: string, password: string): Promise<Account> {
         this.deauthorizeAccount();
 
         return new Promise((resolve, reject) => {

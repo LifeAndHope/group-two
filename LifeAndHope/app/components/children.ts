@@ -2,13 +2,13 @@ import {Component} from 'angular2/core';
 import {CanActivate, RouterLink, Router} from 'angular2/router';
 import {FilterGenerator} from "./filter.generator";
 import {Child} from "../datatypes/models";
-import {DataService} from "../services/data.service";
-import {Property} from "./filter.generator";
 import {FilterBy} from "../pipes/filter.by";
 import {InfoBoxComponent} from "./info.box";
 import {AddButtonComponent} from "./add.button";
 import {Field} from "./add.button";
 import {TableComponent} from "./table.component";
+import {ChildService} from "../services/child.service";
+import {Column} from "./table.component";
 
 @Component({
     selector: 'Hovedside',
@@ -22,7 +22,7 @@ export class ChildrenComponent {
 
     children: Array<Child>;
 
-    properties: Array<Property> = [
+    properties: Array<Column> = [
         {key: "first_name",     name: "Fornavn"},
         {key: "last_name",      name: "Etternavn"},
         {key: "gender",         name: "Kjønn"},
@@ -54,14 +54,14 @@ export class ChildrenComponent {
     ngOnInit() {
         this.initialized = true;
 
-        DataService.getChildren()
+        ChildService.getChildren()
             .then(response => {
                 this.children = response.data.data;
             })
     }
 
     addChild(child: Child) {
-        DataService.addChild(child)
+        ChildService.addChild(child)
             .then(response => {
                 this.children.push(child)
             })
@@ -69,7 +69,7 @@ export class ChildrenComponent {
     }
 
     removeChild(removeChild) {
-        DataService.deleteChild(removeChild)
+        ChildService.deleteChild(removeChild)
             .then( result => {
                 this.children = this.children.filter(child => child.id !== removeChild.id)
             })
